@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project B · Binder Analyzer</title>
+<link rel="stylesheet" href="/style.css">
+<script src="/app.js" defer></script>
+</head>
+<body><main>
+<header><p>CS 211 / Project B</p><h1>Mobile Agent Communication Analyzer</h1></header>
+<section>
+<h2>Connect</h2>
+<label>Backend access token <input id="token" type="password" autocomplete="off"></label>
+<button id="connect">Connect and refresh devices</button>
+<button id="floating-settings" type="button">Enable floating marker button</button>
+<p id="floating-status" role="status"></p>
+<p id="message" role="status"></p>
+</section>
+<section>
+<h2>Set up experiment</h2>
+<form id="setup">
+<label>ADB device <select id="device" required></select></label>
+<button id="packages" type="button">Load / refresh installed apps</button>
+<p id="package-help">Load apps, then search by app name or package name.</p>
+<label>Search installed apps <input id="package-search" type="search" placeholder="Gemini, google, or a package name" autocomplete="off"></label>
+<label class="inline-check"><input id="all-packages" type="checkbox"> Include packages without a launcher app name</label>
+<p id="package-status" role="status" aria-live="polite"></p>
+<div id="package-results" aria-label="Installed apps"></div>
+<label>Selected package / manual entry <input id="package" placeholder="com.example.agent" required autocomplete="off"></label>
+<button id="package-check" type="button">Check selected package</button>
+<p id="package-selection" role="status" aria-live="polite">No app selected.</p>
+<label>Mode <select id="mode"><option value="trace">Binder trace</option><option value="baseline">Task-time baseline (no Perfetto)</option>
+<option value="resource_agent">Resources A · Agent only (stop controller)</option>
+<option value="resource_controller">Resources B · Agent + controller</option>
+<option value="resource_trace">Resources C · Agent + controller + Perfetto</option></select></label>
+<div id="resource-setup" hidden>
+<p>Start all three resource arms from the laptop browser. Use the same fixed scenario, screen brightness, network and unplugged phone. Before B/C, open the updated controller, connect it and return to the Agent. The controller stays in the background with task-marker overlays disabled for this profile.</p>
+<p>W0 means sustained foreground idle for this window. For W1/W2, document an identical repeated-task schedule in Conditions. These runs are separate from the 18 formal Binder trials.</p>
+<label>Sample interval seconds <input id="sample_interval_seconds" type="number" value="15" min="10" max="60"></label>
+<label>Preparation delay seconds <input id="settle_seconds" type="number" value="30" min="10" max="120"></label>
+<label class="inline-check"><input id="controller_stop_ack" type="checkbox"> For arm A, allow stopping only the Project B controller on the selected phone. I will not reopen it until the run ends.</label>
+<button id="resource-probe" type="button">Check resource measurement support</button>
+<p id="resource-capabilities" role="status"></p>
+</div>
+<label>Stable phone label <input id="device_label" maxlength="200" placeholder="My Pixel (same label after ADB reconnects)"></label>
+<label>Experiment conditions <input id="conditions" maxlength="200" placeholder="Same prompt, voice mode, app version and network"></label>
+<p>Use identical labels and repetition numbers to pair baseline and traced trials. Alternate their order. Both use the controller and task markers.</p>
+<label>Workload <select id="workload">
+<option value="W0">W0 · Foreground idle</option>
+<option value="W1">W1 · Open Wikipedia in an external browser</option>
+<option value="W2">W2 · Speak the W1 prompt</option>
+</select></label>
+<p id="instructions"></p>
+<label>Maximum capture seconds <input id="seconds" type="number" value="40" min="5" max="180" required></label>
+<p id="capture-help">The capture includes time to switch apps. W0 needs 30 untouched seconds; stop W1/W2 at completion or 60 seconds after the task begins.</p>
+<label>Repetition <input id="repetition" type="number" value="1" min="1" max="100" required></label>
+<button id="start">Start recording</button>
+</form>
+</section>
+<section>
+<h2>Run</h2>
+<label>Run history <select id="history"><option value="">Select a run</option></select></label>
+<p id="status" role="status"></p>
+<form id="marker-form">
+<label>Task marker <input id="marker" list="marker-list" maxlength="80" required></label>
+<datalist id="marker-list">
+<option value="idle_start"><option value="idle_end"><option value="unexpected_activity">
+<option value="prompt_submitted"><option value="confirmation"><option value="browser_launched">
+<option value="voice_start"><option value="voice_end"><option value="response_complete">
+</datalist>
+<button id="add-marker" disabled>Add marker</button>
+<button id="stop" type="button" disabled>Stop recording</button>
+</form>
+<ul id="markers"></ul>
+<form id="ground" hidden>
+<label>Outcome <select id="outcome"><option value="">Select outcome</option><option>success</option>
+<option>failure</option><option>timeout</option><option>unexpected_activity</option></select></label>
+<label>Browser package <input id="browser_package" maxlength="2000"></label>
+<p>Auto-filled when you tap “browser launched” in the notification while the external browser is visible. Keep it visible for a few seconds. You can correct the package manually.</p>
+<p id="browser-detection" role="status" aria-live="polite"></p>
+<label>Recognized speech <input id="recognized_text" maxlength="2000"></label>
+<label>Actual response <textarea id="actual_response" maxlength="2000"></textarea></label>
+<label>Notes <textarea id="notes" maxlength="2000"></textarea></label>
+<button>Save ground truth</button>
+</form>
+<p id="quality" role="status"></p>
+<h3>Available files</h3><div id="exports"></div>
+</section>
+<section id="resource-results" hidden>
+<h2>Resource measurements</h2>
+<p id="resource-window"></p>
+<div class="graphic"><table><thead><tr><th>Metric</th><th>Median / value</th><th>Available samples / note</th></tr></thead><tbody id="resource-metrics"></tbody></table></div>
+<p id="resource-issues"></p>
+<p>System CPU is the percentage reported by Android (including I/O wait); process CPU is relative to one core. Memory is sampled PSS in KiB. Battery energy is estimated from whole-device charge and voltage changes, not attributed to an individual app. The ADB observer is present in all arms.</p>
+</section>
+<section id="results" hidden>
+<h2>Results</h2>
+<p id="metrics"></p><ul id="warnings"></ul>
+<h3>Timeline · requests per second</h3>
+<p>Orange marks the task events. Each bar represents one second.</p>
+<div id="timeline" class="graphic"></div>
+<h3>Directed process graph</h3><p>Showing the 12 strongest directed edges. The full graph is in the edge export.</p>
+<div id="graph" class="graphic"></div>
+<h3>Top peers</h3><ul id="peers"></ul>
+<h3>Identifiable interfaces</h3><ul id="interfaces"></ul>
+<h3>Candidate mediated paths</h3><ul id="paths"></ul>
+</section>
+<section>
+<h2>Experiment evaluation</h2>
+<button id="evaluate">Refresh comparisons and overhead</button>
+<button id="evaluation-export">Download evaluation JSON</button>
+<pre id="evaluation"></pre>
+</section>
+</main></body></html>

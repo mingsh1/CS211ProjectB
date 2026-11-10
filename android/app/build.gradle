@@ -1,0 +1,16 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'edu.cs211.projectb'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'edu.cs211.projectb'
+        minSdk 30
+        targetSdk 34
+        versionCode 5
+        versionName '1.4'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

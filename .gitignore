@@ -1,0 +1,18 @@
+.venv/
+.venv-deps/
+__pycache__/
+runs/
+.gradle/
+**/build/
+local.properties
+
+
+# Local history, credentials and signing material
+.backups/
+.env
+.env.*
+*.keystore
+*.jks
+*.pyc
+
+.access-token
