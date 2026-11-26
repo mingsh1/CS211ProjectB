@@ -69,7 +69,7 @@ The local HTML version contains side-by-side tables and embeds all four figures.
 
 For the selected comparison, the user confirmed that Gemini and ChatGPT were not updated during collection and that W2 used comparable voice input modes. Muse is excluded from the formal comparison by the user's decision; its existing W0 captures remain stored as historical data.
 
-The formal 18-run dataset remains local pending explicit approval to publish device metadata and raw traces to this public repository. Large captures and transaction exports are configured for Git LFS. The code-only commit does not contain `runs/`, local access tokens, backend logs, extra pilots, Muse runs, or the incorrect archived run. Aggregate analysis reports also remain local until the data-release scope is confirmed.
+The formal 18-run dataset remains local pending explicit approval to publish device metadata and raw traces to this public repository. Large captures and transaction exports are configured for Git LFS. The code-only commit does not contain `runs/`, local access tokens, backend logs, extra pilots, Muse runs, or the incorrect archived run. A privacy-preserving 18-run numeric summary is published in [public_data/formal_metrics_numeric.csv](public_data/formal_metrics_numeric.csv); detailed analysis reports remain local until the data-release scope is confirmed.
 
 ## Run the experiment
 
