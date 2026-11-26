@@ -1,0 +1,27 @@
+sender,receiver,count
+com.google.android.googlequicksearchbox:search [upid 1083],/system/bin/surfaceflinger [upid 753],1334
+com.google.android.googlequicksearchbox:search [upid 1083],system_server [upid 856],1216
+/system/bin/surfaceflinger [upid 753],com.google.android.googlequicksearchbox:search [upid 1083],556
+system_server [upid 856],com.google.android.googlequicksearchbox:search [upid 1083],195
+com.google.android.googlequicksearchbox:search [upid 1083],com.google.android.gms [upid 932],121
+com.google.android.gms [upid 932],com.google.android.googlequicksearchbox:search [upid 1083],104
+com.google.android.googlequicksearchbox:googleapp [upid 1098],system_server [upid 856],93
+com.google.android.googlequicksearchbox:googleapp [upid 1098],com.google.android.gms [upid 932],37
+system_server [upid 856],com.google.android.googlequicksearchbox:googleapp [upid 1098],25
+com.google.android.googlequicksearchbox:search [upid 1083],/vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek [upid 707],15
+com.google.android.googlequicksearchbox:search [upid 1083],com.google.android.googlequicksearchbox:interactor [upid 1097],13
+com.sohu.inputmethod.sogouoem [upid 940],com.google.android.googlequicksearchbox:search [upid 1083],12
+com.google.android.googlequicksearchbox:interactor [upid 1097],com.google.android.googlequicksearchbox:search [upid 1083],12
+com.google.android.gms [upid 932],com.google.android.googlequicksearchbox:googleapp [upid 1098],10
+com.google.android.googlequicksearchbox:search [upid 1083],com.android.phone [upid 889],9
+/system/bin/cameraserver [upid 785],com.google.android.googlequicksearchbox:search [upid 1083],8
+com.google.android.googlequicksearchbox:search [upid 1083],/system/bin/audioserver [upid 749],8
+com.google.android.googlequicksearchbox:search [upid 1083],com.sohu.inputmethod.sogouoem [upid 940],5
+com.google.android.googlequicksearchbox:interactor [upid 1097],com.google.android.gms [upid 932],4
+com.google.android.googlequicksearchbox:search [upid 1083],com.google.android.googlequicksearchbox:googleapp [upid 1098],4
+com.google.android.googlequicksearchbox:googleapp [upid 1098],com.google.android.googlequicksearchbox:search [upid 1083],4
+system_server [upid 856],com.google.android.googlequicksearchbox:interactor [upid 1097],3
+com.google.android.googlequicksearchbox:search [upid 1083],/system/bin/servicemanager [upid 371],3
+com.google.android.googlequicksearchbox:interactor [upid 1097],system_server [upid 856],2
+com.google.android.gms [upid 932],com.google.android.googlequicksearchbox:interactor [upid 1097],1
+com.google.android.googlequicksearchbox:googleapp [upid 1098],/system/bin/servicemanager [upid 371],1

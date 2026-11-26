@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemini vs ChatGPT — Metrics 1–3</title>
+<style>:root { color-scheme: light; font-family: Segoe UI, Arial, sans-serif; color: #172033; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #eef2f7; }
+main { max-width: 1440px; margin: 28px auto; padding: 46px 54px; background: white;
+       box-shadow: 0 12px 35px rgba(24,40,64,.10); border-radius: 16px; }
+h1 { margin: 0 0 20px; font-size: 2rem; line-height: 1.25; }
+h2 { margin-top: 46px; padding-top: 22px; border-top: 2px solid #dbe4ef; font-size: 1.55rem; }
+h3 { margin-top: 32px; font-size: 1.2rem; }
+p, li { line-height: 1.65; }
+a { color: #175fba; }
+code { background: #f1f5f9; padding: 2px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+.table-scroll { overflow-x: auto; margin: 18px 0 27px; border: 1px solid #d7e0eb; border-radius: 10px; }
+table { width: 100%; min-width: 740px; border-collapse: collapse; table-layout: fixed; }
+th, td { text-align: left; vertical-align: top; padding: 11px 13px; border-bottom: 1px solid #e5ebf3;
+         line-height: 1.5; overflow-wrap: anywhere; }
+th { font-weight: 700; background: #f1f5f9; position: sticky; top: 0; }
+th:first-child, td:first-child { width: 16%; }
+th:nth-child(2) { background: #e9f1ff; color: #174b9b; }
+th:nth-child(3) { background: #e8f7f1; color: #126347; }
+td:nth-child(2) { border-left: 3px solid #b7cefa; }
+td:nth-child(3) { border-left: 3px solid #b1e2cf; }
+tr:nth-child(even) td { background: #fbfcfe; }
+tr:last-child td { border-bottom: 0; }
+img { display: block; width: 100%; height: auto; margin: 24px auto; border: 1px solid #e5ebf3;
+      border-radius: 10px; background: white; }
+@media (max-width: 700px) { body { background: white; } main { margin: 0; padding: 22px 16px;
+  box-shadow: none; border-radius: 0; } h1 { font-size: 1.5rem; } }
+@media print { body { background: white; } main { margin: 0; padding: 0; max-width: none;
+  box-shadow: none; } .table-scroll { overflow: visible; break-inside: avoid; }
+  table { min-width: 0; font-size: 9pt; } img { break-inside: avoid; }
+  h2, h3 { break-after: avoid; } }</style>
+</head>
+<body>
+<main><h1 id="metrics-13-observed-binder-communication-gemini-chatgpt">Metrics 1–3: observed Binder communication (Gemini, ChatGPT)</h1>
+<p>Across these traces: <strong>83,124 target-related requests</strong>, <strong>40,461 named interface/method requests</strong>, <strong>42,663 unidentified API requests</strong>, and <strong>3,601 structural two-hop candidates</strong> (1,070 with both hops in the task window). Counts across runs are observations, not distinct user actions.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Observed quantity</th>
+<th>Gemini</th>
+<th>ChatGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runs</td>
+<td>9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Incoming requests</td>
+<td>10,402</td>
+<td>8,753</td>
+</tr>
+<tr>
+<td>Outgoing requests</td>
+<td>32,182</td>
+<td>24,714</td>
+</tr>
+<tr>
+<td>Internal requests</td>
+<td>7,073</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Named API requests</td>
+<td>24,615</td>
+<td>15,846</td>
+</tr>
+<tr>
+<td>Unidentified API requests</td>
+<td>25,042</td>
+<td>17,621</td>
+</tr>
+<tr>
+<td>Two-hop candidates</td>
+<td>2,281</td>
+<td>1,320</td>
+</tr>
+<tr>
+<td>Both hops in task window</td>
+<td>662</td>
+<td>408</td>
+</tr>
+</tbody>
+</table></div>
+<p>ChatGPT’s zero internal Binder request count is consistent with the collected traces. Across all nine selected runs, only one identifiable target process, com.openai.chatgpt, was observed. Rechecking the raw traces found no additional processes with the same UID or a matching ChatGPT package name, and no Binder requests with both endpoints belonging to that UID.</p>
+<p>Gemini, in contrast, was analyzed through the Google App package, which included multiple processes such as :search and :interactor. Requests between these processes were classified as internal. Of Gemini’s 7,073 internal requests, 6,962—approximately 98.4%—occurred during voice workloads.</p>
+<p>This difference primarily reflects the observed process organization and the chosen attribution boundaries. Internal function calls and thread coordination within a single process may not generate kernel-level Binder transactions. Therefore, the result should be reported as “no internal Binder requests were observed within ChatGPT’s identified target process set,” rather than evidence that ChatGPT performs no internal communication. Gemini’s broader Google App process scope and potentially unattributed isolated processes remain limitations of the comparison.</p>
+<h2 id="metric-1-communication-structure">Metric 1 — Communication structure</h2>
+<p>Peer count is the number of distinct resolved peer processes within each trace. The full <a href="peers.csv">peer identity table</a> keeps trace-specific UPID/PID, UID, available package mappings and unresolved labels. <a href="directed_edges.csv">Directed edges</a> preserve sender → receiver and the request count for every run. Incoming and outgoing count requests from the target's perspective; internal requests between target processes are separate. Replies are not counted as new requests.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Workload / rep</th>
+<th>Gemini</th>
+<th>ChatGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W0 / 1</td>
+<td><code>8bd870fe</code><br>Peers 12 · edges 26<br>In 789 · out 3,086 · internal 8</td>
+<td><code>1584983a</code><br>Peers 6 · edges 10<br>In 43 · out 240 · internal 0</td>
+</tr>
+<tr>
+<td>W0 / 2</td>
+<td><code>db3b4a43</code><br>Peers 12 · edges 33<br>In 995 · out 3,720 · internal 12</td>
+<td><code>65f27b9a</code><br>Peers 6 · edges 10<br>In 119 · out 660 · internal 0</td>
+</tr>
+<tr>
+<td>W0 / 3</td>
+<td><code>5bf78800</code><br>Peers 9 · edges 13<br>In 427 · out 1,086 · internal 0</td>
+<td><code>684c04da</code><br>Peers 6 · edges 9<br>In 52 · out 671 · internal 0</td>
+</tr>
+<tr>
+<td>W1 / 1</td>
+<td><code>4a40cd19</code><br>Peers 10 · edges 22<br>In 1,047 · out 2,868 · internal 25</td>
+<td><code>f28af18d</code><br>Peers 7 · edges 11<br>In 943 · out 3,162 · internal 0</td>
+</tr>
+<tr>
+<td>W1 / 2</td>
+<td><code>08f1dc71</code><br>Peers 9 · edges 26<br>In 914 · out 2,848 · internal 33</td>
+<td><code>51b898e5</code><br>Peers 6 · edges 10<br>In 933 · out 3,397 · internal 0</td>
+</tr>
+<tr>
+<td>W1 / 3</td>
+<td><code>e7366222</code><br>Peers 15 · edges 38<br>In 880 · out 3,063 · internal 33</td>
+<td><code>bc99d552</code><br>Peers 6 · edges 10<br>In 606 · out 1,735 · internal 0</td>
+</tr>
+<tr>
+<td>W2 / 1</td>
+<td><code>eb3111d4</code><br>Peers 21 · edges 40<br>In 2,404 · out 7,162 · internal 2,241</td>
+<td><code>80abb11e</code><br>Peers 9 · edges 14<br>In 1,476 · out 3,476 · internal 0</td>
+</tr>
+<tr>
+<td>W2 / 2</td>
+<td><code>44b901eb</code><br>Peers 21 · edges 40<br>In 1,474 · out 4,276 · internal 2,319</td>
+<td><code>1aca5372</code><br>Peers 9 · edges 14<br>In 2,664 · out 6,688 · internal 0</td>
+</tr>
+<tr>
+<td>W2 / 3</td>
+<td><code>abe56051</code><br>Peers 17 · edges 41<br>In 1,472 · out 4,073 · internal 2,402</td>
+<td><code>c3823f8c</code><br>Peers 9 · edges 14<br>In 1,917 · out 4,685 · internal 0</td>
+</tr>
+</tbody>
+</table></div>
+<p>Most frequent peer process names within each Agent (a name can represent different trace-specific processes):</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Gemini</th>
+<th>ChatGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>system_server · 17,377</td>
+<td>/system/bin/surfaceflinger · 28,261</td>
+</tr>
+<tr>
+<td>2</td>
+<td>/system/bin/surfaceflinger · 16,027</td>
+<td>system_server · 3,950</td>
+</tr>
+<tr>
+<td>3</td>
+<td>com.google.android.gms · 4,425</td>
+<td>/system/bin/keystore2 · 768</td>
+</tr>
+<tr>
+<td>4</td>
+<td>media.swcodec · 1,539</td>
+<td>com.sohu.inputmethod.sogouoem · 154</td>
+</tr>
+<tr>
+<td>5</td>
+<td>media.extractor · 720</td>
+<td>com.android.vending · 130</td>
+</tr>
+</tbody>
+</table></div>
+<p>Most frequent directed process-name pairs within each Agent (full per-run identifiers and weights are in <code>directed_edges.csv</code>):</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Gemini</th>
+<th>ChatGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>com.google.android.googlequicksearchbox:search → system_server · 14,238</td>
+<td>com.openai.chatgpt → /system/bin/surfaceflinger · 20,135</td>
+</tr>
+<tr>
+<td>2</td>
+<td>com.google.android.googlequicksearchbox:search → /system/bin/surfaceflinger · 11,382</td>
+<td>/system/bin/surfaceflinger → com.openai.chatgpt · 8,126</td>
+</tr>
+<tr>
+<td>3</td>
+<td>/system/bin/surfaceflinger → com.google.android.googlequicksearchbox:search · 4,645</td>
+<td>com.openai.chatgpt → system_server · 3,481</td>
+</tr>
+<tr>
+<td>4</td>
+<td>com.google.android.googlequicksearchbox:interactor → com.google.android.googlequicksearchbox:search · 4,563</td>
+<td>com.openai.chatgpt → /system/bin/keystore2 · 768</td>
+</tr>
+<tr>
+<td>5</td>
+<td>com.google.android.googlequicksearchbox:search → com.google.android.googlequicksearchbox:interactor · 2,490</td>
+<td>system_server → com.openai.chatgpt · 469</td>
+</tr>
+<tr>
+<td>6</td>
+<td>com.google.android.googlequicksearchbox:search → com.google.android.gms · 2,218</td>
+<td>com.sohu.inputmethod.sogouoem → com.openai.chatgpt · 99</td>
+</tr>
+<tr>
+<td>7</td>
+<td>system_server → com.google.android.googlequicksearchbox:search · 1,958</td>
+<td>com.openai.chatgpt → com.android.vending · 95</td>
+</tr>
+<tr>
+<td>8</td>
+<td>com.google.android.gms → com.google.android.googlequicksearchbox:search · 1,727</td>
+<td>com.openai.chatgpt → /vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek · 74</td>
+</tr>
+<tr>
+<td>9</td>
+<td>com.google.android.googlequicksearchbox:search → media.swcodec · 1,025</td>
+<td>com.openai.chatgpt → /system/bin/audioserver · 60</td>
+</tr>
+<tr>
+<td>10</td>
+<td>media.extractor → com.google.android.googlequicksearchbox:search · 720</td>
+<td>com.openai.chatgpt → com.sohu.inputmethod.sogouoem · 55</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="metric-2-communication-timing">Metric 2 — Communication timing</h2>
+<p>Rates divide each run's incoming/outgoing request counts by its full trace duration. Latency uses only synchronous calls with a matched reply; the median and p95 are calculated per run and are not pooled. The <a href="timeline_1s.csv">one-second timeline</a> contains incoming, outgoing and internal counts. Task marker times remain in each run's <code>summary.json</code>.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Workload / rep</th>
+<th>Gemini</th>
+<th>ChatGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W0 / 1</td>
+<td><code>8bd870fe</code><br>Trace 59.9s · in 13.2/s · out 51.5/s<br>Matched sync 2,604 · median 0.384ms · p95 4.985ms</td>
+<td><code>1584983a</code><br>Trace 45.5s · in 0.9/s · out 5.3/s<br>Matched sync 142 · median 0.671ms · p95 10.518ms</td>
+</tr>
+<tr>
+<td>W0 / 2</td>
+<td><code>db3b4a43</code><br>Trace 47.9s · in 20.8/s · out 77.6/s<br>Matched sync 3,139 · median 0.372ms · p95 5.382ms</td>
+<td><code>65f27b9a</code><br>Trace 44.7s · in 2.7/s · out 14.8/s<br>Matched sync 323 · median 0.675ms · p95 9.580ms</td>
+</tr>
+<tr>
+<td>W0 / 3</td>
+<td><code>5bf78800</code><br>Trace 46.5s · in 9.2/s · out 23.4/s<br>Matched sync 719 · median 0.373ms · p95 4.445ms</td>
+<td><code>684c04da</code><br>Trace 43.3s · in 1.2/s · out 15.5/s<br>Matched sync 359 · median 0.718ms · p95 8.859ms</td>
+</tr>
+<tr>
+<td>W1 / 1</td>
+<td><code>4a40cd19</code><br>Trace 39.4s · in 26.6/s · out 72.7/s<br>Matched sync 1,880 · median 0.356ms · p95 3.933ms</td>
+<td><code>f28af18d</code><br>Trace 33.5s · in 28.1/s · out 94.3/s<br>Matched sync 570 · median 0.548ms · p95 9.328ms</td>
+</tr>
+<tr>
+<td>W1 / 2</td>
+<td><code>08f1dc71</code><br>Trace 43.0s · in 21.2/s · out 66.2/s<br>Matched sync 1,351 · median 0.350ms · p95 3.890ms</td>
+<td><code>51b898e5</code><br>Trace 28.9s · in 32.3/s · out 117.4/s<br>Matched sync 753 · median 0.513ms · p95 6.610ms</td>
+</tr>
+<tr>
+<td>W1 / 3</td>
+<td><code>e7366222</code><br>Trace 31.4s · in 28.0/s · out 97.5/s<br>Matched sync 1,802 · median 0.269ms · p95 2.921ms</td>
+<td><code>bc99d552</code><br>Trace 25.1s · in 24.2/s · out 69.1/s<br>Matched sync 427 · median 0.534ms · p95 6.595ms</td>
+</tr>
+<tr>
+<td>W2 / 1</td>
+<td><code>eb3111d4</code><br>Trace 49.9s · in 48.2/s · out 143.5/s<br>Matched sync 4,681 · median 0.279ms · p95 3.768ms</td>
+<td><code>80abb11e</code><br>Trace 49.7s · in 29.7/s · out 69.9/s<br>Matched sync 364 · median 0.530ms · p95 7.837ms</td>
+</tr>
+<tr>
+<td>W2 / 2</td>
+<td><code>44b901eb</code><br>Trace 34.5s · in 42.8/s · out 124.0/s<br>Matched sync 2,189 · median 0.241ms · p95 3.265ms</td>
+<td><code>1aca5372</code><br>Trace 58.8s · in 45.3/s · out 113.8/s<br>Matched sync 648 · median 0.480ms · p95 6.814ms</td>
+</tr>
+<tr>
+<td>W2 / 3</td>
+<td><code>abe56051</code><br>Trace 30.6s · in 48.1/s · out 133.1/s<br>Matched sync 1,951 · median 0.256ms · p95 4.166ms</td>
+<td><code>c3823f8c</code><br>Trace 52.2s · in 36.7/s · out 89.8/s<br>Matched sync 534 · median 0.483ms · p95 6.717ms</td>
+</tr>
+</tbody>
+</table></div>
+<p>Median rates across selected repetitions (these use the full trace, including setup and completion margins):</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>Gemini</th>
+<th>ChatGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W0</td>
+<td>In 13.18/s · out 51.54/s</td>
+<td>In 1.20/s · out 14.75/s</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>In 26.56/s · out 72.74/s</td>
+<td>In 28.14/s · out 94.35/s</td>
+</tr>
+<tr>
+<td>W2</td>
+<td>In 48.10/s · out 133.09/s</td>
+<td>In 36.73/s · out 89.77/s</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDEwIiBoZWlnaHQ9IjQ2MCIgdmlld0JveD0iMCAwIDEwMTAgNDYwIiByb2xlPSJpbWciPjxzdHlsZT50ZXh0e2ZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7ZmlsbDojMTcyMDMzfSAudGl0bGV7Zm9udC1zaXplOjIwcHg7Zm9udC13ZWlnaHQ6Ym9sZH0ubGFiZWx7Zm9udC1zaXplOjEzcHh9LnNtYWxse2ZvbnQtc2l6ZToxMXB4O2ZpbGw6IzQ3NTU2OX08L3N0eWxlPjxyZWN0IHdpZHRoPSIxMDEwIiBoZWlnaHQ9IjQ2MCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIyOCIgeT0iMzQiIGNsYXNzPSJ0aXRsZSI+TWVkaWFuIEJpbmRlciByZXF1ZXN0IHJhdGVzIGJ5IEFnZW50IGFuZCB3b3JrbG9hZDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNTQiIGNsYXNzPSJzbWFsbCI+TWVkaWFuIG9mIHBlci1ydW4gZnVsbC10cmFjZSByYXRlczsgMyByZXBldGl0aW9ucyBwZXIgY2VsbDwvdGV4dD48bGluZSB4MT0iNzUiIHkxPSIzNzAuMCIgeDI9Ijk3MCIgeTI9IjM3MC4wIiBzdHJva2U9IiNlMmU4ZjAiLz48dGV4dCB4PSI2NiIgeT0iMzc0LjAiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MDwvdGV4dD48bGluZSB4MT0iNzUiIHkxPSIzMDIuNSIgeDI9Ijk3MCIgeTI9IjMwMi41IiBzdHJva2U9IiNlMmU4ZjAiLz48dGV4dCB4PSI2NiIgeT0iMzA2LjUiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MzM8L3RleHQ+PGxpbmUgeDE9Ijc1IiB5MT0iMjM1LjAiIHgyPSI5NzAiIHkyPSIyMzUuMCIgc3Ryb2tlPSIjZTJlOGYwIi8+PHRleHQgeD0iNjYiIHk9IjIzOS4wIiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjY3PC90ZXh0PjxsaW5lIHgxPSI3NSIgeTE9IjE2Ny41IiB4Mj0iOTcwIiB5Mj0iMTY3LjUiIHN0cm9rZT0iI2UyZThmMCIvPjx0ZXh0IHg9IjY2IiB5PSIxNzEuNSIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9InNtYWxsIj4xMDA8L3RleHQ+PGxpbmUgeDE9Ijc1IiB5MT0iMTAwLjAiIHgyPSI5NzAiIHkyPSIxMDAuMCIgc3Ryb2tlPSIjZTJlOGYwIi8+PHRleHQgeD0iNjYiIHk9IjEwNC4wIiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjEzMzwvdGV4dD48cmVjdCB4PSIxMTkuNiIgeT0iMzQzLjMiIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNi43IiBmaWxsPSIjMjU2M2ViIi8+PHRleHQgeD0iMTMyLjEiIHk9IjMzOC4zIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjEzLjI8L3RleHQ+PHJlY3QgeD0iMTU0LjYiIHk9IjI2NS40IiB3aWR0aD0iMjUiIGhlaWdodD0iMTA0LjYiIGZpbGw9IiNlYTU4MGMiLz48dGV4dCB4PSIxNjcuMSIgeT0iMjYwLjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+NTEuNTwvdGV4dD48dGV4dCB4PSIxNDkuNiIgeT0iMzkxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPkdlbWluaSBXMDwvdGV4dD48cmVjdCB4PSIyNjguOCIgeT0iMzE2LjEiIHdpZHRoPSIyNSIgaGVpZ2h0PSI1My45IiBmaWxsPSIjMjU2M2ViIi8+PHRleHQgeD0iMjgxLjIiIHk9IjMxMS4xIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjI2LjY8L3RleHQ+PHJlY3QgeD0iMzAzLjgiIHk9IjIyMi40IiB3aWR0aD0iMjUiIGhlaWdodD0iMTQ3LjYiIGZpbGw9IiNlYTU4MGMiLz48dGV4dCB4PSIzMTYuMiIgeT0iMjE3LjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+NzIuNzwvdGV4dD48dGV4dCB4PSIyOTguOCIgeT0iMzkxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPkdlbWluaSBXMTwvdGV4dD48cmVjdCB4PSI0MTcuOSIgeT0iMjcyLjQiIHdpZHRoPSIyNSIgaGVpZ2h0PSI5Ny42IiBmaWxsPSIjMjU2M2ViIi8+PHRleHQgeD0iNDMwLjQiIHk9IjI2Ny40IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjQ4LjE8L3RleHQ+PHJlY3QgeD0iNDUyLjkiIHk9IjEwMC4wIiB3aWR0aD0iMjUiIGhlaWdodD0iMjcwLjAiIGZpbGw9IiNlYTU4MGMiLz48dGV4dCB4PSI0NjUuNCIgeT0iOTUuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4xMzMuMTwvdGV4dD48dGV4dCB4PSI0NDcuOSIgeT0iMzkxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPkdlbWluaSBXMjwvdGV4dD48cmVjdCB4PSI1NjcuMSIgeT0iMzY3LjYiIHdpZHRoPSIyNSIgaGVpZ2h0PSIyLjQiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSI1NzkuNiIgeT0iMzYyLjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+MS4yPC90ZXh0PjxyZWN0IHg9IjYwMi4xIiB5PSIzNDAuMSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI5LjkiIGZpbGw9IiNlYTU4MGMiLz48dGV4dCB4PSI2MTQuNiIgeT0iMzM1LjEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+MTQuODwvdGV4dD48dGV4dCB4PSI1OTcuMSIgeT0iMzkxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPkNoYXRHUFQgVzA8L3RleHQ+PHJlY3QgeD0iNzE2LjIiIHk9IjMxMi45IiB3aWR0aD0iMjUiIGhlaWdodD0iNTcuMSIgZmlsbD0iIzI1NjNlYiIvPjx0ZXh0IHg9IjcyOC44IiB5PSIzMDcuOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4yOC4xPC90ZXh0PjxyZWN0IHg9Ijc1MS4yIiB5PSIxNzguNiIgd2lkdGg9IjI1IiBoZWlnaHQ9IjE5MS40IiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iNzYzLjgiIHk9IjE3My42IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjk0LjM8L3RleHQ+PHRleHQgeD0iNzQ2LjIiIHk9IjM5MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj5DaGF0R1BUIFcxPC90ZXh0PjxyZWN0IHg9Ijg2NS40IiB5PSIyOTUuNSIgd2lkdGg9IjI1IiBoZWlnaHQ9Ijc0LjUiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSI4NzcuOSIgeT0iMjkwLjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+MzYuNzwvdGV4dD48cmVjdCB4PSI5MDAuNCIgeT0iMTg3LjkiIHdpZHRoPSIyNSIgaGVpZ2h0PSIxODIuMSIgZmlsbD0iI2VhNTgwYyIvPjx0ZXh0IHg9IjkxMi45IiB5PSIxODIuOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj44OS44PC90ZXh0Pjx0ZXh0IHg9Ijg5NS40IiB5PSIzOTEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+Q2hhdEdQVCBXMjwvdGV4dD48cmVjdCB4PSI3MjAiIHk9IjI3IiB3aWR0aD0iMTMiIGhlaWdodD0iMTMiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSI3MzgiIHk9IjM4IiBjbGFzcz0ic21hbGwiPkluY29taW5nL3M8L3RleHQ+PHJlY3QgeD0iODM1IiB5PSIyNyIgd2lkdGg9IjEzIiBoZWlnaHQ9IjEzIiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iODUzIiB5PSIzOCIgY2xhc3M9InNtYWxsIj5PdXRnb2luZy9zPC90ZXh0Pjx0ZXh0IHg9IjUxMCIgeT0iNDM4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPkFnZW50IGFuZCB3b3JrbG9hZDwvdGV4dD48L3N2Zz4=" alt="Median incoming and outgoing Binder rates by Agent and workload" /></p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjYwIiBoZWlnaHQ9IjQ2MCIgdmlld0JveD0iMCAwIDEyNjAgNDYwIiByb2xlPSJpbWciPjxzdHlsZT50ZXh0e2ZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7ZmlsbDojMTcyMDMzfSAudGl0bGV7Zm9udC1zaXplOjIwcHg7Zm9udC13ZWlnaHQ6Ym9sZH0ubGFiZWx7Zm9udC1zaXplOjEzcHh9LnNtYWxse2ZvbnQtc2l6ZToxMXB4O2ZpbGw6IzQ3NTU2OX08L3N0eWxlPjxyZWN0IHdpZHRoPSIxMjYwIiBoZWlnaHQ9IjQ2MCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIyOCIgeT0iMzQiIGNsYXNzPSJ0aXRsZSI+QmluZGVyIHJlcXVlc3RzIHBlciAxLXNlY29uZCBpbnRlcnZhbDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNTMiIGNsYXNzPSJzbWFsbCI+QWxsIDE4IHNlbGVjdGVkIHRyYWNlczsgbGFzdCBwYXJ0aWFsIHNlY29uZCBleGNsdWRlZDwvdGV4dD48dGV4dCB4PSIzMzAiIHk9IjgyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0idGl0bGUiPkdlbWluaTwvdGV4dD48bGluZSB4MT0iNzAiIHkxPSIzNzAuMCIgeDI9IjU5MCIgeTI9IjM3MC4wIiBzdHJva2U9IiNlMmU4ZjAiLz48dGV4dCB4PSI2MiIgeT0iMzc0LjAiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MDwvdGV4dD48bGluZSB4MT0iNzAiIHkxPSIzMDIuNSIgeDI9IjU5MCIgeTI9IjMwMi41IiBzdHJva2U9IiNlMmU4ZjAiLz48dGV4dCB4PSI2MiIgeT0iMzA2LjUiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+OTQ8L3RleHQ+PGxpbmUgeDE9IjcwIiB5MT0iMjM1LjAiIHgyPSI1OTAiIHkyPSIyMzUuMCIgc3Ryb2tlPSIjZTJlOGYwIi8+PHRleHQgeD0iNjIiIHk9IjIzOS4wIiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjE4NzwvdGV4dD48bGluZSB4MT0iNzAiIHkxPSIxNjcuNSIgeDI9IjU5MCIgeTI9IjE2Ny41IiBzdHJva2U9IiNlMmU4ZjAiLz48dGV4dCB4PSI2MiIgeT0iMTcxLjUiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MjgwPC90ZXh0PjxsaW5lIHgxPSI3MCIgeTE9IjEwMC4wIiB4Mj0iNTkwIiB5Mj0iMTAwLjAiIHN0cm9rZT0iI2UyZThmMCIvPjx0ZXh0IHg9IjYyIiB5PSIxMDQuMCIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9InNtYWxsIj4zNzQ8L3RleHQ+PHJlY3QgeD0iNzgiIHk9IjEyMC4yIiB3aWR0aD0iMzEiIGhlaWdodD0iMjQ5LjgiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSI5My41IiB5PSIxMTUuMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4zNDY8L3RleHQ+PHJlY3QgeD0iMTE3IiB5PSIxNTkuOSIgd2lkdGg9IjMxIiBoZWlnaHQ9IjIxMC4xIiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iMTMyLjUiIHk9IjE1NC45IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjI5MTwvdGV4dD48dGV4dCB4PSIxMTMiIHk9IjM5MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4w4oCTOTk8L3RleHQ+PHJlY3QgeD0iMTgyIiB5PSIzNDkuOCIgd2lkdGg9IjMxIiBoZWlnaHQ9IjIwLjIiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSIxOTcuNSIgeT0iMzQ0LjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+Mjg8L3RleHQ+PHJlY3QgeD0iMjIxIiB5PSIzMzMuOSIgd2lkdGg9IjMxIiBoZWlnaHQ9IjM2LjEiIGZpbGw9IiNlYTU4MGMiLz48dGV4dCB4PSIyMzYuNSIgeT0iMzI4LjkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+NTA8L3RleHQ+PHRleHQgeD0iMjE3IiB5PSIzOTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+MTAw4oCTMjQ5PC90ZXh0PjxyZWN0IHg9IjI4NiIgeT0iMzY3LjgiIHdpZHRoPSIzMSIgaGVpZ2h0PSIyLjIiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSIzMDEuNSIgeT0iMzYyLjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+MzwvdGV4dD48cmVjdCB4PSIzMjUiIHk9IjM1NC4xIiB3aWR0aD0iMzEiIGhlaWdodD0iMTUuOSIgZmlsbD0iI2VhNTgwYyIvPjx0ZXh0IHg9IjM0MC41IiB5PSIzNDkuMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4yMjwvdGV4dD48dGV4dCB4PSIzMjEiIHk9IjM5MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4yNTDigJM0OTk8L3RleHQ+PHJlY3QgeD0iMzkwIiB5PSIzNjkuMyIgd2lkdGg9IjMxIiBoZWlnaHQ9IjAuNyIgZmlsbD0iIzI1NjNlYiIvPjx0ZXh0IHg9IjQwNS41IiB5PSIzNjQuMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4xPC90ZXh0PjxyZWN0IHg9IjQyOSIgeT0iMzYyLjgiIHdpZHRoPSIzMSIgaGVpZ2h0PSI3LjIiIGZpbGw9IiNlYTU4MGMiLz48dGV4dCB4PSI0NDQuNSIgeT0iMzU3LjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+MTA8L3RleHQ+PHRleHQgeD0iNDI1IiB5PSIzOTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+NTAw4oCTOTk5PC90ZXh0PjxyZWN0IHg9IjQ5NCIgeT0iMzcwLjAiIHdpZHRoPSIzMSIgaGVpZ2h0PSIwLjAiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSI1MDkuNSIgeT0iMzY1LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+MDwvdGV4dD48cmVjdCB4PSI1MzMiIHk9IjM2Ni40IiB3aWR0aD0iMzEiIGhlaWdodD0iMy42IiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iNTQ4LjUiIHk9IjM2MS40IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjU8L3RleHQ+PHRleHQgeD0iNTI5IiB5PSIzOTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJzbWFsbCI+MTAwMCs8L3RleHQ+PHRleHQgeD0iOTMwIiB5PSI4MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InRpdGxlIj5DaGF0R1BUPC90ZXh0PjxsaW5lIHgxPSI2NzAiIHkxPSIzNzAuMCIgeDI9IjExOTAiIHkyPSIzNzAuMCIgc3Ryb2tlPSIjZTJlOGYwIi8+PHRleHQgeD0iNjYyIiB5PSIzNzQuMCIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9InNtYWxsIj4wPC90ZXh0PjxsaW5lIHgxPSI2NzAiIHkxPSIzMDIuNSIgeDI9IjExOTAiIHkyPSIzMDIuNSIgc3Ryb2tlPSIjZTJlOGYwIi8+PHRleHQgeD0iNjYyIiB5PSIzMDYuNSIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9InNtYWxsIj45NDwvdGV4dD48bGluZSB4MT0iNjcwIiB5MT0iMjM1LjAiIHgyPSIxMTkwIiB5Mj0iMjM1LjAiIHN0cm9rZT0iI2UyZThmMCIvPjx0ZXh0IHg9IjY2MiIgeT0iMjM5LjAiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MTg3PC90ZXh0PjxsaW5lIHgxPSI2NzAiIHkxPSIxNjcuNSIgeDI9IjExOTAiIHkyPSIxNjcuNSIgc3Ryb2tlPSIjZTJlOGYwIi8+PHRleHQgeD0iNjYyIiB5PSIxNzEuNSIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9InNtYWxsIj4yODA8L3RleHQ+PGxpbmUgeDE9IjY3MCIgeTE9IjEwMC4wIiB4Mj0iMTE5MCIgeTI9IjEwMC4wIiBzdHJva2U9IiNlMmU4ZjAiLz48dGV4dCB4PSI2NjIiIHk9IjEwNC4wIiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjM3NDwvdGV4dD48cmVjdCB4PSI2NzgiIHk9IjEwMC4wIiB3aWR0aD0iMzEiIGhlaWdodD0iMjcwLjAiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSI2OTMuNSIgeT0iOTUuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4zNzQ8L3RleHQ+PHJlY3QgeD0iNzE3IiB5PSIxOTMuOSIgd2lkdGg9IjMxIiBoZWlnaHQ9IjE3Ni4xIiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iNzMyLjUiIHk9IjE4OC45IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjI0NDwvdGV4dD48dGV4dCB4PSI3MTMiIHk9IjM5MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4w4oCTOTk8L3RleHQ+PHJlY3QgeD0iNzgyIiB5PSIzNjcuOCIgd2lkdGg9IjMxIiBoZWlnaHQ9IjIuMiIgZmlsbD0iIzI1NjNlYiIvPjx0ZXh0IHg9Ijc5Ny41IiB5PSIzNjIuOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4zPC90ZXh0PjxyZWN0IHg9IjgyMSIgeT0iMjg1LjUiIHdpZHRoPSIzMSIgaGVpZ2h0PSI4NC41IiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iODM2LjUiIHk9IjI4MC41IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjExNzwvdGV4dD48dGV4dCB4PSI4MTciIHk9IjM5MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4xMDDigJMyNDk8L3RleHQ+PHJlY3QgeD0iODg2IiB5PSIzNzAuMCIgd2lkdGg9IjMxIiBoZWlnaHQ9IjAuMCIgZmlsbD0iIzI1NjNlYiIvPjx0ZXh0IHg9IjkwMS41IiB5PSIzNjUuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4wPC90ZXh0PjxyZWN0IHg9IjkyNSIgeT0iMzU4LjQiIHdpZHRoPSIzMSIgaGVpZ2h0PSIxMS42IiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iOTQwLjUiIHk9IjM1My40IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjE2PC90ZXh0Pjx0ZXh0IHg9IjkyMSIgeT0iMzkzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjI1MOKAkzQ5OTwvdGV4dD48cmVjdCB4PSI5OTAiIHk9IjM3MC4wIiB3aWR0aD0iMzEiIGhlaWdodD0iMC4wIiBmaWxsPSIjMjU2M2ViIi8+PHRleHQgeD0iMTAwNS41IiB5PSIzNjUuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4wPC90ZXh0PjxyZWN0IHg9IjEwMjkiIHk9IjM3MC4wIiB3aWR0aD0iMzEiIGhlaWdodD0iMC4wIiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iMTA0NC41IiB5PSIzNjUuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj4wPC90ZXh0Pjx0ZXh0IHg9IjEwMjUiIHk9IjM5MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj41MDDigJM5OTk8L3RleHQ+PHJlY3QgeD0iMTA5NCIgeT0iMzcwLjAiIHdpZHRoPSIzMSIgaGVpZ2h0PSIwLjAiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSIxMTA5LjUiIHk9IjM2NS4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjA8L3RleHQ+PHJlY3QgeD0iMTEzMyIgeT0iMzcwLjAiIHdpZHRoPSIzMSIgaGVpZ2h0PSIwLjAiIGZpbGw9IiNlYTU4MGMiLz48dGV4dCB4PSIxMTQ4LjUiIHk9IjM2NS4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjA8L3RleHQ+PHRleHQgeD0iMTEyOSIgeT0iMzkzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic21hbGwiPjEwMDArPC90ZXh0PjxyZWN0IHg9IjEwMDAiIHk9IjI2IiB3aWR0aD0iMTMiIGhlaWdodD0iMTMiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSIxMDE5IiB5PSIzNyIgY2xhc3M9InNtYWxsIj5JbmNvbWluZzwvdGV4dD48cmVjdCB4PSIxMTA1IiB5PSIyNiIgd2lkdGg9IjEzIiBoZWlnaHQ9IjEzIiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iMTEyNCIgeT0iMzciIGNsYXNzPSJzbWFsbCI+T3V0Z29pbmc8L3RleHQ+PHRleHQgeD0iNjMwLjAiIHk9IjQzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InNtYWxsIj5SZXF1ZXN0cyBpbiBvbmUgZnVsbCBzZWNvbmQ7IHNoYXJlZCB2ZXJ0aWNhbCBzY2FsZTwvdGV4dD48L3N2Zz4=" alt="Histogram of one-second incoming and outgoing Binder request counts" /></p>
+<p>This figure shows the distribution of Binder request counts across full one-second intervals in the 18 selected traces. The horizontal axis groups intervals by requests per second, while the vertical axis shows how many intervals fall into each range. Blue bars represent incoming requests, and orange bars represent outgoing requests. Both agents receive fewer than 100 requests per second in most intervals. ChatGPT has more intervals with 100–249 outgoing requests per second, whereas Gemini exhibits larger bursts, including five intervals with at least 1,000 outgoing requests per second. These distributions combine all workloads and exclude the final partial second of each trace, so they do not identify which tasks caused the bursts or establish that one agent is more efficient.</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMzIwIiBoZWlnaHQ9Ijg4NSIgdmlld0JveD0iMCAwIDEzMjAgODg1IiByb2xlPSJpbWciPjxzdHlsZT50ZXh0e2ZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7ZmlsbDojMTcyMDMzfSAudGl0bGV7Zm9udC1zaXplOjIwcHg7Zm9udC13ZWlnaHQ6Ym9sZH0ubGFiZWx7Zm9udC1zaXplOjEzcHh9LnNtYWxse2ZvbnQtc2l6ZToxMXB4O2ZpbGw6IzQ3NTU2OX08L3N0eWxlPjxyZWN0IHdpZHRoPSIxMzIwIiBoZWlnaHQ9Ijg4NSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIyOCIgeT0iMzQiIGNsYXNzPSJ0aXRsZSI+QmluZGVyIGFjdGl2aXR5IGFuZCB0YXNrIG1hcmtlcnM8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjUzIiBjbGFzcz0ic21hbGwiPlJlcGV0aXRpb24gMTsgZWFjaCB3b3JrbG9hZCByb3cgdXNlcyB0aGUgc2FtZSB4L3kgc2NhbGUgZm9yIGJvdGggQWdlbnRzPC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0aXRsZSI+R2VtaW5pPC90ZXh0Pjx0ZXh0IHg9Ijk3NSIgeT0iODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0aXRsZSI+Q2hhdEdQVDwvdGV4dD48dGV4dCB4PSI3NSIgeT0iMTA3IiBjbGFzcz0ibGFiZWwiPlcwIC8gcnVuIDEgLyA4YmQ4NzBmZTwvdGV4dD48bGluZSB4MT0iNzUiIHkxPSIyOTAiIHgyPSI2MjAiIHkyPSIyOTAiIHN0cm9rZT0iIzk0YTNiOCIvPjx0ZXh0IHg9IjY4IiB5PSIxMjkiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MTg3MjwvdGV4dD48dGV4dCB4PSI2OCIgeT0iMjk0IiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjA8L3RleHQ+PHBvbHlsaW5lIHBvaW50cz0iNzkuNSwyOTAuMCA4OC42LDI5MC4wIDk3LjcsMjkwLjAgMTA2LjgsMjkwLjAgMTE1LjksMjkwLjAgMTI1LjAsMjkwLjAgMTM0LjAsMjkwLjAgMTQzLjEsMjkwLjAgMTUyLjIsMjkwLjAgMTYxLjMsMjkwLjAgMTcwLjQsMjkwLjAgMTc5LjUsMjkwLjAgMTg4LjUsMjUzLjAgMTk3LjYsMjY4LjggMjA2LjcsMjkwLjAgMjE1LjgsMjg5LjYgMjI0LjksMjkwLjAgMjM0LjAsMjg4LjMgMjQzLjAsMjg5LjkgMjUyLjEsMjg5LjUgMjYxLjIsMjkwLjAgMjcwLjMsMjg4LjkgMjc5LjQsMjg5LjQgMjg4LjUsMjkwLjAgMjk3LjUsMjkwLjAgMzA2LjYsMjg4LjkgMzE1LjcsMjkwLjAgMzI0LjgsMjkwLjAgMzMzLjksMjkwLjAgMzQzLjAsMjg4LjkgMzUyLjAsMjkwLjAgMzYxLjEsMjkwLjAgMzcwLjIsMjg5LjkgMzc5LjMsMjg4LjkgMzg4LjQsMjkwLjAgMzk3LjUsMjkwLjAgNDA2LjUsMjkwLjAgNDE1LjYsMjg4LjkgNDI0LjcsMjkwLjAgNDMzLjgsMjkwLjAgNDQyLjksMjkwLjAgNDUyLjAsMjkwLjAgNDYxLjAsMjg5LjQgNDcwLjEsMjkwLjAgNDc5LjIsMjkwLjAgNDg4LjMsMjkwLjAgNDk3LjQsMjkwLjAgNTA2LjUsMjkwLjAgNTE1LjUsMjkwLjAgNTI0LjYsMjkwLjAgNTMzLjcsMjkwLjAgNTQyLjgsMjkwLjAgNTUxLjksMjkwLjAgNTYxLjAsMjkwLjAgNTcwLjAsMjkwLjAgNTc5LjEsMjg5LjkgNTg4LjIsMjkwLjAgNTk3LjMsMjg5LjkgNjA2LjQsMjkwLjAgNjE1LjUsMjg4LjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1NjNlYiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlsaW5lIHBvaW50cz0iNzkuNSwyOTAuMCA4OC42LDI5MC4wIDk3LjcsMjkwLjAgMTA2LjgsMjkwLjAgMTE1LjksMjkwLjAgMTI1LjAsMjkwLjAgMTM0LjAsMjkwLjAgMTQzLjEsMjkwLjAgMTUyLjIsMjkwLjAgMTYxLjMsMjkwLjAgMTcwLjQsMjkwLjAgMTc5LjUsMjkwLjAgMTg4LjUsMTI1LjAgMTk3LjYsMjMxLjEgMjA2LjcsMjg5LjYgMjE1LjgsMjg4LjQgMjI0LjksMjg5LjUgMjM0LjAsMjg1LjQgMjQzLjAsMjg5LjQgMjUyLjEsMjg3LjAgMjYxLjIsMjg5LjQgMjcwLjMsMjg3LjAgMjc5LjQsMjg3LjAgMjg4LjUsMjg5LjUgMjk3LjUsMjg5LjYgMzA2LjYsMjg3LjIgMzE1LjcsMjg5LjUgMzI0LjgsMjg5LjYgMzMzLjksMjg5LjYgMzQzLjAsMjg3LjAgMzUyLjAsMjg5LjUgMzYxLjEsMjg5LjYgMzcwLjIsMjg5LjQgMzc5LjMsMjg3LjIgMzg4LjQsMjg5LjUgMzk3LjUsMjg5LjYgNDA2LjUsMjg5LjYgNDE1LjYsMjg3LjEgNDI0LjcsMjg5LjUgNDMzLjgsMjg5LjYgNDQyLjksMjg5LjYgNDUyLjAsMjg5LjYgNDYxLjAsMjg4LjAgNDcwLjEsMjg5LjYgNDc5LjIsMjg5LjYgNDg4LjMsMjg5LjYgNDk3LjQsMjg5LjYgNTA2LjUsMjg5LjYgNTE1LjUsMjg5LjYgNTI0LjYsMjg5LjYgNTMzLjcsMjg5LjYgNTQyLjgsMjg5LjYgNTUxLjksMjg5LjYgNTYxLjAsMjg5LjYgNTcwLjAsMjg5LjYgNTc5LjEsMjg5LjUgNTg4LjIsMjg5LjYgNTk3LjMsMjg5LjUgNjA2LjQsMjg5LjYgNjE1LjUsMjg3LjEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2VhNTgwYyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjIyMC40IiB5MT0iMTI1IiB4Mj0iMjIwLjQiIHkyPSIyOTAiIHN0cm9rZT0iIzA1OTY2OSIgc3Ryb2tlLWRhc2hhcnJheT0iNCAzIi8+PHRleHQgeD0iMjIyLjQiIHk9IjEzNyIgY2xhc3M9InNtYWxsIiB0cmFuc2Zvcm09InJvdGF0ZSgzNSAyMjIuNCAxMzcpIj5pZGxlIHN0YXJ0PC90ZXh0PjxsaW5lIHgxPSI1ODQuOCIgeTE9IjEyNSIgeDI9IjU4NC44IiB5Mj0iMjkwIiBzdHJva2U9IiMwNTk2NjkiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIvPjx0ZXh0IHg9IjU4Ni44IiB5PSIxMzciIGNsYXNzPSJzbWFsbCIgdHJhbnNmb3JtPSJyb3RhdGUoMzUgNTg2LjggMTM3KSI+aWRsZSBlbmQ8L3RleHQ+PHRleHQgeD0iNzUiIHk9IjMxMCIgY2xhc3M9InNtYWxsIj4wIHM8L3RleHQ+PHRleHQgeD0iNjIwIiB5PSIzMTAiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+NjAgczwvdGV4dD48dGV4dCB4PSI3MDAiIHk9IjEwNyIgY2xhc3M9ImxhYmVsIj5XMCAvIHJ1biAxIC8gMTU4NDk4M2E8L3RleHQ+PGxpbmUgeDE9IjcwMCIgeTE9IjI5MCIgeDI9IjEyNDUiIHkyPSIyOTAiIHN0cm9rZT0iIzk0YTNiOCIvPjx0ZXh0IHg9IjY5MyIgeT0iMTI5IiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjE4NzI8L3RleHQ+PHRleHQgeD0iNjkzIiB5PSIyOTQiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MDwvdGV4dD48cG9seWxpbmUgcG9pbnRzPSI3MDQuNSwyODkuOSA3MTMuNiwyOTAuMCA3MjIuNywyODkuOSA3MzEuOCwyODcuOSA3NDAuOSwyOTAuMCA3NTAuMCwyODkuOCA3NTkuMCwyODkuOSA3NjguMSwyOTAuMCA3NzcuMiwyOTAuMCA3ODYuMywyODkuOSA3OTUuNCwyOTAuMCA4MDQuNSwyOTAuMCA4MTMuNSwyOTAuMCA4MjIuNiwyOTAuMCA4MzEuNywyOTAuMCA4NDAuOCwyOTAuMCA4NDkuOSwyOTAuMCA4NTkuMCwyOTAuMCA4NjguMCwyOTAuMCA4NzcuMSwyOTAuMCA4ODYuMiwyOTAuMCA4OTUuMywyOTAuMCA5MDQuNCwyOTAuMCA5MTMuNSwyOTAuMCA5MjIuNSwyOTAuMCA5MzEuNiwyOTAuMCA5NDAuNywyOTAuMCA5NDkuOCwyOTAuMCA5NTguOSwyOTAuMCA5NjguMCwyOTAuMCA5NzcuMCwyOTAuMCA5ODYuMSwyOTAuMCA5OTUuMiwyOTAuMCAxMDA0LjMsMjkwLjAgMTAxMy40LDI5MC4wIDEwMjIuNSwyOTAuMCAxMDMxLjUsMjkwLjAgMTA0MC42LDI5MC4wIDEwNDkuNywyOTAuMCAxMDU4LjgsMjkwLjAgMTA2Ny45LDI5MC4wIDEwNzcuMCwyODkuOSAxMDg2LjAsMjg5LjYgMTA5NS4xLDI4OS40IDExMDQuMiwyODkuOSAxMTEzLjMsMjkwLjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1NjNlYiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlsaW5lIHBvaW50cz0iNzA0LjUsMjg5LjkgNzEzLjYsMjkwLjAgNzIyLjcsMjg5LjkgNzMxLjgsMjc0LjYgNzQwLjksMjg5LjAgNzUwLjAsMjg5LjggNzU5LjAsMjg5LjYgNzY4LjEsMjkwLjAgNzc3LjIsMjkwLjAgNzg2LjMsMjg5LjYgNzk1LjQsMjkwLjAgODA0LjUsMjkwLjAgODEzLjUsMjkwLjAgODIyLjYsMjkwLjAgODMxLjcsMjkwLjAgODQwLjgsMjkwLjAgODQ5LjksMjkwLjAgODU5LjAsMjkwLjAgODY4LjAsMjkwLjAgODc3LjEsMjkwLjAgODg2LjIsMjg5LjcgODk1LjMsMjkwLjAgOTA0LjQsMjkwLjAgOTEzLjUsMjkwLjAgOTIyLjUsMjkwLjAgOTMxLjYsMjkwLjAgOTQwLjcsMjkwLjAgOTQ5LjgsMjkwLjAgOTU4LjksMjkwLjAgOTY4LjAsMjkwLjAgOTc3LjAsMjkwLjAgOTg2LjEsMjkwLjAgOTk1LjIsMjkwLjAgMTAwNC4zLDI5MC4wIDEwMTMuNCwyOTAuMCAxMDIyLjUsMjkwLjAgMTAzMS41LDI5MC4wIDEwNDAuNiwyOTAuMCAxMDQ5LjcsMjkwLjAgMTA1OC44LDI5MC4wIDEwNjcuOSwyOTAuMCAxMDc3LjAsMjg5LjkgMTA4Ni4wLDI4OS42IDEwOTUuMSwyODcuNiAxMTA0LjIsMjg5LjYgMTExMy4zLDI5MC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNlYTU4MGMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI3NTEuMyIgeTE9IjEyNSIgeDI9Ijc1MS4zIiB5Mj0iMjkwIiBzdHJva2U9IiMwNTk2NjkiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIvPjx0ZXh0IHg9Ijc1My4zIiB5PSIxMzciIGNsYXNzPSJzbWFsbCIgdHJhbnNmb3JtPSJyb3RhdGUoMzUgNzUzLjMgMTM3KSI+aWRsZSBzdGFydDwvdGV4dD48bGluZSB4MT0iMTA4My44IiB5MT0iMTI1IiB4Mj0iMTA4My44IiB5Mj0iMjkwIiBzdHJva2U9IiMwNTk2NjkiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIvPjx0ZXh0IHg9IjEwODUuOCIgeT0iMTM3IiBjbGFzcz0ic21hbGwiIHRyYW5zZm9ybT0icm90YXRlKDM1IDEwODUuOCAxMzcpIj5pZGxlIGVuZDwvdGV4dD48dGV4dCB4PSI3MDAiIHk9IjMxMCIgY2xhc3M9InNtYWxsIj4wIHM8L3RleHQ+PHRleHQgeD0iMTI0NSIgeT0iMzEwIiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjYwIHM8L3RleHQ+PHRleHQgeD0iNzUiIHk9IjM1MiIgY2xhc3M9ImxhYmVsIj5XMSAvIHJ1biAxIC8gNGE0MGNkMTk8L3RleHQ+PGxpbmUgeDE9Ijc1IiB5MT0iNTM1IiB4Mj0iNjIwIiB5Mj0iNTM1IiBzdHJva2U9IiM5NGEzYjgiLz48dGV4dCB4PSI2OCIgeT0iMzc0IiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjY2ODwvdGV4dD48dGV4dCB4PSI2OCIgeT0iNTM5IiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjA8L3RleHQ+PHBvbHlsaW5lIHBvaW50cz0iODEuOCw1MzUuMCA5NS40LDUzNS4wIDEwOS4xLDUzNS4wIDEyMi43LDUzNS4wIDEzNi4zLDUzNS4wIDE0OS45LDUzNS4wIDE2My42LDUzNS4wIDE3Ny4yLDUzNS4wIDE5MC44LDQ4MS45IDIwNC40LDUwMi4xIDIxOC4xLDUxOS40IDIzMS43LDUyNS45IDI0NS4zLDUxNy4wIDI1OC45LDUxMi44IDI3Mi42LDUwNy44IDI4Ni4yLDUyNi44IDI5OS44LDUzMy41IDMxMy40LDUzNC44IDMyNy4xLDUzNC44IDM0MC43LDUzNS4wIDM1NC4zLDUzNC41IDM2Ny45LDUzNS4wIDM4MS42LDUzNS4wIDM5NS4yLDUzNS4wIDQwOC44LDUzNS4wIDQyMi40LDQ4My45IDQzNi4xLDUyOS4xIDQ0OS43LDUzNC44IDQ2My4zLDUzNS4wIDQ3Ni45LDUzNS4wIDQ5MC42LDUzNS4wIDUwNC4yLDUzNS4wIDUxNy44LDUzNS4wIDUzMS40LDUzNS4wIDU0NS4xLDUzNS4wIDU1OC43LDUyOS44IDU3Mi4zLDUyOS4zIDU4NS45LDUzMy4zIDU5OS42LDUzNS4wIDYxMy4yLDUzNS4wIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5bGluZSBwb2ludHM9IjgxLjgsNTM1LjAgOTUuNCw1MzUuMCAxMDkuMSw1MzUuMCAxMjIuNyw1MzUuMCAxMzYuMyw1MzUuMCAxNDkuOSw1MzUuMCAxNjMuNiw1MzUuMCAxNzcuMiw1MzUuMCAxOTAuOCw0MDIuNCAyMDQuNCwzNzAuMCAyMTguMSw0OTkuNyAyMzEuNyw1MTAuMyAyNDUuMyw0NzUuNSAyNTguOSw0ODYuMyAyNzIuNiw0NzkuMiAyODYuMiw1MTIuOCAyOTkuOCw1MjUuOSAzMTMuNCw1MzMuMCAzMjcuMSw1MzMuNSAzNDAuNyw1MzMuOCAzNTQuMyw1MzQuOCAzNjcuOSw1MzUuMCAzODEuNiw1MzUuMCAzOTUuMiw1MzUuMCA0MDguOCw1MzUuMCA0MjIuNCw0MzAuMyA0MzYuMSw1MjguMyA0NDkuNyw1MzMuNSA0NjMuMyw1MzMuNSA0NzYuOSw1MzMuOCA0OTAuNiw1MzMuMCA1MDQuMiw1MzMuOCA1MTcuOCw1MzMuOCA1MzEuNCw1MzMuOCA1NDUuMSw1MzMuOCA1NTguNyw1MjUuNiA1NzIuMyw1MjEuOSA1ODUuOSw1MzEuNSA1OTkuNiw1MzMuNSA2MTMuMiw1MzQuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZWE1ODBjIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjYyLjMiIHkxPSIzNzAiIHgyPSIyNjIuMyIgeTI9IjUzNSIgc3Ryb2tlPSIjMDU5NjY5IiBzdHJva2UtZGFzaGFycmF5PSI0IDMiLz48dGV4dCB4PSIyNjQuMyIgeT0iMzgyIiBjbGFzcz0ic21hbGwiIHRyYW5zZm9ybT0icm90YXRlKDM1IDI2NC4zIDM4MikiPnByb21wdCBzdWJtaXR0ZWQ8L3RleHQ+PGxpbmUgeDE9IjMwNi44IiB5MT0iMzcwIiB4Mj0iMzA2LjgiIHkyPSI1MzUiIHN0cm9rZT0iIzA1OTY2OSIgc3Ryb2tlLWRhc2hhcnJheT0iNCAzIi8+PHRleHQgeD0iMzA4LjgiIHk9IjM4MiIgY2xhc3M9InNtYWxsIiB0cmFuc2Zvcm09InJvdGF0ZSgzNSAzMDguOCAzODIpIj5jb25maXJtYXRpb248L3RleHQ+PGxpbmUgeDE9IjM1MS45IiB5MT0iMzcwIiB4Mj0iMzUxLjkiIHkyPSI1MzUiIHN0cm9rZT0iIzA1OTY2OSIgc3Ryb2tlLWRhc2hhcnJheT0iNCAzIi8+PHRleHQgeD0iMzUzLjkiIHk9IjM4MiIgY2xhc3M9InNtYWxsIiB0cmFuc2Zvcm09InJvdGF0ZSgzNSAzNTMuOSAzODIpIj5icm93c2VyIGxhdW5jaGVkPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSI1NTUiIGNsYXNzPSJzbWFsbCI+MCBzPC90ZXh0Pjx0ZXh0IHg9IjYyMCIgeT0iNTU1IiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjQwIHM8L3RleHQ+PHRleHQgeD0iNzAwIiB5PSIzNTIiIGNsYXNzPSJsYWJlbCI+VzEgLyBydW4gMSAvIGYyOGFmMThkPC90ZXh0PjxsaW5lIHgxPSI3MDAiIHkxPSI1MzUiIHgyPSIxMjQ1IiB5Mj0iNTM1IiBzdHJva2U9IiM5NGEzYjgiLz48dGV4dCB4PSI2OTMiIHk9IjM3NCIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9InNtYWxsIj42Njg8L3RleHQ+PHRleHQgeD0iNjkzIiB5PSI1MzkiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MDwvdGV4dD48cG9seWxpbmUgcG9pbnRzPSI3MDYuOCw1MzQuNSA3MjAuNCw1MzQuOCA3MzQuMSw1MzQuNSA3NDcuNyw1MjguOCA3NjEuMyw1MTEuOCA3NzQuOSw1MTkuOSA3ODguNiw1MjYuOCA4MDIuMiw1MTQuMCA4MTUuOCw1MzIuOCA4MjkuNCw1MjIuOSA4NDMuMSw1MzIuOCA4NTYuNyw1MDkuOCA4NzAuMyw1MTkuMiA4ODMuOSw1MTIuOCA4OTcuNiw1MjQuMSA5MTEuMiw1MjQuNiA5MjQuOCw1MjUuNCA5MzguNCw1MjQuNCA5NTIuMSw1MjAuMiA5NjUuNyw1MjEuMiA5NzkuMyw1MjguMyA5OTIuOSw1MzUuMCAxMDA2LjYsNTM0LjggMTAyMC4yLDUzNC44IDEwMzMuOCw1MzQuMCAxMDQ3LjQsNTM1LjAgMTA2MS4xLDUzNS4wIDEwNzQuNyw1MzUuMCAxMDg4LjMsNTM1LjAgMTEwMS45LDUzNS4wIDExMTUuNiw1MzUuMCAxMTI5LjIsNTM1LjAgMTE0Mi44LDUzNS4wIDExNTYuNCw1MzUuMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjU2M2ViIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWxpbmUgcG9pbnRzPSI3MDYuOCw1MTkuMiA3MjAuNCw1MzAuOCA3MzQuMSw1MzIuOCA3NDcuNyw1MDcuOCA3NjEuMyw0NTYuNyA3NzQuOSw0OTMuMCA3ODguNiw1MTAuOCA4MDIuMiw0NzcuOSA4MTUuOCw1MjQuMSA4MjkuNCw1MDQuNiA4NDMuMSw1MjkuNiA4NTYuNyw0NDIuNiA4NzAuMyw0NzAuMCA4ODMuOSw0NjcuNiA4OTcuNiw0ODYuOCA5MTEuMiw0OTkuOSA5MjQuOCw0OTcuNSA5MzguNCw0OTQuNyA5NTIuMSw1MDQuNCA5NjUuNyw0OTkuOSA5NzkuMyw1MTUuNyA5OTIuOSw1MzQuNSAxMDA2LjYsNTM0LjUgMTAyMC4yLDUyNy42IDEwMzMuOCw1MzEuMCAxMDQ3LjQsNTM0LjggMTA2MS4xLDUzNS4wIDEwNzQuNyw1MzUuMCAxMDg4LjMsNTM1LjAgMTEwMS45LDUzNS4wIDExMTUuNiw1MzUuMCAxMTI5LjIsNTM1LjAgMTE0Mi44LDUzNS4wIDExNTYuNCw1MzUuMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZWE1ODBjIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iODcxLjkiIHkxPSIzNzAiIHgyPSI4NzEuOSIgeTI9IjUzNSIgc3Ryb2tlPSIjMDU5NjY5IiBzdHJva2UtZGFzaGFycmF5PSI0IDMiLz48dGV4dCB4PSI4NzMuOSIgeT0iMzgyIiBjbGFzcz0ic21hbGwiIHRyYW5zZm9ybT0icm90YXRlKDM1IDg3My45IDM4MikiPnByb21wdCBzdWJtaXR0ZWQ8L3RleHQ+PGxpbmUgeDE9Ijk5Ny4xIiB5MT0iMzcwIiB4Mj0iOTk3LjEiIHkyPSI1MzUiIHN0cm9rZT0iIzA1OTY2OSIgc3Ryb2tlLWRhc2hhcnJheT0iNCAzIi8+PHRleHQgeD0iOTk5LjEiIHk9IjM4MiIgY2xhc3M9InNtYWxsIiB0cmFuc2Zvcm09InJvdGF0ZSgzNSA5OTkuMSAzODIpIj5icm93c2VyIGxhdW5jaGVkPC90ZXh0Pjx0ZXh0IHg9IjcwMCIgeT0iNTU1IiBjbGFzcz0ic21hbGwiPjAgczwvdGV4dD48dGV4dCB4PSIxMjQ1IiB5PSI1NTUiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+NDAgczwvdGV4dD48dGV4dCB4PSI3NSIgeT0iNTk3IiBjbGFzcz0ibGFiZWwiPlcyIC8gcnVuIDEgLyBlYjMxMTFkNDwvdGV4dD48bGluZSB4MT0iNzUiIHkxPSI3ODAiIHgyPSI2MjAiIHkyPSI3ODAiIHN0cm9rZT0iIzk0YTNiOCIvPjx0ZXh0IHg9IjY4IiB5PSI2MTkiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MTU3NjwvdGV4dD48dGV4dCB4PSI2OCIgeT0iNzg0IiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjA8L3RleHQ+PHBvbHlsaW5lIHBvaW50cz0iODAuNSw3ODAuMCA5MS4zLDc4MC4wIDEwMi4yLDc4MC4wIDExMy4yLDc4MC4wIDEyNC4wLDc4MC4wIDEzNC45LDc4MC4wIDE0NS44LDc1Mi4zIDE1Ni44LDczOS41IDE2Ny43LDc3OS44IDE3OC42LDc3NS4zIDE4OS40LDc3NS45IDIwMC4zLDc3NS4wIDIxMS4yLDc1OS4wIDIyMi4yLDc2Ni40IDIzMy4xLDc2Mi42IDI0My45LDc2OS40IDI1NC44LDc3My45IDI2NS44LDc3NC4zIDI3Ni42LDc3NC4xIDI4Ny42LDc3NC42IDI5OC40LDc3NC41IDMwOS40LDc3NC4zIDMyMC4yLDc3My44IDMzMS4xLDc3NC43IDM0Mi4xLDc3NC41IDM1Mi45LDc2Ny4yIDM2My45LDc2Ni4yIDM3NC44LDc3OS42IDM4NS42LDc3OS45IDM5Ni42LDc4MC4wIDQwNy40LDc4MC4wIDQxOC40LDc4MC4wIDQyOS4yLDc4MC4wIDQ0MC4xLDc4MC4wIDQ1MS4xLDc4MC4wIDQ2MS45LDc4MC4wIDQ3Mi45LDc4MC4wIDQ4My44LDc4MC4wIDQ5NC42LDc4MC4wIDUwNS42LDc4MC4wIDUxNi41LDc4MC4wIDUyNy40LDc4MC4wIDUzOC4yLDc4MC4wIDU0OS4xLDc4MC4wIDU2MC4wLDc1Ny4xIDU3MS4wLDc3Ny41IDU4MS45LDc3Ny43IDU5Mi44LDc3OS41IDYwMy42LDc3OS45IDYxNC41LDc4MC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5bGluZSBwb2ludHM9IjgwLjUsNzgwLjAgOTEuMyw3ODAuMCAxMDIuMiw3ODAuMCAxMTMuMiw3ODAuMCAxMjQuMCw3ODAuMCAxMzQuOSw3ODAuMCAxNDUuOCw2MTUuMCAxNTYuOCw3MDEuOCAxNjcuNyw3NzkuMCAxNzguNiw3NjUuNiAxODkuNCw3NjUuMiAyMDAuMyw3NjkuMSAyMTEuMiw2NjEuMSAyMjIuMiw3NTQuMiAyMzMuMSw3MzAuOSAyNDMuOSw3NDUuNSAyNTQuOCw3NjQuNSAyNjUuOCw3NjcuMSAyNzYuNiw3NjcuNSAyODcuNiw3NjcuOSAyOTguNCw3NjcuOCAzMDkuNCw3NjcuOCAzMjAuMiw3NjYuNiAzMzEuMSw3NjguMCAzNDIuMSw3NjcuOCAzNTIuOSw3NjEuNCAzNjMuOSw3MzkuNiAzNzQuOCw3NzQuNiAzODUuNiw3NzkuNyAzOTYuNiw3NzkuNiA0MDcuNCw3ODAuMCA0MTguNCw3ODAuMCA0MjkuMiw3ODAuMCA0NDAuMSw3ODAuMCA0NTEuMSw3ODAuMCA0NjEuOSw3ODAuMCA0NzIuOSw3ODAuMCA0ODMuOCw3ODAuMCA0OTQuNiw3ODAuMCA1MDUuNiw3ODAuMCA1MTYuNSw3ODAuMCA1MjcuNCw3ODAuMCA1MzguMiw3ODAuMCA1NDkuMSw3ODAuMCA1NjAuMCw3MzIuOSA1NzEuMCw3NzYuOSA1ODEuOSw3NzUuNyA1OTIuOCw3NzkuMSA2MDMuNiw3NzkuOCA2MTQuNSw3NzkuMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZWE1ODBjIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjI2LjUiIHkxPSI2MTUiIHgyPSIyMjYuNSIgeTI9Ijc4MCIgc3Ryb2tlPSIjMDU5NjY5IiBzdHJva2UtZGFzaGFycmF5PSI0IDMiLz48dGV4dCB4PSIyMjguNSIgeT0iNjI3IiBjbGFzcz0ic21hbGwiIHRyYW5zZm9ybT0icm90YXRlKDM1IDIyOC41IDYyNykiPnZvaWNlIHN0YXJ0PC90ZXh0PjxsaW5lIHgxPSIzODkuNSIgeTE9IjYxNSIgeDI9IjM4OS41IiB5Mj0iNzgwIiBzdHJva2U9IiMwNTk2NjkiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIvPjx0ZXh0IHg9IjM5MS41IiB5PSI2MjciIGNsYXNzPSJzbWFsbCIgdHJhbnNmb3JtPSJyb3RhdGUoMzUgMzkxLjUgNjI3KSI+dm9pY2UgZW5kPC90ZXh0PjxsaW5lIHgxPSI0MTIuOSIgeTE9IjYxNSIgeDI9IjQxMi45IiB5Mj0iNzgwIiBzdHJva2U9IiMwNTk2NjkiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIvPjx0ZXh0IHg9IjQxNC45IiB5PSI2MjciIGNsYXNzPSJzbWFsbCIgdHJhbnNmb3JtPSJyb3RhdGUoMzUgNDE0LjkgNjI3KSI+cmVzcG9uc2UgY29tcGxldGU8L3RleHQ+PHRleHQgeD0iNzUiIHk9IjgwMCIgY2xhc3M9InNtYWxsIj4wIHM8L3RleHQ+PHRleHQgeD0iNjIwIiB5PSI4MDAiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+NTAgczwvdGV4dD48dGV4dCB4PSI3MDAiIHk9IjU5NyIgY2xhc3M9ImxhYmVsIj5XMiAvIHJ1biAxIC8gODBhYmIxMWU8L3RleHQ+PGxpbmUgeDE9IjcwMCIgeTE9Ijc4MCIgeDI9IjEyNDUiIHkyPSI3ODAiIHN0cm9rZT0iIzk0YTNiOCIvPjx0ZXh0IHg9IjY5MyIgeT0iNjE5IiB0ZXh0LWFuY2hvcj0iZW5kIiBjbGFzcz0ic21hbGwiPjE1NzY8L3RleHQ+PHRleHQgeD0iNjkzIiB5PSI3ODQiIHRleHQtYW5jaG9yPSJlbmQiIGNsYXNzPSJzbWFsbCI+MDwvdGV4dD48cG9seWxpbmUgcG9pbnRzPSI3MDUuNSw3NzkuNyA3MTYuNCw3NzkuOSA3MjcuMiw3NzcuMSA3MzguMSw3ODAuMCA3NDkuMCw3NzkuOSA3NjAuMCw3ODAuMCA3NzAuOSw3ODAuMCA3ODEuOCw3NzkuNCA3OTIuNiw3NjkuOCA4MDMuNSw3NzAuNSA4MTQuNSw3NzIuMCA4MjUuNCw3NzMuNiA4MzYuMiw3NzMuNyA4NDcuMSw3NzMuNiA4NTguMCw3NzMuNyA4NjkuMCw3NzMuNiA4NzkuOSw3NzMuNyA4OTAuOCw3NzMuNSA5MDEuNiw3NzAuMyA5MTIuNSw3NzAuNSA5MjMuNSw3NzAuNCA5MzQuNCw3NzMuMiA5NDUuMiw3NzQuMSA5NTYuMSw3NzMuOCA5NjcuMCw3NzMuNyA5NzguMCw3NzUuOSA5ODguOSw3NzUuMyA5OTkuOCw3NzMuOSAxMDEwLjYsNzczLjEgMTAyMS41LDc3OS4wIDEwMzIuNSw3ODAuMCAxMDQzLjMsNzc5LjkgMTA1NC4yLDc3OS42IDEwNjUuMiw3NzkuNyAxMDc2LjAsNzc5LjkgMTA4Ny4wLDc4MC4wIDEwOTcuOCw3ODAuMCAxMTA4LjgsNzgwLjAgMTExOS43LDc4MC4wIDExMzAuNSw3ODAuMCAxMTQxLjUsNzc5LjkgMTE1Mi4zLDc3OS45IDExNjMuMiw3ODAuMCAxMTc0LjIsNzc5LjcgMTE4NS4wLDc4MC4wIDExOTYuMCw3ODAuMCAxMjA2LjgsNzgwLjAgMTIxNy44LDc4MC4wIDEyMjguNyw3ODAuMCAxMjM5LjUsNzgwLjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1NjNlYiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlsaW5lIHBvaW50cz0iNzA1LjUsNzc5LjcgNzE2LjQsNzc5LjkgNzI3LjIsNzU4LjUgNzM4LjEsNzc4LjggNzQ5LjAsNzc5LjkgNzYwLjAsNzc5LjYgNzcwLjksNzgwLjAgNzgxLjgsNzc3LjkgNzkyLjYsNzU0LjYgODAzLjUsNzYxLjIgODE0LjUsNzY0LjAgODI1LjQsNzY3LjIgODM2LjIsNzY3LjMgODQ3LjEsNzY3LjMgODU4LjAsNzY3LjMgODY5LjAsNzY2LjQgODc5LjksNzY3LjMgODkwLjgsNzY2LjYgOTAxLjYsNzU2LjIgOTEyLjUsNzU1LjQgOTIzLjUsNzU3LjQgOTM0LjQsNzYxLjMgOTQ1LjIsNzY1LjkgOTU2LjEsNzY3LjEgOTY3LjAsNzY3LjIgOTc4LjAsNzcxLjEgOTg4LjksNzY5LjAgOTk5LjgsNzY3LjUgMTAxMC42LDc2My42IDEwMjEuNSw3NzYuMyAxMDMyLjUsNzc5LjggMTA0My4zLDc3OS45IDEwNTQuMiw3NzkuNyAxMDY1LjIsNzc5LjggMTA3Ni4wLDc3OS44IDEwODcuMCw3NzkuOSAxMDk3LjgsNzc5LjkgMTEwOC44LDc3OS45IDExMTkuNyw3NzkuOCAxMTMwLjUsNzc5LjkgMTE0MS41LDc3Ny4wIDExNTIuMyw3NzkuOCAxMTYzLjIsNzc5LjkgMTE3NC4yLDc3OS42IDExODUuMCw3NzkuOSAxMTk2LjAsNzgwLjAgMTIwNi44LDc4MC4wIDEyMTcuOCw3ODAuMCAxMjI4LjcsNzgwLjAgMTIzOS41LDc4MC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNlYTU4MGMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI3ODAuOSIgeTE9IjYxNSIgeDI9Ijc4MC45IiB5Mj0iNzgwIiBzdHJva2U9IiMwNTk2NjkiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIvPjx0ZXh0IHg9Ijc4Mi45IiB5PSI2MjciIGNsYXNzPSJzbWFsbCIgdHJhbnNmb3JtPSJyb3RhdGUoMzUgNzgyLjkgNjI3KSI+dm9pY2Ugc3RhcnQ8L3RleHQ+PGxpbmUgeDE9IjkyMC4wIiB5MT0iNjE1IiB4Mj0iOTIwLjAiIHkyPSI3ODAiIHN0cm9rZT0iIzA1OTY2OSIgc3Ryb2tlLWRhc2hhcnJheT0iNCAzIi8+PHRleHQgeD0iOTIyLjAiIHk9IjYyNyIgY2xhc3M9InNtYWxsIiB0cmFuc2Zvcm09InJvdGF0ZSgzNSA5MjIuMCA2MjcpIj52b2ljZSBlbmQ8L3RleHQ+PGxpbmUgeDE9IjEwMzIuNCIgeTE9IjYxNSIgeDI9IjEwMzIuNCIgeTI9Ijc4MCIgc3Ryb2tlPSIjMDU5NjY5IiBzdHJva2UtZGFzaGFycmF5PSI0IDMiLz48dGV4dCB4PSIxMDM0LjQiIHk9IjYyNyIgY2xhc3M9InNtYWxsIiB0cmFuc2Zvcm09InJvdGF0ZSgzNSAxMDM0LjQgNjI3KSI+cmVzcG9uc2UgY29tcGxldGU8L3RleHQ+PHRleHQgeD0iNzAwIiB5PSI4MDAiIGNsYXNzPSJzbWFsbCI+MCBzPC90ZXh0Pjx0ZXh0IHg9IjEyNDUiIHk9IjgwMCIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9InNtYWxsIj41MCBzPC90ZXh0PjxyZWN0IHg9IjEwMDUiIHk9IjI2IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSIxMDIxIiB5PSIzNyIgY2xhc3M9InNtYWxsIj5JbmNvbWluZzwvdGV4dD48cmVjdCB4PSIxMTAwIiB5PSIyNiIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZWE1ODBjIi8+PHRleHQgeD0iMTExNiIgeT0iMzciIGNsYXNzPSJzbWFsbCI+T3V0Z29pbmc8L3RleHQ+PGxpbmUgeDE9IjEyMDAiIHkxPSIzMiIgeDI9IjEyMTQiIHkyPSIzMiIgc3Ryb2tlPSIjMDU5NjY5IiBzdHJva2UtZGFzaGFycmF5PSI0IDMiLz48dGV4dCB4PSIxMjIxIiB5PSIzNyIgY2xhc3M9InNtYWxsIj5NYXJrZXI8L3RleHQ+PC9zdmc+" alt="One-second Binder activity and task markers for repetition 1 of each Agent and workload" /></p>
+<p>The timeline shows repetition 1 for each Agent/workload, chosen in advance. Gemini is left and ChatGPT right. The two panels in each workload row share both time and count scales; scales may differ across W0/W1/W2 rows. Green dashed lines are operator task markers. Inspect <code>timeline_1s.csv</code> and <code>summary.json</code> for exact values and marker timestamps. The five top peers for every run are in its <code>summary.json</code>; the full ranking is in <code>peers.csv</code>.</p>
+<h2 id="metric-3-interfaces-and-mediated-paths">Metric 3 — Interfaces and mediated paths</h2>
+<p>A request is counted as a named API only when both a Binder interface and a nonplaceholder method name are identified. Numeric-only (<code>#...</code>), <code>Unknown_Transaction_Code:...</code>, and missing method labels are grouped as unidentified. The complete <a href="api_counts.csv">interface/API table</a> includes direction and separate unidentified counts. A transaction code alone does not uniquely identify an API; raw codes and endpoints remain in each run's <code>transactions.json</code> and <code>path_evidence.json</code>.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Workload / rep</th>
+<th>Gemini</th>
+<th>ChatGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W0 / 1</td>
+<td><code>8bd870fe</code><br>Named API 2,626 · unidentified 1,257<br>Code/placeholder 652 · two-hop 239 · in window 24</td>
+<td><code>1584983a</code><br>Named API 205 · unidentified 78<br>Code/placeholder 41 · two-hop 58 · in window 9</td>
+</tr>
+<tr>
+<td>W0 / 2</td>
+<td><code>db3b4a43</code><br>Named API 3,175 · unidentified 1,552<br>Code/placeholder 848 · two-hop 305 · in window 33</td>
+<td><code>65f27b9a</code><br>Named API 508 · unidentified 271<br>Code/placeholder 92 · two-hop 106 · in window 27</td>
+</tr>
+<tr>
+<td>W0 / 3</td>
+<td><code>5bf78800</code><br>Named API 923 · unidentified 590<br>Code/placeholder 215 · two-hop 80 · in window 10</td>
+<td><code>684c04da</code><br>Named API 582 · unidentified 141<br>Code/placeholder 100 · two-hop 109 · in window 51</td>
+</tr>
+<tr>
+<td>W1 / 1</td>
+<td><code>4a40cd19</code><br>Named API 2,439 · unidentified 1,501<br>Code/placeholder 448 · two-hop 133 · in window 27</td>
+<td><code>f28af18d</code><br>Named API 2,289 · unidentified 1,816<br>Code/placeholder 114 · two-hop 137 · in window 20</td>
+</tr>
+<tr>
+<td>W1 / 2</td>
+<td><code>08f1dc71</code><br>Named API 2,245 · unidentified 1,550<br>Code/placeholder 311 · two-hop 105 · in window 20</td>
+<td><code>51b898e5</code><br>Named API 2,433 · unidentified 1,897<br>Code/placeholder 164 · two-hop 192 · in window 48</td>
+</tr>
+<tr>
+<td>W1 / 3</td>
+<td><code>e7366222</code><br>Named API 2,481 · unidentified 1,495<br>Code/placeholder 447 · two-hop 133 · in window 44</td>
+<td><code>bc99d552</code><br>Named API 1,129 · unidentified 1,212<br>Code/placeholder 103 · two-hop 123 · in window 31</td>
+</tr>
+<tr>
+<td>W2 / 1</td>
+<td><code>eb3111d4</code><br>Named API 5,139 · unidentified 6,668<br>Code/placeholder 3,325 · two-hop 562 · in window 194</td>
+<td><code>80abb11e</code><br>Named API 2,015 · unidentified 2,937<br>Code/placeholder 65 · two-hop 160 · in window 114</td>
+</tr>
+<tr>
+<td>W2 / 2</td>
+<td><code>44b901eb</code><br>Named API 2,842 · unidentified 5,227<br>Code/placeholder 2,574 · two-hop 374 · in window 133</td>
+<td><code>1aca5372</code><br>Named API 3,971 · unidentified 5,381<br>Code/placeholder 129 · two-hop 231 · in window 55</td>
+</tr>
+<tr>
+<td>W2 / 3</td>
+<td><code>abe56051</code><br>Named API 2,745 · unidentified 5,202<br>Code/placeholder 2,679 · two-hop 350 · in window 177</td>
+<td><code>c3823f8c</code><br>Named API 2,714 · unidentified 3,888<br>Code/placeholder 116 · two-hop 204 · in window 53</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjYwIiBoZWlnaHQ9IjQzMCIgdmlld0JveD0iMCAwIDEyNjAgNDMwIiByb2xlPSJpbWciPjxzdHlsZT50ZXh0e2ZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7ZmlsbDojMTcyMDMzfSAudGl0bGV7Zm9udC1zaXplOjIwcHg7Zm9udC13ZWlnaHQ6Ym9sZH0ubGFiZWx7Zm9udC1zaXplOjEzcHh9LnNtYWxse2ZvbnQtc2l6ZToxMXB4O2ZpbGw6IzQ3NTU2OX08L3N0eWxlPjxyZWN0IHdpZHRoPSIxMjYwIiBoZWlnaHQ9IjQzMCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIyOCIgeT0iMzQiIGNsYXNzPSJ0aXRsZSI+TmFtZWQgQmluZGVyIGludGVyZmFjZSBhbmQgbWV0aG9kIGNvdmVyYWdlPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI1MyIgY2xhc3M9InNtYWxsIj5BbGwgb2JzZXJ2ZWQgdGFyZ2V0LXJlbGF0ZWQgcmVxdWVzdHMgaW4gMTggc2VsZWN0ZWQgdHJhY2VzPC90ZXh0Pjx0ZXh0IHg9IjE5MCIgeT0iODkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0aXRsZSI+R2VtaW5pPC90ZXh0PjxjaXJjbGUgY3g9IjE5MCIgY3k9IjIzNSIgcj0iMTIwIiBmaWxsPSIjNjQ3NDhiIi8+PHBhdGggZD0iTSAxOTAgMjM1IEwgMTkwLjAwIDExNS4wMCBBIDEyMCAxMjAgMCAwIDEgMTkzLjI0IDM1NC45NiBaIiBmaWxsPSIjMDU5NjY5Ii8+PHJlY3QgeD0iMzM1IiB5PSIxNzQiIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgZmlsbD0iIzA1OTY2OSIvPjx0ZXh0IHg9IjM1NSIgeT0iMTg3IiBjbGFzcz0ic21hbGwiPk5hbWVkIDI0LDYxNSAoNDkuNiUpPC90ZXh0PjxyZWN0IHg9IjMzNSIgeT0iMjA3IiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIGZpbGw9IiM2NDc0OGIiLz48dGV4dCB4PSIzNTUiIHk9IjIyMCIgY2xhc3M9InNtYWxsIj5Vbmtub3duIDI1LDA0MiAoNTAuNCUpPC90ZXh0Pjx0ZXh0IHg9Ijc5MCIgeT0iODkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0aXRsZSI+Q2hhdEdQVDwvdGV4dD48Y2lyY2xlIGN4PSI3OTAiIGN5PSIyMzUiIHI9IjEyMCIgZmlsbD0iIzY0NzQ4YiIvPjxwYXRoIGQ9Ik0gNzkwIDIzNSBMIDc5MC4wMCAxMTUuMDAgQSAxMjAgMTIwIDAgMCAxIDgwOS45MCAzNTMuMzQgWiIgZmlsbD0iIzA1OTY2OSIvPjxyZWN0IHg9IjkzNSIgeT0iMTc0IiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIGZpbGw9IiMwNTk2NjkiLz48dGV4dCB4PSI5NTUiIHk9IjE4NyIgY2xhc3M9InNtYWxsIj5OYW1lZCAxNSw4NDYgKDQ3LjMlKTwvdGV4dD48cmVjdCB4PSI5MzUiIHk9IjIwNyIgd2lkdGg9IjE1IiBoZWlnaHQ9IjE1IiBmaWxsPSIjNjQ3NDhiIi8+PHRleHQgeD0iOTU1IiB5PSIyMjAiIGNsYXNzPSJzbWFsbCI+VW5rbm93biAxNyw2MjEgKDUyLjclKTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNDA4IiBjbGFzcz0ic21hbGwiPlVua25vd24gaW5jbHVkZXMgbnVtZXJpYy1vbmx5IGFuZCBtaXNzaW5nIGludGVyZmFjZS9tZXRob2QgbGFiZWxzLjwvdGV4dD48L3N2Zz4=" alt="Side-by-side pie charts of named and unidentified API requests for Gemini and ChatGPT" /></p>
+<p>Most frequent identified interface/method/direction groups:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Gemini</th>
+<th>ChatGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>IDisplayEventConnection.requestNextVsync (outgoing) · 6,136</td>
+<td>IDisplayEventConnection.requestNextVsync (outgoing) · 11,634</td>
+</tr>
+<tr>
+<td>2</td>
+<td>IAppSearchManager.registerObserverCallback (outgoing) · 1,900</td>
+<td>IConnectivityManager.getNetworkCapabilities (outgoing) · 584</td>
+</tr>
+<tr>
+<td>3</td>
+<td>IAppSearchManager.unregisterObserverCallback (outgoing) · 1,862</td>
+<td>IConnectivityManager.getAllNetworks (outgoing) · 486</td>
+</tr>
+<tr>
+<td>4</td>
+<td>IWindowManager.isKeyguardLocked (outgoing) · 1,382</td>
+<td>ILocaleManager.getApplicationLocales (outgoing) · 235</td>
+</tr>
+<tr>
+<td>5</td>
+<td>IAppSearchResultCallback.onResult (incoming) · 1,180</td>
+<td>IConnectivityManager.getActiveNetwork (outgoing) · 190</td>
+</tr>
+<tr>
+<td>6</td>
+<td>IPackageManager.resolveIntent (outgoing) · 1,067</td>
+<td>IApplicationThread.scheduleTransaction (incoming) · 141</td>
+</tr>
+<tr>
+<td>7</td>
+<td>IPackageManager.getPropertyAsUser (outgoing) · 910</td>
+<td>IPackageManager.queryIntentActivities (outgoing) · 140</td>
+</tr>
+<tr>
+<td>8</td>
+<td>IAppSearchManager.getNextPage (outgoing) · 580</td>
+<td>IActivityManager.getIntentSenderWithFeature (outgoing) · 105</td>
+</tr>
+<tr>
+<td>9</td>
+<td>IAppSearchManager.globalSearch (outgoing) · 467</td>
+<td>IImeTracker.onProgress (outgoing) · 86</td>
+</tr>
+<tr>
+<td>10</td>
+<td>IAppSearchManager.invalidateNextPageToken (outgoing) · 366</td>
+<td>IDisplayManagerCallback.onDisplayEvent (incoming) · 79</td>
+</tr>
+<tr>
+<td>11</td>
+<td>IAccessibilityManager.getEnabledAccessibilityServiceList (outgoing) · 350</td>
+<td>IDisplayManager.getDisplayInfo (outgoing) · 78</td>
+</tr>
+<tr>
+<td>12</td>
+<td>IPackageManager.queryIntentActivities (outgoing) · 290</td>
+<td>INotificationManager.getNotificationChannel (outgoing) · 71</td>
+</tr>
+</tbody>
+</table></div>
+<p>A structural two-hop candidate means the intermediary's serving thread started a second Binder request before the first server slice ended. All exported pairs have both transaction records and satisfy this timing condition. They remain <strong>candidates</strong>, including those inside task windows: the trace cannot establish user-task causality, payload contents, or an intermediary service's semantic role by timing alone. The <a href="../2026-11-23-path-review.md">Gemini path audit</a> and <a href="../2026-11-24-formal-matrix.md">formal matrix review</a> check examples against raw <code>.pftrace</code>. There is currently no verified instruction-specific agent → other-app path/hop count to report as a completed task path.</p>
+<h3 id="example-candidate-paths">Example candidate paths</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>Gemini</th>
+<th>ChatGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1 browser</td>
+<td><code>e7366222</code>: Gemini → system_server <code>activityPaused</code> → browser <code>scheduleTransaction</code>; TID 2583</td>
+<td><code>bc99d552</code>: ChatGPT → system_server <code>activityPaused</code> → browser <code>scheduleTransaction</code>; TID 4360</td>
+</tr>
+<tr>
+<td>W2 audio</td>
+<td><code>44b901eb</code>: Gemini → audioserver <code>getParameters</code> → MediaTek audio HAL; TID 8693</td>
+<td><code>80abb11e</code>: ChatGPT → audioserver <code>createRecord</code> → MediaTek audio HAL; TID 12574</td>
+</tr>
+</tbody>
+</table></div>
+<p>Each example contains two observed requests on the same serving thread inside its task window. None proves that the task caused the pair or reveals a message payload. The W2 paths show different audio API calls and should not be treated as equivalent operations.</p>
+<h3 id="data-quality-and-scope">Data quality and scope</h3>
+<ul>
+<li>All 18 included runs are marked complete and success in metadata. The plots are descriptive; three trials per Agent/workload are too few to infer population-level effects.</li>
+<li>UPIDs are trace-specific. Aggregate name tables can merge separate process instances; use <code>peers.csv</code> and <code>directed_edges.csv</code> for per-run identities.</li>
+<li>A shared UID can map to many packages, especially system services. The package list is an available mapping, not proof that every listed package was the active Binder endpoint.</li>
+<li>Binder replies are excluded from request counts. Synchronous latency is unavailable when the reply cannot be matched; absent values must stay empty.</li>
+<li>The operator confirmed that ChatGPT W1 used the phone app's Remote/Codex computer session. Thus <code>com.openai.chatgpt</code> represents the remote UI, not necessarily the action executor. A separate desktop Codex session at 13:48 Pacific on November 24 used <code>adb shell am start -a android.intent.action.VIEW -d https://www.wikipedia.org</code> to open the URL on the phone, but that session occurred after the three formal W1 captures (13:28, 13:36 and 13:37) and does not establish their exact execution commands. W1 Binder comparisons remain descriptive process observations; do not interpret them as equivalent direct mobile-agent action traces.</li>
+<li>Current Perfetto data do not include Intent extras, URL, spoken content or Parcel payload. New authorized instrumentation or content capture is required for those fields.</li>
+</ul>
+<p>Regenerate with the <code>--agent</code> and <code>--exclude-run</code> options shown in the project README.</p>
+</main>
+</body>
+</html>

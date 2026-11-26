@@ -57,19 +57,19 @@ Pilot W0, W1 and W2 before the formal comparison. Verify that the phone app actu
 
 For each trace run, `path_evidence.json` now exports both transactions behind every nested two-hop candidate, including endpoints, PID/TID, API/code and task-window status. This makes the second hop reviewable. `task_causality` and `intermediary_role` remain `unverified` until a human checks the raw trace and observed outcome. Existing Gemini traces can be backfilled using `python -m backend.rebuild_path_evidence --runs runs`.
 
-Local analysis artifacts include the earlier Gemini-only snapshot and the selected 18-run Gemini–ChatGPT comparison. These reports are held with the dataset pending public-data approval.
+The selected 18-run Gemini–ChatGPT comparison is available in [reports/2026-11-24-metrics-1-3-gemini-chatgpt](reports/2026-11-24-metrics-1-3-gemini-chatgpt). Earlier historical reports remain local.
 
-The selected 18-run Metrics 1–3 comparison includes CSV identity/edge/API/timeline tables and four SVG figures. Once the local dataset is available, regenerate it with:
+The selected 18-run Metrics 1–3 comparison includes CSV identity/edge/API/timeline tables and four SVG figures. Regenerate it with:
 
 ```powershell
 .\.venv\Scripts\python.exe -m backend.build_metrics_report --runs runs --output reports/2026-11-24-metrics-1-3-gemini-chatgpt --agent com.google.android.googlequicksearchbox --agent com.openai.chatgpt --exclude-run e8fb2ec79c6d4a99b80a041f813801b8
 ```
 
-The local HTML version contains side-by-side tables and embeds all four figures. After regenerating the Markdown report, refresh the HTML with `./backend/render_metrics_html.ps1` from PowerShell.
+The [HTML version](reports/2026-11-24-metrics-1-3-gemini-chatgpt/metrics.html) contains side-by-side tables and embeds all four figures. After regenerating the Markdown report, refresh the HTML with `./backend/render_metrics_html.ps1` from PowerShell.
 
 For the selected comparison, the user confirmed that Gemini and ChatGPT were not updated during collection and that W2 used comparable voice input modes. Muse is excluded from the formal comparison by the user's decision; its existing W0 captures remain stored as historical data.
 
-The formal 18-run dataset remains local pending explicit approval to publish device metadata and raw traces to this public repository. Large captures and transaction exports are configured for Git LFS. The code-only commit does not contain `runs/`, local access tokens, backend logs, extra pilots, Muse runs, or the incorrect archived run. A privacy-preserving 18-run numeric summary is published in [public_data/formal_metrics_numeric.csv](public_data/formal_metrics_numeric.csv); detailed analysis reports remain local until the data-release scope is confirmed.
+The public dataset under `runs/` contains only the 18 formally selected run folders and `evaluation-formal-gemini-chatgpt.json`. Raw `.pftrace` files and large transaction exports use Git LFS; after cloning, run `git lfs pull` to retrieve them. The published metadata and traces include observed process/package names, UIDs, and local ADB endpoints, but not Binder payloads. Extra pilots, Muse runs, the local access token, backend logs, and the incorrect archived run remain unpublished. A numeric summary is also available in [public_data/formal_metrics_numeric.csv](public_data/formal_metrics_numeric.csv).
 
 ## Run the experiment
 

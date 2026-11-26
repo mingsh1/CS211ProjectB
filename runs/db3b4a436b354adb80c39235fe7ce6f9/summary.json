@@ -1,0 +1,6333 @@
+{
+  "trace_duration_seconds": 47.917897465,
+  "transaction_count": 4727,
+  "direction_counts": {
+    "outgoing": 3720,
+    "incoming": 995,
+    "internal": 12
+  },
+  "transaction_types": {
+    "sync": 3139,
+    "async": 1588
+  },
+  "rates_per_second": {
+    "incoming": 20.764684024935857,
+    "outgoing": 77.63278851533808
+  },
+  "peer_process_count": 12,
+  "top_peers": [
+    [
+      "system_server [upid 857]",
+      2900
+    ],
+    [
+      "com.google.android.gms [upid 933]",
+      839
+    ],
+    [
+      "/system/bin/surfaceflinger [upid 754]",
+      777
+    ],
+    [
+      "/system/bin/servicemanager [upid 372]",
+      64
+    ],
+    [
+      "media.extractor [upid 789]",
+      54
+    ]
+  ],
+  "edges": [
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "system_server [upid 857]",
+      "count": 2332
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "/system/bin/surfaceflinger [upid 754]",
+      "count": 544
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "com.google.android.gms [upid 933]",
+      "count": 428
+    },
+    {
+      "sender": "system_server [upid 857]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 304
+    },
+    {
+      "sender": "com.google.android.gms [upid 933]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 294
+    },
+    {
+      "sender": "/system/bin/surfaceflinger [upid 754]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 233
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+      "receiver": "system_server [upid 857]",
+      "count": 151
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+      "receiver": "system_server [upid 857]",
+      "count": 81
+    },
+    {
+      "sender": "media.extractor [upid 789]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 54
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "/system/bin/servicemanager [upid 372]",
+      "count": 50
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+      "receiver": "com.google.android.gms [upid 933]",
+      "count": 50
+    },
+    {
+      "sender": "com.google.android.gms [upid 933]",
+      "receiver": "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+      "count": 26
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+      "receiver": "com.google.android.gms [upid 933]",
+      "count": 25
+    },
+    {
+      "sender": "system_server [upid 857]",
+      "receiver": "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+      "count": 21
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "/vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek [upid 708]",
+      "count": 18
+    },
+    {
+      "sender": "com.google.android.gms [upid 933]",
+      "receiver": "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+      "count": 16
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "/system/bin/mediaserver [upid 799]",
+      "count": 12
+    },
+    {
+      "sender": "com.sohu.inputmethod.sogouoem [upid 941]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 11
+    },
+    {
+      "sender": "system_server [upid 857]",
+      "receiver": "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+      "count": 11
+    },
+    {
+      "sender": "/system/bin/cameraserver [upid 786]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 11
+    },
+    {
+      "sender": "/system/bin/mediaserver [upid 799]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 9
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+      "receiver": "/system/bin/servicemanager [upid 372]",
+      "count": 8
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "/system/bin/cameraserver [upid 786]",
+      "count": 7
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+      "receiver": "/system/bin/servicemanager [upid 372]",
+      "count": 6
+    },
+    {
+      "sender": "/system/bin/audioserver [upid 750]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 5
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+      "count": 4
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 4
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "/system/bin/gpuservice [upid 752]",
+      "count": 3
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "/system/system_ext/bin/hwservicemanager [upid 373]",
+      "count": 3
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+      "count": 2
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+      "receiver": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "count": 2
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "com.sohu.inputmethod.sogouoem [upid 941]",
+      "count": 1
+    },
+    {
+      "sender": "com.google.android.googlequicksearchbox:search [upid 1105]",
+      "receiver": "/system/bin/audioserver [upid 750]",
+      "count": 1
+    }
+  ],
+  "interfaces": [
+    {
+      "interface": "IAppSearchManager",
+      "method": "registerObserverCallback",
+      "direction": "outgoing",
+      "count": 361
+    },
+    {
+      "interface": "IAppSearchManager",
+      "method": "unregisterObserverCallback",
+      "direction": "outgoing",
+      "count": 361
+    },
+    {
+      "interface": "IDisplayEventConnection",
+      "method": "requestNextVsync",
+      "direction": "outgoing",
+      "count": 267
+    },
+    {
+      "interface": "IWindowManager",
+      "method": "isKeyguardLocked",
+      "direction": "outgoing",
+      "count": 253
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "resolveIntent",
+      "direction": "outgoing",
+      "count": 214
+    },
+    {
+      "interface": "IAppSearchResultCallback",
+      "method": "onResult",
+      "direction": "incoming",
+      "count": 204
+    },
+    {
+      "interface": "IAppSearchManager",
+      "method": "getNextPage",
+      "direction": "outgoing",
+      "count": 103
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getPropertyAsUser",
+      "direction": "outgoing",
+      "count": 101
+    },
+    {
+      "interface": "IAppSearchManager",
+      "method": "globalSearch",
+      "direction": "outgoing",
+      "count": 80
+    },
+    {
+      "interface": "INetworkManagementService",
+      "method": "setUidCleartextNetworkPolicy",
+      "direction": "outgoing",
+      "count": 65
+    },
+    {
+      "interface": "IAppSearchManager",
+      "method": "invalidateNextPageToken",
+      "direction": "outgoing",
+      "count": 61
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getPackageInfo",
+      "direction": "outgoing",
+      "count": 45
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "refContentProvider",
+      "direction": "outgoing",
+      "count": 43
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getComponentEnabledSetting",
+      "direction": "outgoing",
+      "count": 41
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "queryIntentActivities",
+      "direction": "outgoing",
+      "count": 40
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "bindServiceInstance",
+      "direction": "outgoing",
+      "count": 36
+    },
+    {
+      "interface": "IServiceConnection",
+      "method": "connected",
+      "direction": "incoming",
+      "count": 36
+    },
+    {
+      "interface": "IJobScheduler",
+      "method": "schedule",
+      "direction": "outgoing",
+      "count": 31
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "registerReceiverWithFeature",
+      "direction": "outgoing",
+      "count": 27
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "checkPermissionForDevice",
+      "direction": "outgoing",
+      "count": 24
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getApplicationInfo",
+      "direction": "outgoing",
+      "count": 21
+    },
+    {
+      "interface": "IAppSearchManager",
+      "method": "initialize",
+      "direction": "outgoing",
+      "count": 21
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleTransaction",
+      "direction": "incoming",
+      "count": 19
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getNetworkCapabilities",
+      "direction": "outgoing",
+      "count": 19
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "hasSystemFeature",
+      "direction": "outgoing",
+      "count": 18
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "setComponentEnabledSetting",
+      "direction": "outgoing",
+      "count": 17
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getActiveNetwork",
+      "direction": "outgoing",
+      "count": 17
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getContentProvider",
+      "direction": "outgoing",
+      "count": 16
+    },
+    {
+      "interface": "IImeTracker",
+      "method": "onProgress",
+      "direction": "outgoing",
+      "count": 15
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "serviceDoneExecuting",
+      "direction": "outgoing",
+      "count": 14
+    },
+    {
+      "interface": "ISystemAnrOptService",
+      "method": "oplusServiceDoneExecuting",
+      "direction": "outgoing",
+      "count": 14
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getServiceInfo",
+      "direction": "outgoing",
+      "count": 13
+    },
+    {
+      "interface": "IContentService",
+      "method": "registerContentObserver",
+      "direction": "outgoing",
+      "count": 13
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "removeContentProvider",
+      "direction": "outgoing",
+      "count": 13
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getNetworkInfoForUid",
+      "direction": "outgoing",
+      "count": 12
+    },
+    {
+      "interface": "IAccountManagerResponse",
+      "method": "onResult",
+      "direction": "incoming",
+      "count": 11
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getMemoryInfo",
+      "direction": "outgoing",
+      "count": 10
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "setProcessState",
+      "direction": "incoming",
+      "count": 9
+    },
+    {
+      "interface": "IDisplayManager",
+      "method": "getDisplayInfo",
+      "direction": "outgoing",
+      "count": 9
+    },
+    {
+      "interface": "IMessenger",
+      "method": "send",
+      "direction": "incoming",
+      "count": 9
+    },
+    {
+      "interface": "IAccountManager",
+      "method": "getAccountsByFeatures",
+      "direction": "outgoing",
+      "count": 9
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "unbindService",
+      "direction": "outgoing",
+      "count": 9
+    },
+    {
+      "interface": "IOplusPackageManager",
+      "method": "inOplusStandardWhiteList",
+      "direction": "outgoing",
+      "count": 8
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getActivityInfo",
+      "direction": "outgoing",
+      "count": 8
+    },
+    {
+      "interface": "IVoiceInteractionManagerService",
+      "method": "notifyActivityEventChanged",
+      "direction": "outgoing",
+      "count": 8
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "resolveContentProvider",
+      "direction": "outgoing",
+      "count": 8
+    },
+    {
+      "interface": "ICameraServiceListener",
+      "method": "onCameraAccessPrioritiesChanged",
+      "direction": "incoming",
+      "count": 8
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getLinkProperties",
+      "direction": "outgoing",
+      "count": 8
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "notifyDexLoad",
+      "direction": "outgoing",
+      "count": 7
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "queryIntentServices",
+      "direction": "outgoing",
+      "count": 6
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "getLaunchedFromPackage",
+      "direction": "outgoing",
+      "count": 6
+    },
+    {
+      "interface": "IJobScheduler",
+      "method": "getAllPendingJobsInNamespace",
+      "direction": "outgoing",
+      "count": 6
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleCreateService",
+      "direction": "incoming",
+      "count": 6
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleBindService",
+      "direction": "incoming",
+      "count": 6
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "publishService",
+      "direction": "outgoing",
+      "count": 6
+    },
+    {
+      "interface": "IAudioService",
+      "method": "isStreamMute",
+      "direction": "outgoing",
+      "count": 6
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "setOnBackInvokedCallbackInfo",
+      "direction": "outgoing",
+      "count": 5
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "requestNetwork",
+      "direction": "outgoing",
+      "count": 5
+    },
+    {
+      "interface": "IRemoteInputConnection",
+      "method": "finishComposingText",
+      "direction": "incoming",
+      "count": 5
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getInstallerPackageName",
+      "direction": "outgoing",
+      "count": 5
+    },
+    {
+      "interface": "IAudioService",
+      "method": "getStreamVolume",
+      "direction": "outgoing",
+      "count": 5
+    },
+    {
+      "interface": "IAudioService",
+      "method": "getStreamMaxVolume",
+      "direction": "outgoing",
+      "count": 5
+    },
+    {
+      "interface": "IAudioFlingerClient",
+      "method": "ioConfigChanged",
+      "direction": "incoming",
+      "count": 5
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "queryIntentReceivers",
+      "direction": "outgoing",
+      "count": 5
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getPackagesForUid",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getMyMemoryState",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "setTaskDescription",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "IResultReceiver",
+      "method": "send",
+      "direction": "incoming",
+      "count": 4
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getRunningAppProcesses",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "relayout",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "IAccountManager",
+      "method": "onAccountAccessed",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "ITextServicesManager",
+      "method": "getCurrentSpellCheckerSubtype",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "getNotificationDelegate",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "IDisplayManagerCallback",
+      "method": "onDisplayEvent",
+      "direction": "incoming",
+      "count": 4
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "resolveService",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getAllNetworks",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleUnbindService",
+      "direction": "incoming",
+      "count": 4
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleStopService",
+      "direction": "incoming",
+      "count": 4
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "attachApplication",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "bindApplication",
+      "direction": "incoming",
+      "count": 3
+    },
+    {
+      "interface": "IDisplayManager",
+      "method": "getPreferredWideGamutColorSpaceId",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IDisplayManager",
+      "method": "getOverlaySupport",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getProxyForNetwork",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IUserManager",
+      "method": "isUserUnlockingOrUnlocked",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "publishContentProviders",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IAppOpsService",
+      "method": "startWatchingAsyncNoted",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IAppOpsService",
+      "method": "extractAsyncOps",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "finishAttachApplication",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IOplusActivityManager",
+      "method": "hookAfterBindApplicationFinished",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IPermissionManager",
+      "method": "checkPermission",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IWindowManager",
+      "method": "getCurrentAnimatorScale",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "createDisplayEventConnection",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IDisplayEventConnection",
+      "method": "stealReceiveChannel",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IDisplayManager",
+      "method": "registerCallbackWithEventMask",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "getTaskForActivity",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IJobService",
+      "method": "startJob",
+      "direction": "incoming",
+      "count": 3
+    },
+    {
+      "interface": "IJobCallback",
+      "method": "acknowledgeStartMessage",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "areNotificationsEnabled",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "canBePromoted",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "getNotificationChannels",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "getNotificationChannelGroups",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "ICameraServiceListener",
+      "method": "onTorchStatusChanged",
+      "direction": "incoming",
+      "count": 3
+    },
+    {
+      "interface": "IVirtualDeviceManager",
+      "method": "getVirtualDevices",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "isUserAMonkey",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "setNetworkBlockSeq",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "checkUriPermission",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IUserManager",
+      "method": "isUserUnlocked",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IOplusActivityManager",
+      "method": "setSceneActionTransit",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getSdkSandboxPackageName",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "getDisplayId",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IOplusActivityManager",
+      "method": "addNavBarSettingsListener",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IOplusPackageManager",
+      "method": "inCptWhiteList",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IBatteryPropertiesRegistrar",
+      "method": "getProperty",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IBatteryStats",
+      "method": "takeUidSnapshotsAsync",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "reportSizeConfigurations",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IDisplayManager",
+      "method": "getDisplayIds",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IPowerManager",
+      "method": "isDisplayInteractive",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "addToDisplayAsUser",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "updateActivitySpecificConfig",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityResumed",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getMaxAcquiredBufferCount",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getDynamicBufferSupport",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getPhysicalDisplayIds",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "setDisplayBrightness",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IUserManager",
+      "method": "isDemoUser",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IDevicePolicyManager",
+      "method": "isAdminActive",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getEnabledConnectivityManagerFeatures",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getIntentSenderWithFeature",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getHistoricalProcessExitReasons",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityTopResumedStateLost",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IWindow",
+      "method": "dispatchAppVisibility",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleEnterAnimationComplete",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IInputMethodManager",
+      "method": "startInputOrWindowGainedFocusAsync",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "setActive",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "onStartInputResult",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IDevicePolicyManager",
+      "method": "getProfileOwnerAsUser",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IAccessibilityManager",
+      "method": "getEnabledAccessibilityServiceList",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "cancelNotificationWithTag",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IDisplayEventConnection",
+      "method": "getLatestVsyncEventData",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IImeTracker",
+      "method": "onStart",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IImeTracker",
+      "method": "onCancelled",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "updateAnimatingTypes",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IOplusWindowManager",
+      "method": "setInsetAnimationTid",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IInputMethodManager",
+      "method": "reportPerceptibleAsync",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IUiModeManager",
+      "method": "addCallback",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IUiModeManager",
+      "method": "getContrast",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IUiModeManager",
+      "method": "getForceInvertState",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IUiModeManager",
+      "method": "getCurrentModeType",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getSystemAvailableFeatures",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "listenForNetwork",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IAccountManager",
+      "method": "getAuthToken",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IBluetoothManager",
+      "method": "registerAdapter",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IBluetoothManager",
+      "method": "getState",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IOplusMMAtlasService",
+      "method": "interfaceCallPermissionCheck",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IJobScheduler",
+      "method": "cancel",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleTrimMemory",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IJobCallback",
+      "method": "jobFinished",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getSupportedFrameTimestamps",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "broadcastIntentWithFeature",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityTaskManager",
+      "method": "getActivityClientController",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusGameManagerService",
+      "method": "getColorxLayerPath",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "waitForNetworkStateUpdate",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "setComponentEnabledSettings",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "getCallingPackage",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "getCallingActivity",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IWindowManager",
+      "method": "hasNavigationBar",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IAccessibilityManager",
+      "method": "addClient",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IAccessibilityManager",
+      "method": "getRecommendedTimeoutMillis",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IAccessibilityManager",
+      "method": "getFocusStrokeWidth",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IAccessibilityManager",
+      "method": "getFocusColor",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusPackageManager",
+      "method": "isClosedSuperFirewall",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusActivityManager",
+      "method": "isAppInDarkModeDataEntity",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IHintManager",
+      "method": "getClientData",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusCustomizeService",
+      "method": "getDeviceManagerServiceByName",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodManager",
+      "method": "addClient",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IWindowManager",
+      "method": "openSession",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "setRenderThread",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IGraphicsStats",
+      "method": "requestBufferForProcess",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IPermissionController",
+      "method": "getPackagesForUid",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getStaticDisplayInfo",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getDynamicDisplayInfoFromId",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getCompositionPreference",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputManager",
+      "method": "getVelocityTrackerStrategy",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputManager",
+      "method": "registerInputDevicesChangedListener",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputManager",
+      "method": "getInputDeviceIds",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputManager",
+      "method": "getInputDevice",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusMMAtlasService",
+      "method": "checkIsInDaemonlistByUid",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IWifiManager",
+      "method": "getVerboseLoggingLevel",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IVirtualDeviceManagerNative",
+      "method": "getDeviceIdsForUid",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IPermissionController",
+      "method": "checkPermission",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityTaskManager",
+      "method": "startActivities",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IDevicePolicyManager",
+      "method": "getActiveAdmins",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "finishActivity",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityPaused",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IUserManager",
+      "method": "getProfileType",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "notifyGcSupression",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "setShowWhenLocked",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "setTurnScreenOn",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getHistoricalProcessStartReasons",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityTaskManager",
+      "method": "getLastResumedActivityUserId",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "finishDrawing",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IAccountManager",
+      "method": "getAccountsAsUser",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityTaskManager",
+      "method": "getAppTasks",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IUserManager",
+      "method": "getApplicationRestrictionsForUser",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getModuleInfo",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "reportStartInfoViewTimestamps",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "onBindMethod",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "reportFullscreenMode",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IPowerManager",
+      "method": "isPowerSaveMode",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityTaskManager",
+      "method": "registerScreenCaptureObserver",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodManager",
+      "method": "removeImeSurfaceFromWindowAsync",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusSensorService",
+      "method": "getOrientationSolution",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IAppOpsService",
+      "method": "noteOperation",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IBatteryStats",
+      "method": "noteStartSensor",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "isInstantApp",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getReceiverInfo",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ICameraService",
+      "method": "getCameraVendorTagDescriptor",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ICameraService",
+      "method": "getCameraVendorTagCache",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ICameraService",
+      "method": "addListener",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ICameraService",
+      "method": "getConcurrentCameraIds",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ICameraService",
+      "method": "getCameraCharacteristics",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IDeviceStateManager",
+      "method": "registerCallback",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodManager",
+      "method": "getImeTrackerService",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "updateRequestedVisibleTypes",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusActivityManager",
+      "method": "removeNavBarSettingsListener",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusInputMethodClient",
+      "method": "onUpdateEditorToolType",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "remove",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityDestroyed",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityIdle",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ILocationManager",
+      "method": "isLocationEnabledForUser",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "onRectangleOnScreenRequested",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusInputMethodManager",
+      "method": "invalidateInputToSynergy",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodSession",
+      "method": "invalidateInput",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ITrustManager",
+      "method": "isDeviceLocked",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IWifiManager",
+      "method": "getWifiEnabledState",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IAudioFlingerService",
+      "method": "registerClient",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IOplusMMAtlasService",
+      "method": "getAttributeByAppName",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "isNotificationPolicyAccessGranted",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IRoleManager",
+      "method": "getSmsRoleHolder",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IImeTracker",
+      "method": "onShown",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IVirtualDeviceManager",
+      "method": "registerVirtualDeviceListener",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IJobService",
+      "method": "stopJob",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IJobCallback",
+      "method": "acknowledgeStopMessage",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IJobCallback",
+      "method": "handleAbandonedJob",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getProcessMemoryInfo",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IWindow",
+      "method": "closeSystemDialogs",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IBatteryStats",
+      "method": "noteStopSensor",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "onUnbindMethod",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "releaseNetworkRequest",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityTaskManager",
+      "method": "unregisterScreenCaptureObserver",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityStopped",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "unregisterReceiver",
+      "direction": "outgoing",
+      "count": 1
+    }
+  ],
+  "unidentified_interface_count": 1552,
+  "unresolved_endpoint_requests": 0,
+  "matched_sync_calls": 3139,
+  "sync_latency_ms": {
+    "median": 0.371769,
+    "p95": 5.381923
+  },
+  "timeline": [
+    {
+      "second": 0,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 1,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 2,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 3,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 4,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 5,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 6,
+      "incoming": 211,
+      "outgoing": 983,
+      "internal": 0
+    },
+    {
+      "second": 7,
+      "incoming": 540,
+      "outgoing": 1977,
+      "internal": 12
+    },
+    {
+      "second": 8,
+      "incoming": 2,
+      "outgoing": 13,
+      "internal": 0
+    },
+    {
+      "second": 9,
+      "incoming": 25,
+      "outgoing": 65,
+      "internal": 0
+    },
+    {
+      "second": 10,
+      "incoming": 3,
+      "outgoing": 11,
+      "internal": 0
+    },
+    {
+      "second": 11,
+      "incoming": 2,
+      "outgoing": 13,
+      "internal": 0
+    },
+    {
+      "second": 12,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 13,
+      "incoming": 19,
+      "outgoing": 55,
+      "internal": 0
+    },
+    {
+      "second": 14,
+      "incoming": 6,
+      "outgoing": 40,
+      "internal": 0
+    },
+    {
+      "second": 15,
+      "incoming": 2,
+      "outgoing": 13,
+      "internal": 0
+    },
+    {
+      "second": 16,
+      "incoming": 6,
+      "outgoing": 31,
+      "internal": 0
+    },
+    {
+      "second": 17,
+      "incoming": 15,
+      "outgoing": 37,
+      "internal": 0
+    },
+    {
+      "second": 18,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 19,
+      "incoming": 2,
+      "outgoing": 8,
+      "internal": 0
+    },
+    {
+      "second": 20,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 21,
+      "incoming": 15,
+      "outgoing": 37,
+      "internal": 0
+    },
+    {
+      "second": 22,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 23,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 24,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 25,
+      "incoming": 15,
+      "outgoing": 37,
+      "internal": 0
+    },
+    {
+      "second": 26,
+      "incoming": 4,
+      "outgoing": 12,
+      "internal": 0
+    },
+    {
+      "second": 27,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 28,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 29,
+      "incoming": 15,
+      "outgoing": 36,
+      "internal": 0
+    },
+    {
+      "second": 30,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 31,
+      "incoming": 3,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 32,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 33,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 34,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 35,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 36,
+      "incoming": 8,
+      "outgoing": 25,
+      "internal": 0
+    },
+    {
+      "second": 37,
+      "incoming": 12,
+      "outgoing": 35,
+      "internal": 0
+    },
+    {
+      "second": 38,
+      "incoming": 2,
+      "outgoing": 10,
+      "internal": 0
+    },
+    {
+      "second": 39,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 40,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 41,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 42,
+      "incoming": 2,
+      "outgoing": 9,
+      "internal": 0
+    },
+    {
+      "second": 43,
+      "incoming": 3,
+      "outgoing": 10,
+      "internal": 0
+    },
+    {
+      "second": 44,
+      "incoming": 2,
+      "outgoing": 8,
+      "internal": 0
+    },
+    {
+      "second": 45,
+      "incoming": 18,
+      "outgoing": 33,
+      "internal": 0
+    },
+    {
+      "second": 46,
+      "incoming": 31,
+      "outgoing": 62,
+      "internal": 0
+    },
+    {
+      "second": 47,
+      "incoming": 0,
+      "outgoing": 7,
+      "internal": 0
+    }
+  ],
+  "markers": [
+    {
+      "label": "idle_start",
+      "received_at": "2026-11-18T08:59:50.438486+00:00",
+      "boottime_ns": 6082367527896,
+      "source": "android_elapsed_realtime",
+      "offset_seconds": 7.81831877,
+      "inside_trace": true
+    },
+    {
+      "label": "idle_end",
+      "received_at": "2026-11-18T09:00:27.209285+00:00",
+      "boottime_ns": 6119145154052,
+      "source": "android_elapsed_realtime",
+      "offset_seconds": 44.595944926,
+      "inside_trace": true
+    }
+  ],
+  "warnings": [],
+  "candidate_paths": [
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/odm/bin/hw/vendor-oplus-hardware-performance-V1-service [upid 732]"
+      ],
+      "transaction_ids": [
+        "slice:25908",
+        "slice:26028"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:25908",
+        "slice:26044"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:25908",
+        "slice:26045"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 720]"
+      ],
+      "transaction_ids": [
+        "slice:25908",
+        "slice:26051"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 720]"
+      ],
+      "transaction_ids": [
+        "slice:25908",
+        "slice:26053"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system_ext/bin/magt [upid 759]"
+      ],
+      "transaction_ids": [
+        "slice:25908",
+        "slice:26063"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:27732",
+        "slice:27755"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:27937",
+        "slice:27944"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:27937",
+        "slice:27955"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:27937",
+        "slice:27973"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:27937",
+        "slice:28002"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:27937",
+        "slice:28027"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:27943",
+        "slice:27950"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:27943",
+        "slice:27961"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:27943",
+        "slice:27967"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:27943",
+        "slice:27991"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.health-service.example [upid 710]"
+      ],
+      "transaction_ids": [
+        "slice:28263",
+        "slice:28267"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:28636",
+        "slice:28647"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:28688",
+        "slice:28691"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:28688",
+        "slice:28694"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:28688",
+        "slice:28761"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:28743",
+        "slice:28754"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:28743",
+        "slice:28769"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:28743",
+        "slice:28773"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:28743",
+        "slice:28792"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:28743",
+        "slice:28811"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:28743",
+        "slice:28819"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:28743",
+        "slice:28826"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:28743",
+        "slice:28838"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:28809",
+        "slice:28815"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:28852",
+        "slice:28859"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/surfaceflinger [upid 754]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:28903",
+        "slice:28908"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/surfaceflinger [upid 754]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:28903",
+        "slice:28920"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/surfaceflinger [upid 754]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:28903",
+        "slice:28930"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/surfaceflinger [upid 754]",
+        "/vendor/bin/hw/android.hardware.graphics.composer@3.2-service [upid 709]"
+      ],
+      "transaction_ids": [
+        "slice:28953",
+        "slice:28957"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/surfaceflinger [upid 754]",
+        "/vendor/bin/hw/android.hardware.graphics.composer@3.2-service [upid 709]"
+      ],
+      "transaction_ids": [
+        "slice:28953",
+        "slice:28961"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.oplus.persist.multimedia [upid 863]"
+      ],
+      "transaction_ids": [
+        "slice:29635",
+        "slice:29638"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:29707",
+        "slice:29723"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:29707",
+        "slice:29725"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:29808",
+        "slice:29837"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:29808",
+        "slice:29840"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:29822",
+        "slice:29826"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:29822",
+        "slice:29829"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:29822",
+        "slice:29847"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:29862",
+        "slice:29882"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:29862",
+        "slice:29913"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:29980",
+        "slice:29986"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:29980",
+        "slice:30006"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:30062",
+        "slice:30161"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 720]"
+      ],
+      "transaction_ids": [
+        "slice:30062",
+        "slice:30204"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 720]"
+      ],
+      "transaction_ids": [
+        "slice:30062",
+        "slice:30206"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system_ext/bin/magt [upid 759]"
+      ],
+      "transaction_ids": [
+        "slice:30062",
+        "slice:30213"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower-service.mediatek [upid 722]"
+      ],
+      "transaction_ids": [
+        "slice:30062",
+        "slice:30220"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower-service.mediatek [upid 722]"
+      ],
+      "transaction_ids": [
+        "slice:30062",
+        "slice:30224"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:30062",
+        "slice:30242"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:30062",
+        "slice:30285"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:30062",
+        "slice:30296"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:30263",
+        "slice:30281"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:30263",
+        "slice:30282"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30405"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/odm/bin/hw/vendor-oplus-hardware-performance-V1-service [upid 732]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30412"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30415"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30422"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30452"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 720]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30462"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 720]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30464"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system_ext/bin/magt [upid 759]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30473"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30480"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30495"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:30384",
+        "slice:30511"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:30580",
+        "slice:30585"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:30769",
+        "slice:30775"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:30812",
+        "slice:30824"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:30857",
+        "slice:30875"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:30948",
+        "slice:30970"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:30954",
+        "slice:30961"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:31044",
+        "slice:31050"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:31106",
+        "slice:31114"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:31106",
+        "slice:31152"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:31106",
+        "slice:31157"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:31106",
+        "slice:31163"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:31106",
+        "slice:31172"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:31106",
+        "slice:31181"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:31450",
+        "slice:31468"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:31450",
+        "slice:31471"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:31621",
+        "slice:31628"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:31680",
+        "slice:31686"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:31740",
+        "slice:31754"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:31790",
+        "slice:31859"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:31833",
+        "slice:31905"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:31833",
+        "slice:31918"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32039",
+        "slice:32049"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32161",
+        "slice:32169"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32188",
+        "slice:32203"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32188",
+        "slice:32235"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32420",
+        "slice:32425"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32420",
+        "slice:32436"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32456",
+        "slice:32459"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32495",
+        "slice:32503"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:32739",
+        "slice:32781"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32779",
+        "slice:32785"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32799",
+        "slice:32809"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:32800",
+        "slice:32808"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:32897",
+        "slice:32947"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:32897",
+        "slice:32948"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:32944",
+        "slice:32952"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:32944",
+        "slice:32953"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:33026",
+        "slice:33059"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:33035",
+        "slice:33085"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:33101",
+        "slice:33130"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:33131",
+        "slice:33182"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:33132",
+        "slice:33318"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:33146",
+        "slice:33256"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:33208",
+        "slice:33329"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:33294",
+        "slice:33433"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:33294",
+        "slice:33436"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:33637",
+        "slice:33655"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:33915",
+        "slice:33922"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:33944",
+        "slice:34152"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:34013",
+        "slice:34033"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:34013",
+        "slice:34035"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34047",
+        "slice:34123"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:34060",
+        "slice:34082"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:34060",
+        "slice:34083"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34184",
+        "slice:34187"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34208"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34217"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34229"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34238"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34249"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34300"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34314"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34325"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34338"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34347"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34354"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34358"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34363"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34202",
+        "slice:34367"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.sensors-service.multihal [upid 713]"
+      ],
+      "transaction_ids": [
+        "slice:34339",
+        "slice:34350"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.sensors-service.multihal [upid 713]"
+      ],
+      "transaction_ids": [
+        "slice:34339",
+        "slice:34382"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34366",
+        "slice:34372"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34366",
+        "slice:34384"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34387",
+        "slice:34394"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34458",
+        "slice:34471"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34560",
+        "slice:34602"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:34759",
+        "slice:34767"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:34853",
+        "slice:34873"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:34853",
+        "slice:34874"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:35203",
+        "slice:35206"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:35297",
+        "slice:35303"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:35297",
+        "slice:35332"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:35297",
+        "slice:35342"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:35297",
+        "slice:35376"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:36001",
+        "slice:36011"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:36001",
+        "slice:36012"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36151",
+        "slice:36156"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/cameraserver [upid 786]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36340",
+        "slice:36352"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/cameraserver [upid 786]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36340",
+        "slice:36367"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/cameraserver [upid 786]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36340",
+        "slice:36370"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/cameraserver [upid 786]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36340",
+        "slice:36396"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/cameraserver [upid 786]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36340",
+        "slice:36412"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/cameraserver [upid 786]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36451",
+        "slice:36456"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/cameraserver [upid 786]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36451",
+        "slice:36458"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/cameraserver [upid 786]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36451",
+        "slice:36462"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/cameraserver [upid 786]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:36451",
+        "slice:36546"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:37049",
+        "slice:37053"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:37085",
+        "slice:37090"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:37954",
+        "slice:37958"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:38439",
+        "slice:38448"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:38439",
+        "slice:38524"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:38778",
+        "slice:38796"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:39044",
+        "slice:39050"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:39112",
+        "slice:39180"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:39112",
+        "slice:39185"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:39591",
+        "slice:39617"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:40639",
+        "slice:40780"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:40966",
+        "slice:40976"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41481",
+        "slice:41490"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41533",
+        "slice:41554"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41658",
+        "slice:41671"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:41786"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:41980"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:42170"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:42181"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:42188"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:42194"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:42197"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:42200"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:42737"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43395"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43408"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43666"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43675"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43682"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43690"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43695"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43705"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43712"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43758"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43811"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43835"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:43849"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:46708"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48493"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48621"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48708"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48778"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48794"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48805"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48816"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48820"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48825"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48831"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:41710",
+        "slice:48837"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:42007",
+        "slice:42012"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:42032",
+        "slice:42042"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:42032",
+        "slice:42135"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:42032",
+        "slice:42328"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:42209",
+        "slice:42234"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:42209",
+        "slice:42240"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:44057",
+        "slice:44065"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:44094",
+        "slice:44099"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:44123",
+        "slice:44156"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:44461",
+        "slice:44475"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:44549",
+        "slice:44643"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:44549",
+        "slice:44645"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:45415",
+        "slice:45427"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:45466",
+        "slice:45482"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:45693",
+        "slice:45737"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/mediaserver [upid 799]",
+        "/system/bin/servicemanager [upid 372]"
+      ],
+      "transaction_ids": [
+        "slice:46409",
+        "slice:46430"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/mediaserver [upid 799]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:46409",
+        "slice:46453"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:46462",
+        "slice:46469"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/mediaserver [upid 799]",
+        "media.extractor [upid 789]"
+      ],
+      "transaction_ids": [
+        "slice:46861",
+        "slice:46918"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/mediaserver [upid 799]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:47130",
+        "slice:47180"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/mediaserver [upid 799]",
+        "media.extractor [upid 789]"
+      ],
+      "transaction_ids": [
+        "slice:47187",
+        "slice:47197"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/mediaserver [upid 799]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:47277",
+        "slice:47279"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "/system/bin/mediaserver [upid 799]",
+        "media.extractor [upid 789]"
+      ],
+      "transaction_ids": [
+        "slice:47290",
+        "slice:47318"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/audioserver [upid 750]"
+      ],
+      "transaction_ids": [
+        "slice:48102",
+        "slice:48106"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.oplus.persist.multimedia [upid 863]"
+      ],
+      "transaction_ids": [
+        "slice:48160",
+        "slice:48173"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.oplus.persist.multimedia [upid 863]"
+      ],
+      "transaction_ids": [
+        "slice:48194",
+        "slice:48202"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.oplus.persist.multimedia [upid 863]"
+      ],
+      "transaction_ids": [
+        "slice:48227",
+        "slice:48230"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/audioserver [upid 750]"
+      ],
+      "transaction_ids": [
+        "slice:48243",
+        "slice:48249"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/audioserver [upid 750]"
+      ],
+      "transaction_ids": [
+        "slice:48318",
+        "slice:48322"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/audioserver [upid 750]"
+      ],
+      "transaction_ids": [
+        "slice:48395",
+        "slice:48399"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:48599",
+        "slice:48622"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:48599",
+        "slice:48626"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:48706",
+        "slice:48746"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:50444",
+        "slice:50489"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:50444",
+        "slice:50501"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:50444",
+        "slice:50507"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:50713",
+        "slice:50716"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:50713",
+        "slice:50719"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:50713",
+        "slice:50722"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:51752",
+        "slice:51755"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:51752",
+        "slice:51770"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:51781",
+        "slice:51785"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:51781",
+        "slice:51802"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:54795",
+        "slice:54818"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:60102",
+        "slice:60130"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:66427",
+        "slice:66430"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:66427",
+        "slice:66437"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:66821",
+        "slice:66832"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:66952",
+        "slice:66956"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:66952",
+        "slice:66959"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:71454",
+        "slice:71458"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:71454",
+        "slice:71463"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.memtrack-service.mediatek [upid 718]"
+      ],
+      "transaction_ids": [
+        "slice:71474",
+        "slice:71562"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.memtrack-service.mediatek [upid 718]"
+      ],
+      "transaction_ids": [
+        "slice:71474",
+        "slice:71565"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.memtrack-service.mediatek [upid 718]"
+      ],
+      "transaction_ids": [
+        "slice:71474",
+        "slice:71572"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.memtrack-service.mediatek [upid 718]"
+      ],
+      "transaction_ids": [
+        "slice:71474",
+        "slice:71576"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.memtrack-service.mediatek [upid 718]"
+      ],
+      "transaction_ids": [
+        "slice:71474",
+        "slice:71579"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:71620",
+        "slice:71623"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:71648",
+        "slice:71654"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:interactor [upid 1152]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:71648",
+        "slice:71661"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:71899",
+        "slice:71902"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:71921",
+        "slice:71928"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:76270",
+        "slice:76277"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:76270",
+        "slice:76278"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:76306",
+        "slice:76309"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:76329",
+        "slice:76332"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:76329",
+        "slice:76333"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:80974",
+        "slice:80977"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:80974",
+        "slice:80980"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/hw/android.system.suspend-service [upid 392]"
+      ],
+      "transaction_ids": [
+        "slice:84726",
+        "slice:84734"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/hw/android.system.suspend-service [upid 392]"
+      ],
+      "transaction_ids": [
+        "slice:84726",
+        "slice:84736"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/hw/android.system.suspend-service [upid 392]"
+      ],
+      "transaction_ids": [
+        "slice:84780",
+        "slice:84800"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:84998",
+        "slice:85001"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:85007",
+        "slice:85010"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:85019",
+        "slice:85022"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:googleapp [upid 1153]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:85034",
+        "slice:85037"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:94394",
+        "slice:94543"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/system/bin/surfaceflinger [upid 754]"
+      ],
+      "transaction_ids": [
+        "slice:94394",
+        "slice:94548"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.launcher [upid 862]"
+      ],
+      "transaction_ids": [
+        "slice:94394",
+        "slice:94552"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.launcher [upid 862]"
+      ],
+      "transaction_ids": [
+        "slice:94394",
+        "slice:94558"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 720]"
+      ],
+      "transaction_ids": [
+        "slice:94394",
+        "slice:94563"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 720]"
+      ],
+      "transaction_ids": [
+        "slice:94394",
+        "slice:94566"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.sensors-service.multihal [upid 713]"
+      ],
+      "transaction_ids": [
+        "slice:103676",
+        "slice:103682"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:103852",
+        "slice:103857"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:104662",
+        "slice:104680"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:105108",
+        "slice:105137"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.google.android.gms [upid 933]"
+      ],
+      "transaction_ids": [
+        "slice:105108",
+        "slice:105139"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "com.android.systemui [upid 887]"
+      ],
+      "transaction_ids": [
+        "slice:106193",
+        "slice:106201"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "com.google.android.gms [upid 933]",
+        "system_server [upid 857]"
+      ],
+      "transaction_ids": [
+        "slice:106759",
+        "slice:106766"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.google.android.googlequicksearchbox:search [upid 1105]",
+        "system_server [upid 857]",
+        "/vendor/bin/hw/android.hardware.health-service.example [upid 710]"
+      ],
+      "transaction_ids": [
+        "slice:112032",
+        "slice:112035"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    }
+  ],
+  "target_processes": [
+    {
+      "upid": 1105,
+      "pid": 24475,
+      "name": "com.google.android.googlequicksearchbox:search",
+      "cmdline": "com.google.android.googlequicksearchbox:search",
+      "uid": 10365
+    },
+    {
+      "upid": 1152,
+      "pid": 25710,
+      "name": "com.google.android.googlequicksearchbox:interactor",
+      "cmdline": "com.google.android.googlequicksearchbox:interactor",
+      "uid": 10365
+    },
+    {
+      "upid": 1153,
+      "pid": 25763,
+      "name": "com.google.android.googlequicksearchbox:googleapp",
+      "cmdline": "com.google.android.googlequicksearchbox:googleapp",
+      "uid": 10365
+    }
+  ],
+  "numeric_method_label_count": 848
+}

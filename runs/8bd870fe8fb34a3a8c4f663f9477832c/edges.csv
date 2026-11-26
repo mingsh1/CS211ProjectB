@@ -1,0 +1,27 @@
+sender,receiver,count
+com.google.android.googlequicksearchbox:search [upid 1102],system_server [upid 899],2060
+com.google.android.googlequicksearchbox:search [upid 1102],/system/bin/surfaceflinger [upid 792],460
+com.google.android.googlequicksearchbox:search [upid 1102],com.google.android.gms [upid 974],358
+system_server [upid 899],com.google.android.googlequicksearchbox:search [upid 1102],250
+com.google.android.gms [upid 974],com.google.android.googlequicksearchbox:search [upid 1102],240
+/system/bin/surfaceflinger [upid 792],com.google.android.googlequicksearchbox:search [upid 1102],187
+com.google.android.googlequicksearchbox:interactor [upid 1161],system_server [upid 899],80
+media.extractor [upid 831],com.google.android.googlequicksearchbox:search [upid 1102],54
+com.google.android.googlequicksearchbox:search [upid 1102],/system/bin/servicemanager [upid 409],50
+com.google.android.googlequicksearchbox:interactor [upid 1161],com.google.android.gms [upid 974],25
+com.google.android.googlequicksearchbox:search [upid 1102],/vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek [upid 746],18
+com.google.android.gms [upid 974],com.google.android.googlequicksearchbox:interactor [upid 1161],16
+com.google.android.googlequicksearchbox:search [upid 1102],/system/bin/mediaserver [upid 840],12
+com.sohu.inputmethod.sogouoem [upid 986],com.google.android.googlequicksearchbox:search [upid 1102],11
+system_server [upid 899],com.google.android.googlequicksearchbox:interactor [upid 1161],10
+/system/bin/mediaserver [upid 840],com.google.android.googlequicksearchbox:search [upid 1102],9
+com.google.android.googlequicksearchbox:interactor [upid 1161],/system/bin/servicemanager [upid 409],7
+com.google.android.googlequicksearchbox:search [upid 1102],/system/bin/cameraserver [upid 828],7
+/system/bin/cameraserver [upid 828],com.google.android.googlequicksearchbox:search [upid 1102],7
+/system/bin/audioserver [upid 788],com.google.android.googlequicksearchbox:search [upid 1102],5
+com.google.android.googlequicksearchbox:search [upid 1102],com.google.android.googlequicksearchbox:interactor [upid 1161],4
+com.google.android.googlequicksearchbox:interactor [upid 1161],com.google.android.googlequicksearchbox:search [upid 1102],4
+com.google.android.googlequicksearchbox:search [upid 1102],/system/bin/gpuservice [upid 790],3
+com.google.android.googlequicksearchbox:search [upid 1102],/system/system_ext/bin/hwservicemanager [upid 410],3
+com.google.android.googlequicksearchbox:search [upid 1102],com.sohu.inputmethod.sogouoem [upid 986],2
+com.google.android.googlequicksearchbox:search [upid 1102],/system/bin/audioserver [upid 788],1

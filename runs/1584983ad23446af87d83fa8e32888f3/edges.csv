@@ -1,0 +1,11 @@
+sender,receiver,count
+com.openai.chatgpt [upid 1069],system_server [upid 851],105
+com.openai.chatgpt [upid 1069],/system/bin/surfaceflinger [upid 747],88
+system_server [upid 851],com.openai.chatgpt [upid 1069],34
+com.openai.chatgpt [upid 1069],/system/bin/keystore2 [upid 383],33
+com.openai.chatgpt [upid 1069],com.android.vending [upid 1053],8
+/system/bin/surfaceflinger [upid 747],com.openai.chatgpt [upid 1069],6
+com.openai.chatgpt [upid 1069],/vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek [upid 701],5
+com.sohu.inputmethod.sogouoem [upid 924],com.openai.chatgpt [upid 1069],2
+com.android.vending [upid 1053],com.openai.chatgpt [upid 1069],1
+com.openai.chatgpt [upid 1069],Unresolved PID 23228,1

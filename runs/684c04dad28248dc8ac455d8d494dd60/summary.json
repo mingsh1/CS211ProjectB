@@ -1,0 +1,2404 @@
+{
+  "trace_duration_seconds": 43.266197926,
+  "transaction_count": 723,
+  "direction_counts": {
+    "incoming": 52,
+    "outgoing": 671
+  },
+  "transaction_types": {
+    "async": 364,
+    "sync": 359
+  },
+  "rates_per_second": {
+    "incoming": 1.2018620191433922,
+    "outgoing": 15.508642593177234
+  },
+  "peer_process_count": 6,
+  "top_peers": [
+    [
+      "system_server [upid 849]",
+      310
+    ],
+    [
+      "/system/bin/surfaceflinger [upid 745]",
+      306
+    ],
+    [
+      "/system/bin/keystore2 [upid 382]",
+      84
+    ],
+    [
+      "com.android.vending [upid 1051]",
+      16
+    ],
+    [
+      "/vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek [upid 699]",
+      5
+    ]
+  ],
+  "edges": [
+    {
+      "sender": "com.openai.chatgpt [upid 1066]",
+      "receiver": "/system/bin/surfaceflinger [upid 745]",
+      "count": 298
+    },
+    {
+      "sender": "com.openai.chatgpt [upid 1066]",
+      "receiver": "system_server [upid 849]",
+      "count": 274
+    },
+    {
+      "sender": "com.openai.chatgpt [upid 1066]",
+      "receiver": "/system/bin/keystore2 [upid 382]",
+      "count": 84
+    },
+    {
+      "sender": "system_server [upid 849]",
+      "receiver": "com.openai.chatgpt [upid 1066]",
+      "count": 36
+    },
+    {
+      "sender": "com.openai.chatgpt [upid 1066]",
+      "receiver": "com.android.vending [upid 1051]",
+      "count": 10
+    },
+    {
+      "sender": "/system/bin/surfaceflinger [upid 745]",
+      "receiver": "com.openai.chatgpt [upid 1066]",
+      "count": 8
+    },
+    {
+      "sender": "com.android.vending [upid 1051]",
+      "receiver": "com.openai.chatgpt [upid 1066]",
+      "count": 6
+    },
+    {
+      "sender": "com.openai.chatgpt [upid 1066]",
+      "receiver": "/vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek [upid 699]",
+      "count": 5
+    },
+    {
+      "sender": "com.sohu.inputmethod.sogouoem [upid 924]",
+      "receiver": "com.openai.chatgpt [upid 1066]",
+      "count": 2
+    }
+  ],
+  "interfaces": [
+    {
+      "interface": "IDisplayEventConnection",
+      "method": "requestNextVsync",
+      "direction": "outgoing",
+      "count": 272
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getNetworkCapabilities",
+      "direction": "outgoing",
+      "count": 55
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getAllNetworks",
+      "direction": "outgoing",
+      "count": 42
+    },
+    {
+      "interface": "android.system.keystore2.IKeystoreSecurityLevel",
+      "method": "Unknown_Transaction_Code:1",
+      "direction": "outgoing",
+      "count": 26
+    },
+    {
+      "interface": "android.system.keystore2.IKeystoreOperation",
+      "method": "Unknown_Transaction_Code:3",
+      "direction": "outgoing",
+      "count": 26
+    },
+    {
+      "interface": "android.system.keystore2.IKeystoreOperation",
+      "method": "Unknown_Transaction_Code:4",
+      "direction": "outgoing",
+      "count": 26
+    },
+    {
+      "interface": "ILocaleManager",
+      "method": "getApplicationLocales",
+      "direction": "outgoing",
+      "count": 25
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getActiveNetwork",
+      "direction": "outgoing",
+      "count": 25
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleTransaction",
+      "direction": "incoming",
+      "count": 9
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getLinkProperties",
+      "direction": "outgoing",
+      "count": 8
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "queryIntentActivities",
+      "direction": "outgoing",
+      "count": 8
+    },
+    {
+      "interface": "IDisplayManagerCallback",
+      "method": "onDisplayEvent",
+      "direction": "incoming",
+      "count": 6
+    },
+    {
+      "interface": "IDisplayManager",
+      "method": "getDisplayInfo",
+      "direction": "outgoing",
+      "count": 6
+    },
+    {
+      "interface": "IAccessibilityManager",
+      "method": "getEnabledAccessibilityServiceList",
+      "direction": "outgoing",
+      "count": 6
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getIntentSenderWithFeature",
+      "direction": "outgoing",
+      "count": 6
+    },
+    {
+      "interface": "android.system.keystore2.IKeystoreService",
+      "method": "Unknown_Transaction_Code:2",
+      "direction": "outgoing",
+      "count": 6
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getProxyForNetwork",
+      "direction": "outgoing",
+      "count": 5
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getActiveNetworkInfo",
+      "direction": "outgoing",
+      "count": 5
+    },
+    {
+      "interface": "IJobScheduler",
+      "method": "getAllPendingJobsInNamespace",
+      "direction": "outgoing",
+      "count": 5
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "getNotificationChannel",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "createNotificationChannels",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "areBubblesEnabled",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "getBubblePreferenceForPackage",
+      "direction": "outgoing",
+      "count": 4
+    },
+    {
+      "interface": "IMessenger",
+      "method": "send",
+      "direction": "incoming",
+      "count": 3
+    },
+    {
+      "interface": "IPackageManager",
+      "method": "getComponentEnabledSetting",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "getNetworkInfoForUid",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IVoiceInteractionManagerService",
+      "method": "notifyActivityEventChanged",
+      "direction": "outgoing",
+      "count": 3
+    },
+    {
+      "interface": "IWindow",
+      "method": "dispatchAppVisibility",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IAppWidgetService",
+      "method": "getAppWidgetIds",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "startService",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "setProcessState",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "relayout",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IWindowSession",
+      "method": "finishDrawing",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "getAppActiveNotifications",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IImeTracker",
+      "method": "onProgress",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "setActive",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleServiceArgs",
+      "direction": "incoming",
+      "count": 2
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "setServiceForeground",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "INotificationManager",
+      "method": "cancelNotificationWithTag",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IShortcutService",
+      "method": "removeDynamicShortcuts",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IShortcutService",
+      "method": "removeLongLivedShortcuts",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "serviceDoneExecuting",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "ISystemAnrOptService",
+      "method": "oplusServiceDoneExecuting",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "unbindService",
+      "direction": "outgoing",
+      "count": 2
+    },
+    {
+      "interface": "IRoleManager",
+      "method": "isRoleAvailableAsUser",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IRoleManager",
+      "method": "isRoleHeldAsUser",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IRestrictionsManager",
+      "method": "getApplicationRestrictions",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "notifyGcSupression",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IOplusActivityManager",
+      "method": "addNavBarSettingsListener",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "updateActivitySpecificConfig",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityResumed",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getMaxAcquiredBufferCount",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getDynamicBufferSupport",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "getMyMemoryState",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "requestNetwork",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "ISurfaceComposer",
+      "method": "getSupportedFrameTimestamps",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "registerReceiverWithFeature",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IAppOpsService",
+      "method": "noteOperation",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IBatteryStats",
+      "method": "noteStartSensor",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityIdle",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "reportStartInfoViewTimestamps",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodManager",
+      "method": "startInputOrWindowGainedFocusAsync",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "setImeVisibility",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IImeTracker",
+      "method": "onCancelled",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "onStartInputResult",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "reportFullscreenMode",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IRemoteInputConnection",
+      "method": "finishComposingText",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleRegisteredReceiver",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodManager",
+      "method": "removeImeSurfaceFromWindowAsync",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IApplicationThread",
+      "method": "scheduleEnterAnimationComplete",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "bindServiceInstance",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IServiceConnection",
+      "method": "connected",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityTopResumedStateLost",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IWindow",
+      "method": "closeSystemDialogs",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IInputMethodClient",
+      "method": "onUnbindMethod",
+      "direction": "incoming",
+      "count": 1
+    },
+    {
+      "interface": "IOplusActivityManager",
+      "method": "removeNavBarSettingsListener",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IAutoFillManager",
+      "method": "updateSession",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityClientController",
+      "method": "activityStopped",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IBatteryStats",
+      "method": "noteStopSensor",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IConnectivityManager",
+      "method": "releaseNetworkRequest",
+      "direction": "outgoing",
+      "count": 1
+    },
+    {
+      "interface": "IActivityManager",
+      "method": "unregisterReceiver",
+      "direction": "outgoing",
+      "count": 1
+    }
+  ],
+  "unidentified_interface_count": 57,
+  "numeric_method_label_count": 16,
+  "unresolved_endpoint_requests": 0,
+  "matched_sync_calls": 359,
+  "sync_latency_ms": {
+    "median": 0.717847,
+    "p95": 8.859
+  },
+  "timeline": [
+    {
+      "second": 0,
+      "incoming": 3,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 1,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 2,
+      "incoming": 21,
+      "outgoing": 191,
+      "internal": 0
+    },
+    {
+      "second": 3,
+      "incoming": 2,
+      "outgoing": 115,
+      "internal": 0
+    },
+    {
+      "second": 4,
+      "incoming": 4,
+      "outgoing": 149,
+      "internal": 0
+    },
+    {
+      "second": 5,
+      "incoming": 4,
+      "outgoing": 98,
+      "internal": 0
+    },
+    {
+      "second": 6,
+      "incoming": 0,
+      "outgoing": 17,
+      "internal": 0
+    },
+    {
+      "second": 7,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 8,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 9,
+      "incoming": 0,
+      "outgoing": 3,
+      "internal": 0
+    },
+    {
+      "second": 10,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 11,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 12,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 13,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 14,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 15,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 16,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 17,
+      "incoming": 1,
+      "outgoing": 2,
+      "internal": 0
+    },
+    {
+      "second": 18,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 19,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 20,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 21,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 22,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 23,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 24,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 25,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 26,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 27,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 28,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 29,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 30,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 31,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 32,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 33,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 34,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 35,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 36,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 37,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 38,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 39,
+      "incoming": 1,
+      "outgoing": 1,
+      "internal": 0
+    },
+    {
+      "second": 40,
+      "incoming": 0,
+      "outgoing": 0,
+      "internal": 0
+    },
+    {
+      "second": 41,
+      "incoming": 12,
+      "outgoing": 55,
+      "internal": 0
+    },
+    {
+      "second": 42,
+      "incoming": 4,
+      "outgoing": 39,
+      "internal": 0
+    },
+    {
+      "second": 43,
+      "incoming": 0,
+      "outgoing": 1,
+      "internal": 0
+    }
+  ],
+  "markers": [
+    {
+      "label": "idle_start",
+      "received_at": "2026-11-24T21:35:17.774209+00:00",
+      "boottime_ns": 142238878355193,
+      "source": "android_elapsed_realtime",
+      "offset_seconds": 3.98356677,
+      "inside_trace": true
+    },
+    {
+      "label": "idle_end",
+      "received_at": "2026-11-24T21:35:54.109855+00:00",
+      "boottime_ns": 142275212874349,
+      "source": "android_elapsed_realtime",
+      "offset_seconds": 40.318085926,
+      "inside_trace": true
+    }
+  ],
+  "warnings": [],
+  "candidate_paths": [
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/system/bin/surfaceflinger [upid 745]"
+      ],
+      "transaction_ids": [
+        "slice:9939",
+        "slice:9980"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/system/bin/surfaceflinger [upid 745]"
+      ],
+      "transaction_ids": [
+        "slice:9939",
+        "slice:10012"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/system/bin/surfaceflinger [upid 745]"
+      ],
+      "transaction_ids": [
+        "slice:9939",
+        "slice:10026"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.systemui [upid 862]"
+      ],
+      "transaction_ids": [
+        "slice:9939",
+        "slice:10037"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.systemui [upid 862]"
+      ],
+      "transaction_ids": [
+        "slice:9939",
+        "slice:10058"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/vendor/bin/hw/android.hardware.sensors-service.multihal [upid 704]"
+      ],
+      "transaction_ids": [
+        "slice:10409",
+        "slice:10419"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/vendor/bin/hw/android.hardware.sensors-service.multihal [upid 704]"
+      ],
+      "transaction_ids": [
+        "slice:10409",
+        "slice:10516"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10426",
+        "slice:10464"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10426",
+        "slice:10539"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10493",
+        "slice:10573"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10493",
+        "slice:10632"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10523",
+        "slice:10641"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10523",
+        "slice:10651"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10739",
+        "slice:10767"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10739",
+        "slice:10784"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10768",
+        "slice:10815"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10768",
+        "slice:10971"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10801",
+        "slice:10805"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10809",
+        "slice:10813"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10816",
+        "slice:10820"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:10866",
+        "slice:10871"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.systemui [upid 862]"
+      ],
+      "transaction_ids": [
+        "slice:10961",
+        "slice:10970"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:11055",
+        "slice:11063"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:11235",
+        "slice:11241"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:11235",
+        "slice:11267"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:11276",
+        "slice:11282"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:12734",
+        "slice:12738"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:12734",
+        "slice:12743"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:12745",
+        "slice:12749"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "com.android.vending [upid 1051]",
+        "system_server [upid 849]"
+      ],
+      "transaction_ids": [
+        "slice:13922",
+        "slice:13942"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "com.android.vending [upid 1051]",
+        "system_server [upid 849]"
+      ],
+      "transaction_ids": [
+        "slice:13922",
+        "slice:13969"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:15049",
+        "slice:15057"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:15049",
+        "slice:15067"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:15077",
+        "slice:15083"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:20788",
+        "slice:20807"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:20788",
+        "slice:20837"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:20839",
+        "slice:20843"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "com.android.vending [upid 1051]",
+        "system_server [upid 849]"
+      ],
+      "transaction_ids": [
+        "slice:21372",
+        "slice:21403"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "com.android.vending [upid 1051]",
+        "system_server [upid 849]"
+      ],
+      "transaction_ids": [
+        "slice:21372",
+        "slice:21406"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:22477",
+        "slice:22485"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:22477",
+        "slice:22521"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:22534",
+        "slice:22541"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:22619",
+        "slice:22630"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:22619",
+        "slice:22635"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:22638",
+        "slice:22644"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:24404",
+        "slice:24411"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:24404",
+        "slice:24463"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:24465",
+        "slice:24469"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:25653",
+        "slice:25657"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:25653",
+        "slice:25659"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:25661",
+        "slice:25667"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.systemui [upid 862]"
+      ],
+      "transaction_ids": [
+        "slice:25833",
+        "slice:25836"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27158",
+        "slice:27165"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27158",
+        "slice:27167"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27161",
+        "slice:27187"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27161",
+        "slice:27193"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27170",
+        "slice:27174"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27175",
+        "slice:27201"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27175",
+        "slice:27207"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27195",
+        "slice:27199"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27213",
+        "slice:27217"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.vending [upid 1051]"
+      ],
+      "transaction_ids": [
+        "slice:27237",
+        "slice:27240"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.vending [upid 1051]"
+      ],
+      "transaction_ids": [
+        "slice:27237",
+        "slice:27242"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27464",
+        "slice:27471"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27464",
+        "slice:27473"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27467",
+        "slice:27491"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27467",
+        "slice:27499"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27479",
+        "slice:27484"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27501",
+        "slice:27505"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27789",
+        "slice:27793"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27789",
+        "slice:27813"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:27835",
+        "slice:27847"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "com.android.vending [upid 1051]",
+        "system_server [upid 849]"
+      ],
+      "transaction_ids": [
+        "slice:27988",
+        "slice:27995"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "com.android.vending [upid 1051]",
+        "system_server [upid 849]"
+      ],
+      "transaction_ids": [
+        "slice:27988",
+        "slice:27998"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:28240",
+        "slice:28244"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:28240",
+        "slice:28255"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:28259",
+        "slice:28269"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:28259",
+        "slice:28274"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:28262",
+        "slice:28266"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:28276",
+        "slice:28280"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:28839",
+        "slice:28843"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:28839",
+        "slice:28851"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:28879",
+        "slice:28889"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:29093",
+        "slice:29120"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:29093",
+        "slice:29124"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:29126",
+        "slice:29130"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "com.android.vending [upid 1051]",
+        "system_server [upid 849]"
+      ],
+      "transaction_ids": [
+        "slice:31379",
+        "slice:31382"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "com.android.vending [upid 1051]",
+        "system_server [upid 849]"
+      ],
+      "transaction_ids": [
+        "slice:31379",
+        "slice:31385"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.vending [upid 1051]"
+      ],
+      "transaction_ids": [
+        "slice:32975",
+        "slice:32997"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.vending [upid 1051]"
+      ],
+      "transaction_ids": [
+        "slice:32975",
+        "slice:32999"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/system/bin/surfaceflinger [upid 745]"
+      ],
+      "transaction_ids": [
+        "slice:42552",
+        "slice:42713"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/system/bin/surfaceflinger [upid 745]"
+      ],
+      "transaction_ids": [
+        "slice:42552",
+        "slice:42715"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.launcher [upid 856]"
+      ],
+      "transaction_ids": [
+        "slice:42552",
+        "slice:42718"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.launcher [upid 856]"
+      ],
+      "transaction_ids": [
+        "slice:42552",
+        "slice:42722"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 711]"
+      ],
+      "transaction_ids": [
+        "slice:42552",
+        "slice:42725"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek [upid 711]"
+      ],
+      "transaction_ids": [
+        "slice:42552",
+        "slice:42727"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.vending [upid 1051]"
+      ],
+      "transaction_ids": [
+        "slice:44846",
+        "slice:44849"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.vending [upid 1051]"
+      ],
+      "transaction_ids": [
+        "slice:44846",
+        "slice:44850"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:44932",
+        "slice:44952"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:44932",
+        "slice:44957"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:44984",
+        "slice:44990"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:52456",
+        "slice:52479"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:52456",
+        "slice:52496"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "com.android.systemui [upid 862]"
+      ],
+      "transaction_ids": [
+        "slice:52480",
+        "slice:52511"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:52505",
+        "slice:52509"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "system_server [upid 849]",
+        "/vendor/bin/hw/android.hardware.sensors-service.multihal [upid 704]"
+      ],
+      "transaction_ids": [
+        "slice:52550",
+        "slice:52554"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:53492",
+        "slice:53504"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:53492",
+        "slice:53522"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    },
+    {
+      "status": "candidate",
+      "hops": 2,
+      "processes": [
+        "com.openai.chatgpt [upid 1066]",
+        "/system/bin/keystore2 [upid 382]",
+        "/vendor/bin/hw/android.hardware.security.keymint@3.0-service.trustonic [upid 385]"
+      ],
+      "transaction_ids": [
+        "slice:53529",
+        "slice:53534"
+      ],
+      "evidence": "Second request starts on the serving thread inside the first server slice"
+    }
+  ],
+  "target_processes": [
+    {
+      "upid": 1066,
+      "pid": 27672,
+      "name": "com.openai.chatgpt",
+      "cmdline": "com.openai.chatgpt",
+      "uid": 10363
+    }
+  ]
+}

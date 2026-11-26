@@ -6,4 +6,4 @@ Rates divide request counts by the full trace duration, including setup and comp
 
 The operator confirmed that ChatGPT W1 used the phone app's Remote/Codex computer session. Consequently, those rows describe the Android remote UI process, not the complete execution path of the browser-opening action. They should not be interpreted as equivalent direct mobile-agent action traces to Gemini W1.
 
-The full 18-run raw dataset remains local pending explicit approval to publish device metadata and traces to this public repository.
+The full 18-run raw dataset is published under runs/ through Git LFS following explicit approval to release device metadata and traces to this public repository.

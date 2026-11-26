@@ -1,0 +1,11 @@
+sender,receiver,count
+com.openai.chatgpt [upid 1069],/system/bin/surfaceflinger [upid 745],2559
+/system/bin/surfaceflinger [upid 745],com.openai.chatgpt [upid 1069],822
+com.openai.chatgpt [upid 1069],system_server [upid 849],649
+com.openai.chatgpt [upid 1069],/system/bin/keystore2 [upid 382],138
+system_server [upid 849],com.openai.chatgpt [upid 1069],80
+com.sohu.inputmethod.sogouoem [upid 921],com.openai.chatgpt [upid 1069],25
+com.openai.chatgpt [upid 1069],/vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek [upid 699],19
+com.openai.chatgpt [upid 1069],com.android.vending [upid 1054],16
+com.openai.chatgpt [upid 1069],com.sohu.inputmethod.sogouoem [upid 921],16
+com.android.vending [upid 1054],com.openai.chatgpt [upid 1069],6

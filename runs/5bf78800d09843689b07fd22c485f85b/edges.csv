@@ -1,0 +1,14 @@
+sender,receiver,count
+com.google.android.googlequicksearchbox:search [upid 1055],system_server [upid 857],570
+com.google.android.googlequicksearchbox:search [upid 1055],/system/bin/surfaceflinger [upid 749],372
+system_server [upid 857],com.google.android.googlequicksearchbox:search [upid 1055],127
+/system/bin/surfaceflinger [upid 749],com.google.android.googlequicksearchbox:search [upid 1055],117
+com.google.android.googlequicksearchbox:search [upid 1055],com.google.android.gms [upid 936],112
+com.google.android.gms [upid 936],com.google.android.googlequicksearchbox:search [upid 1055],99
+media.extractor [upid 785],com.google.android.googlequicksearchbox:search [upid 1055],54
+/system/bin/cameraserver [upid 782],com.google.android.googlequicksearchbox:search [upid 1055],18
+com.google.android.googlequicksearchbox:search [upid 1055],/vendor/bin/hw/android.hardware.graphics.allocator-V2-service-mediatek [upid 703],12
+com.google.android.googlequicksearchbox:search [upid 1055],/system/bin/mediaserver [upid 795],12
+/system/bin/mediaserver [upid 795],com.google.android.googlequicksearchbox:search [upid 1055],9
+com.google.android.googlequicksearchbox:search [upid 1055],/system_ext/bin/oiface [upid 919],8
+com.sohu.inputmethod.sogouoem [upid 943],com.google.android.googlequicksearchbox:search [upid 1055],3
