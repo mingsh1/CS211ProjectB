@@ -4,13 +4,11 @@ An Android controller and Windows-friendly Python backend for observing Binder r
 
 The primary local checkout is `C:\CS211ProjectB`. Clone this repository with `git clone https://github.com/mingsh1/CS211ProjectB.git`, then run setup commands from its root. Local experiment data, access codes, virtual environments and caches are intentionally excluded from Git. A prebuilt debug APK is available at [artifacts/apk/app-debug.apk](artifacts/apk/app-debug.apk); rebuild from source after Android code changes. See [PLAN.md](PLAN.md) for the original-course-requirement mapping and remaining acceptance gates, and [REPORT_TEMPLATE.md](REPORT_TEMPLATE.md) for the final report outline. Code and fixture tests do not replace real-phone acceptance or the required experimental dataset.
 
-For the current CPU, memory, battery/energy and controller-overhead extension, start with [NEXT_WEEK_PLAN.md](NEXT_WEEK_PLAN.md). APK 1.5 includes resource-file and Simpleperf exports; start all three resource arms from the laptop browser. Restart the backend after updating source, then install the new APK with `adb -s YOUR_DEVICE install -r artifacts/apk/app-debug.apk`. The original local traces and saved access code remain in `C:\CS211_Project_B`; they are not bundled with this repository. A fresh checkout creates its own local run directory and access code.
-
 ## Optional Simpleperf diagnostics
 
-See [SIMPLEPERF.md](SIMPLEPERF.md) for the OPPO Find X7 / Android 16 / Gemini procedure. Enable the optional checkbox for additional Binder trace or Resources C diagnostic runs. These runs are excluded from the formal workload matrix and standard overhead comparisons. Permission failures save evidence without stopping Binder collection. Actual Gemini profiling support still requires a phone test.
+See [SIMPLEPERF.md](SIMPLEPERF.md) for the OPPO Find X7 / Android 16 / Gemini procedure. Enable the optional checkbox for additional Binder trace diagnostic runs. These runs are excluded from the formal workload matrix and standard overhead comparisons. Permission failures save evidence without stopping Binder collection. Actual Gemini profiling support still requires a phone test.
 
-After this update, restart this repository's backend and install `artifacts/apk/app-debug.apk` (1.5). Updating only the APK does not update the laptop collector or web UI.
+After this update, restart this repository's backend and install `artifacts/apk/app-debug.apk` (1.6). Updating only the APK does not update the laptop collector or web UI.
 
 ## Code outline
 
@@ -23,7 +21,6 @@ After this update, restart this repository's backend and install `artifacts/apk/
 | `android/app/src/main/` | Native Android controller, backend connection, notification actions for marking tasks from the Agent, and Android document picker exports. |
 | `backend/experiments.py` | Compare workloads and evaluate a nearest-centroid classifier on held-out agents, with abstention. |
 | `backend/protocol.py` | Validate workload ground truth, marker order and trace alignment independently of capture success. |
-| `backend/resources.py` | Probe stock-phone CPU/PSS/battery diagnostics, collect fixed-window A/B/C experiments, preserve raw evidence and compare controller/tracing/total resource differences. |
 | `tests/test_project.py` | Request accounting, shared UID attribution, classifier abstention, and API integration with a substitute recorder. |
 
 ## Set up the laptop and phone
@@ -52,11 +49,33 @@ adb -s PHONE_IP:DEBUG_PORT install -r android/app/build/outputs/apk/debug/app-de
 
 Open the controller on the same phone selected in the ADB menu. Grant notification permission if you want to mark events while the Agent is in the foreground. Wait for Recording and the notification before beginning the task. The controller timestamps native markers on the phone using elapsed realtime. The desktop browser falls back to a device uptime sample and includes the sampling round trip and clock resolution. Confirm the marker order and whether each marker falls inside the trace.
 
+## ChatGPT Android app with Codex
+
+On the connected OPPO phone, the installed ChatGPT app resolves to `com.openai.chatgpt` (observed UID 10363, version 1.2026.300); its running process uses the same name. The UI offers **Select ChatGPT (Codex)** and checks that package on the selected ADB device. Binder attribution, task markers and exports then use the same package-targeted pipeline as Gemini. Package UID and version must be rechecked for each phone or app update.
+
+Pilot W0, W1 and W2 before the formal comparison. Verify that the phone app actually performs each task and record the mode used. If laptop Codex issues ADB commands directly, those requests can originate from Android shell/system processes or the affected app rather than `com.openai.chatgpt`; do not claim that its package-targeted trace represents all Codex actions. Codex running on the laptop has no Android package or UID. Preserve this distinction in the report and revise the protocol if the phone app is only a remote interface.
+
+For each trace run, `path_evidence.json` now exports both transactions behind every nested two-hop candidate, including endpoints, PID/TID, API/code and task-window status. This makes the second hop reviewable. `task_causality` and `intermediary_role` remain `unverified` until a human checks the raw trace and observed outcome. Existing Gemini traces can be backfilled using `python -m backend.rebuild_path_evidence --runs runs`.
+
+Local analysis artifacts include the earlier Gemini-only snapshot and the selected 18-run Gemini–ChatGPT comparison. These reports are held with the dataset pending public-data approval.
+
+The selected 18-run Metrics 1–3 comparison includes CSV identity/edge/API/timeline tables and four SVG figures. Once the local dataset is available, regenerate it with:
+
+```powershell
+.\.venv\Scripts\python.exe -m backend.build_metrics_report --runs runs --output reports/2026-11-24-metrics-1-3-gemini-chatgpt --agent com.google.android.googlequicksearchbox --agent com.openai.chatgpt --exclude-run e8fb2ec79c6d4a99b80a041f813801b8
+```
+
+The local HTML version contains side-by-side tables and embeds all four figures. After regenerating the Markdown report, refresh the HTML with `./backend/render_metrics_html.ps1` from PowerShell.
+
+For the selected comparison, the user confirmed that Gemini and ChatGPT were not updated during collection and that W2 used comparable voice input modes. Muse is excluded from the formal comparison by the user's decision; its existing W0 captures remain stored as historical data.
+
+The formal 18-run dataset remains local pending explicit approval to publish device metadata and raw traces to this public repository. Large captures and transaction exports are configured for Git LFS. The code-only commit does not contain `runs/`, local access tokens, backend logs, extra pilots, Muse runs, or the incorrect archived run. Aggregate analysis reports also remain local until the data-release scope is confirmed.
+
 ## Run the experiment
 
 Choose two Agents that support both text and voice. Use the same phone and the same prompt across Agents. Record three repetitions for each Agent/workload pair, for at least 18 runs. Minimize unrelated foreground activity. A run with warnings, an unsuccessful outcome, or no completed capture remains available for review.
 
-The course document ideally suggests PalmClaw and a closed-source Agent such as Gemini or Meta Muse where available. Verify workload support before selection. Enter a stable phone label and a shared experiment-conditions string (fixed prompt, voice mode, versions and network); use the same values across the workload matrix. The evaluation separates different phone/condition groups and needs documented conditions before declaring a complete matrix.
+The course document ideally suggests PalmClaw and a closed-source mobile Agent such as Gemini where available. Verify workload support before selection. Enter a stable phone label and a shared experiment-conditions string (fixed prompt, voice mode, versions and network); use the same values across the workload matrix. The evaluation separates different phone/condition groups and needs documented conditions before declaring a complete matrix.
 
 | Workload | Procedure | Ground truth |
 | --- | --- | --- |
@@ -76,27 +95,13 @@ Each run stores its trace, metadata, transactions, timeline, and directed edges 
 
 This writes `runs/evaluation.json` with matrix coverage, actual outcomes, per-run communication metrics, feature medians, exclusions, per-run predictions, a confusion table, classification coverage and accuracy on classified examples. You can also refresh and export evaluation from the APK. The evaluation holds out all runs from one Agent at a time within one phone/conditions group. Similar scores produce an uncertain result. Classifier inputs require successful tasks and valid marker/trace evidence. Failed outcomes remain in the comparisons and valid repetition counts; they are not silently presented as successful tasks. Treat performance on the course-sized dataset as exploratory.
 
-## Measure tracing overhead
+## Optional task-time baseline
 
-### Resource experiment (current required extension)
-
-Use the laptop UI's Resources A/B/C modes. A explicitly stops only our controller; B keeps it connected in the background; C adds Perfetto. All use the same observer. First check measurement support, then run one sustained-idle scenario for 300 seconds per arm, 15-second sampling and a 30-second preparation delay. Start from the laptop, switch to the Agent during the delay and keep it foreground. The resource profile disables task-marker overlays. Reopen/connect the controller before B/C, not during A. Unplug charging and keep brightness/network/temperature comparable.
-
-Use the same phone label, conditions and repetition for each triplet. Counterbalance A/B/C, B/C/A, C/A/B across three repetitions. Record the scenario outcome after every run. Resource scenarios are separate from the formal 30-second idle and single text/voice tasks; repeated-task schedules must be documented explicitly.
-
-The UI displays CPU and PSS medians, missing-value reasons, charge decrease and estimated whole-device energy/power when supported. Exports include `resources.json` (raw evidence and timings), `resources.csv` (raw snapshots), `resources_summary.json` and the arm-C trace. Evaluation adds `resource_overhead` with triplets, B−A/C−B/C−A differences, grouped medians and exclusions. CPU process values are normalized to one core; system CPU includes I/O wait. Energy is a charge-times-voltage estimate and not a per-app or hardware-meter measurement. The observer is present in every arm, so deltas refer to an instrumented baseline.
-
-If battery readings are unsupported, charging, shorter than 120 seconds, increasing, simulated, or too coarse to resolve a decrease, energy remains unavailable. Extend the duration (maximum 540 seconds) for low-resolution counters; unsupported counters require a supported phone or external measurement. Do not claim energy evaluation complete from CPU/memory results alone.
-
-### Task-time experiment (previous supplemental method)
-
-Select `Overhead baseline (no Perfetto)` to run the same task and marker workflow without starting a trace. For W1 and W2, pair each baseline with one `Binder trace` trial using the same stable phone label, conditions, Agent, workload and repetition number. Use native APK notification markers for both. Repeat each pair three times per Agent and alternate trial order. The traced trials can be part of the 18 formal runs; this adds 12 baseline trials for two Agents. Duplicate pairs, missing ground truth, invalid traces and browser-sampled timestamps are excluded with reasons.
-
-Evaluation reports each pair's task duration change in seconds and percent, and medians by Agent/workload. This measures incremental tracing impact while the controller is enabled. It does not measure total APK, CPU, memory or energy overhead. Operator delay, cloud/network variation and ordering effects can dominate the measurement; retain negative differences and discuss those limitations. W0 is not used for completion-time overhead because its duration is fixed by the operator. Traced runs also save trace bytes and host analysis wall time as separate storage and processing costs.
+Pair baseline and trace runs under identical conditions to compare operator-marked completion time. This does not measure CPU, memory or battery overhead. Resource A/B/C experiments were retired after mentor feedback on November 20. See [PERFETTO_GRANULARITY.md](PERFETTO_GRANULARITY.md) for real trace examples and visibility limits.
 
 ## Course deliverables
 
-The remaining device-dependent work includes the full 18-run formal matrix, the resource-overhead pilot and validated measurements, manual transaction/path verification, and the completed report and presentation. Some W1 captures already exist; evaluate their ground truth before including them formally. The PPT requests weekly progress emails and a meeting every two weeks; the team handles those communications. The five benchmark sources in the materials are workload-design references, not five additional required implementations.
+The selected Gemini–ChatGPT 18-run formal matrix is complete. Remaining work includes the combined Metrics 1–3 analysis, manual transaction/path verification, the completed report and presentation. The PPT requests weekly progress emails and a meeting every two weeks; the team handles those communications. The five benchmark sources in the materials are workload-design references, not five additional required implementations.
 
 ## Verify and interpret
 

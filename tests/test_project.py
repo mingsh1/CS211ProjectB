@@ -37,6 +37,36 @@ class BinderTests(unittest.TestCase):
         self.assertEqual(summary["matched_sync_calls"], 1)
         self.assertEqual(summary["unresolved_endpoint_requests"], 1)
 
+    def test_numeric_binder_labels_are_not_named_methods(self):
+        base = {"id": "slice:1", "ts_ns": 10, "sender": {"upid": 1},
+                "receiver": {"upid": 2}, "type": "async", "latency_ns": None,
+                "server_ts_ns": None, "server_duration_ns": None}
+        requests = [{**base, "interface": i, "method": m}
+                    for i, m in [("Binder", "#46"), ("IActivityTaskManager", "startActivity"),
+                                 (None, None)]]
+        selected, summary = analyzer.summarize(requests, {1}, 0, 10**9, [], [])
+        self.assertEqual(summary["unidentified_interface_count"], 2)
+        self.assertEqual(summary["numeric_method_label_count"], 1)
+        self.assertEqual([x["method"] for x in summary["interfaces"]], ["startActivity"])
+        self.assertEqual(selected[0]["method"], "#46")  # Raw evidence retained.
+
+    def test_path_evidence_includes_non_target_second_hop_and_task_window(self):
+        first = {"id": "slice:1", "ts_ns": 20, "run_id": "r", "sender": {"upid": 1, "utid": 11},
+                 "receiver": {"upid": 2, "utid": 22}, "server_ts_ns": 25,
+                 "server_duration_ns": 30, "interface": "IA", "method": "call", "code": 1}
+        second = {"id": "slice:2", "ts_ns": 35, "run_id": "r", "sender": {"upid": 2, "utid": 22},
+                  "receiver": {"upid": 3, "utid": 33}, "server_ts_ns": 36,
+                  "server_duration_ns": 5, "interface": None, "method": None, "code": 7}
+        paths = [{"transaction_ids": ["slice:1", "slice:2"]}]
+        markers = [{"label": "prompt_submitted", "boottime_ns": 15},
+                   {"label": "browser_launched", "boottime_ns": 50}]
+        item = analyzer.path_evidence([first, second], paths, markers, "W1", 10)[0]
+        self.assertEqual(item["hops"][1]["receiver"]["upid"], 3)
+        self.assertEqual(item["hops"][1]["code"], 7)
+        self.assertTrue(item["same_serving_thread_nested"])
+        self.assertTrue(item["task_window"]["both_hops_inside"])
+        self.assertEqual(item["task_causality"], "unverified")
+
     def test_classifier_abstains_without_cross_agent_training(self):
         result = experiments.evaluate([{"agent": "org.agent", "actual": "W0", "features": (0,) * 5}])
         self.assertEqual(result[0]["predicted"], "uncertain")
@@ -211,6 +241,25 @@ class ProtocolTests(unittest.TestCase):
             self.assertEqual(result["predictions"], [])
             self.assertEqual(len(result["excluded_runs"]), 2)
             self.assertEqual(result["coverage"][1]["outcomes"], {"failure": 1})
+
+    def test_report_can_focus_on_selected_agents(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for agent in ("org.agent", "org.other"):
+                run, summary = self.fixture()
+                run["id"] = agent.split(".")[-1]
+                run["target_package"] = agent
+                folder = root / run["id"]
+                folder.mkdir()
+                (folder / "metadata.json").write_text(json.dumps(run))
+                (folder / "summary.json").write_text(json.dumps(summary))
+            result = experiments.report(root, {"org.agent"})
+            self.assertEqual(result["selected_agents"], ["org.agent"])
+            self.assertEqual([r["agent"] for r in result["run_comparisons"]], ["org.agent"])
+            excluded = experiments.report(root, {"org.agent"}, {"agent"})
+            self.assertEqual(excluded["selected_run_exclusions"], ["agent"])
+            self.assertEqual(excluded["run_comparisons"], [])
+            self.assertIn("raw run retained", excluded["excluded_runs"][0]["reason"])
 
     def test_classifier_recovers_separated_workloads_and_abstains_on_ties(self):
         samples = [{"agent": a, "actual": w, "features": (float(i),) * 5}

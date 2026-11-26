@@ -132,6 +132,43 @@ def candidate_paths(requests, target):
                        "evidence": "Second request starts on the serving thread inside the first server slice"}
 
 
+def path_evidence(requests, candidates, markers, workload, trace_start):
+    """Keep both observed requests for each structural path candidate."""
+    by_id = {tx["id"]: tx for tx in requests}
+    labels = {marker["label"]: marker["boottime_ns"] for marker in markers}
+    bounds = {"W0": ("idle_start", "idle_end"),
+              "W1": ("prompt_submitted", "browser_launched"),
+              "W2": ("voice_start", "response_complete")}.get(workload)
+    start, end = (labels.get(bounds[0]), labels.get(bounds[1])) if bounds else (None, None)
+    def compact(tx):
+        if tx is None:
+            return None
+        return {key: tx.get(key) for key in
+                ("id", "run_id", "ts_ns", "sender", "receiver", "type", "reply_observed",
+                 "latency_ns", "interface", "method", "code", "server_ts_ns", "server_duration_ns", "evidence")}
+    result = []
+    for path in candidates:
+        hops = [compact(by_id.get(tx_id)) for tx_id in path["transaction_ids"]]
+        both = all(tx is not None for tx in hops)
+        in_window = (both and start is not None and end is not None and
+                     all(start <= tx["ts_ns"] <= end for tx in hops))
+        relation = (both and hops[0]["receiver"].get("utid") == hops[1]["sender"].get("utid") and
+                    hops[0]["server_ts_ns"] is not None and
+                    hops[0]["server_duration_ns"] is not None and
+                    hops[0]["server_ts_ns"] <= hops[1]["ts_ns"] <
+                    hops[0]["server_ts_ns"] + hops[0]["server_duration_ns"])
+        result.append({"status": "candidate", "task_causality": "unverified",
+                       "intermediary_role": "unverified", "hops": hops,
+                       "hop_count": len(hops), "same_serving_thread_nested": relation,
+                       "task_window": {"start_label": bounds[0] if bounds else None,
+                                       "end_label": bounds[1] if bounds else None,
+                                       "start_ns": start, "end_ns": end,
+                                       "both_hops_inside": in_window},
+                       "trace_offset_seconds": [(tx["ts_ns"] - trace_start) / SECOND if tx else None
+                                                for tx in hops]})
+    return result
+
+
 def summarize(requests, target, start, end, markers, warnings):
     selected, peers, edges, interfaces = [], Counter(), Counter(), Counter()
     directions, types, latencies = Counter(), Counter(), []
@@ -150,7 +187,7 @@ def summarize(requests, target, start, end, markers, warnings):
         peer = receiver if outgoing else sender
         if direction != "internal" and peer.get("upid") is not None:
             peers[label(peer)] += 1
-        if tx["interface"] and tx["method"]:
+        if tx["interface"] and tx["method"] and not tx["method"].startswith("#"):
             interfaces[tx["interface"], tx["method"], direction] += 1
         if tx["latency_ns"] is not None:
             latencies.append(tx["latency_ns"] / 10**6)
@@ -176,6 +213,7 @@ def summarize(requests, target, start, end, markers, warnings):
         "interfaces": [{"interface": i, "method": m, "direction": d, "count": count}
                        for (i, m, d), count in interfaces.most_common()],
         "unidentified_interface_count": len(selected) - sum(interfaces.values()),
+        "numeric_method_label_count": sum(bool(tx.get("method")) and tx["method"].startswith("#") for tx in selected),
         "unresolved_endpoint_requests": sum(any(tx[end].get("upid") is None for end in ("sender", "receiver"))
                                             for tx in selected),
         "matched_sync_calls": len(latencies),
@@ -203,7 +241,8 @@ def analyze(trace, run):
         matched = rows(processor, TRANSACTIONS)
         raw = rows(processor, RAW)
         stats = rows(processor, "SELECT name, value FROM stats WHERE value > 0 AND "
-                    "(severity = 'data_loss' OR name LIKE 'ftrace_setup_errors%')")
+                    "(severity = 'data_loss' OR name LIKE 'ftrace_setup_errors%' "
+                    "OR name IN ('traced_buf_chunks_discarded', 'traced_buf_chunks_overwritten'))")
         warnings.extend(f"{stat['name']}: {stat['value']}" for stat in stats)
         if not raw and not matched:
             warnings.append("The trace contains no recognizable Binder events.")
@@ -219,6 +258,8 @@ def analyze(trace, run):
     selected, summary = summarize(requests, target, bounds["start_ts"], bounds["end_ts"],
                                   run.get("markers", []), warnings)
     summary["target_processes"] = [p for p in processes if p["upid"] in target]
+    summary["path_evidence"] = path_evidence(requests, summary["candidate_paths"],
+                                            run.get("markers", []), run.get("workload"), bounds["start_ts"])
     return selected, summary
 
 
@@ -230,7 +271,10 @@ def save_json(path, payload):
 
 def export(folder, transactions, summary):
     save_json(folder / "transactions.json", transactions)
+    path_rows = summary.pop("path_evidence", None)
     save_json(folder / "summary.json", summary)
+    if path_rows is not None:
+        save_json(folder / "path_evidence.json", path_rows)
     for name, data, fields in (
         ("transactions", transactions, ["run_id", "id", "ts_ns", "sender", "receiver", "direction", "type",
                                         "reply_observed", "latency_ns", "interface", "method", "code", "evidence"]),

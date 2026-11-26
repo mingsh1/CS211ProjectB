@@ -115,21 +115,12 @@ const descriptions = {
   W2: "Use voice input to speak the W1 prompt. Mark voice start/end and response completion."
 };
 function workloadChanged() {
-  $("seconds").value = isResourceMode() ? 300 : $("workload").value === "W0" ? 40 : 90;
+  $("seconds").value = $("workload").value === "W0" ? 40 : 90;
   $("instructions").textContent = descriptions[$("workload").value];
 }
-function isResourceMode() { return $("mode").value.startsWith("resource_"); }
 function modeChanged() {
-  const resource = isResourceMode();
-  $("simpleperf_enabled").disabled = !["trace", "resource_trace"].includes($("mode").value);
+  $("simpleperf_enabled").disabled = $("mode").value !== "trace";
   if ($("simpleperf_enabled").disabled) $("simpleperf_enabled").checked = false;
-  $("resource-setup").hidden = !resource;
-  $("seconds").min = resource ? 30 : 5;
-  $("seconds").max = resource ? 540 : 180;
-  $("device_label").required = resource;
-  $("conditions").required = resource;
-  $("controller_stop_ack").required = $("mode").value === "resource_agent";
-  $("capture-help").textContent = resource ? "Fixed resource window after the preparation delay. Start with 300 seconds. Do not stop early or reopen the controller in arm A. Use longer windows if the battery counter cannot resolve a change." : "Capture includes app switching. W0 needs 30 untouched seconds; stop W1/W2 at completion or 60 seconds after the task begins.";
   workloadChanged();
 }
 $("mode").onchange = modeChanged;
@@ -139,16 +130,6 @@ $("simpleperf-probe").onclick = action(async () => {
     const r = await api("devices/simpleperf-capabilities", {serial: $("device").value, package: $("package").value.trim()});
     $("simpleperf-capabilities").textContent = (r.eligible ? "Ready to attempt: " : "Unavailable: ") + r.reason;
   } catch (error) { $("simpleperf-capabilities").textContent = error.message; }
-});
-$("resource-probe").onclick = action(async () => {
-  $("resource-capabilities").textContent = "Checking the selected phone; this may take several seconds…";
-  try {
-    const r = await api("devices/resource-capabilities", {serial: $("device").value, package: $("package").value.trim()});
-    const flag = (v) => v ? "available" : "unavailable";
-    $("resource-capabilities").textContent = `System CPU intervals: ${flag(r.cpu_available)}; Agent CPU: ${flag(r.agent_cpu_available)}; voltage: ${flag(r.voltage_available)}; unplugged/discharging: ${flag(r.unplugged_discharging)}; Agent PSS: ${flag(r.agent_pss_available)}; system memory: ${flag(r.system_memory_available)}; charge counter: ${flag(r.charge_counter_available)}. ${r.note}`;
-  } catch (error) {
-    $("resource-capabilities").textContent = error.message;
-  }
 });
 workloadChanged();
 $("workload").onchange = workloadChanged;
@@ -206,6 +187,12 @@ $("device").addEventListener("change", clearPackages);
 $("package-search").addEventListener("input", renderPackages);
 $("all-packages").addEventListener("change", renderPackages);
 $("package-check").onclick = action(checkPackage);
+$("select-chatgpt").onclick = action(async () => {
+  $("package").value = "com.openai.chatgpt";
+  $("package-search").value = "com.openai.chatgpt";
+  renderPackages();
+  await checkPackage();
+});
 $("package").addEventListener("input", () => {
   detailGeneration++;
   $("package-selection").textContent = "Manual entry: click Check selected package to verify installation and version.";
@@ -216,20 +203,16 @@ function choose(id) {
   state.set("run", id);
   renderedRun = "";
   $("results").hidden = true;
-  $("resource-results").hidden = true;
   $("exports").replaceChildren();
   $("quality").textContent = "";
 }
 $("setup").onsubmit = action(async () => {
-  if (native && isResourceMode()) throw Error("Start all three resource arms from the laptop browser, then switch to the Agent on the phone.");
   for (const key of ["device_label", "conditions"]) state.set(key, $(key).value.trim());
   const run = await api("runs", {
     serial: $("device").value, target_package: $("package").value.trim(), workload: $("workload").value,
     duration_seconds: Number($("seconds").value), repetition: Number($("repetition").value),
     mode: $("mode").value, device_label: $("device_label").value.trim(), conditions: $("conditions").value.trim(),
-    sample_interval_seconds: Number($("sample_interval_seconds").value), settle_seconds: Number($("settle_seconds").value),
-    simpleperf_enabled: $("simpleperf_enabled").checked,
-    controller_stop_ack: $("controller_stop_ack").checked
+    simpleperf_enabled: $("simpleperf_enabled").checked
   });
   choose(run.id);
   await refresh(true);
@@ -266,7 +249,7 @@ async function refresh(force = false) {
   try {
     const runs = await api("runs");
     const busy = runs.find((run) => !terminal.has(run.status));
-    if (native) native.recording(busy?.status === "recording" && !busy.mode?.startsWith("resource_") ? busy.id : "",
+    if (native) native.recording(busy?.status === "recording" ? busy.id : "",
                                  busy?.workload || "", $("token").value.trim(),
                                  busy?.duration_seconds || 0);
     if (!active && busy) choose(busy.id);
@@ -278,15 +261,10 @@ async function refresh(force = false) {
     $("history").value = active;
     const run = runs.find((r) => r.id === active);
     $("start").disabled = Boolean(busy);
-    $("stop").disabled = !["preparing", "settling", "recording"].includes(run?.status);
-    $("add-marker").disabled = run?.status !== "recording" || run.mode?.startsWith("resource_");
+    $("stop").disabled = !["preparing", "recording"].includes(run?.status);
+    $("add-marker").disabled = run?.status !== "recording";
     $("ground").hidden = !run;
     $("status").textContent = run ? (run.mode === "baseline" ? "Baseline (no Perfetto) · " : "") + run.status + (run.error ? " · " + run.failed_stage + ": " + run.error : "") : "";
-    if (run?.status === "settling" && run.settling_until) {
-      $("status").textContent += ` · switch to the Agent; measurement starts in about ${Math.max(0, Math.ceil(run.settling_until - Date.now() / 1000))} seconds`;
-    } else if (run?.status === "recording" && run.resource_started_at) {
-      $("status").textContent += ` · about ${Math.max(0, Math.ceil(run.resource_started_at + run.duration_seconds - Date.now() / 1000))} seconds left in the resource window`;
-    }
     list("markers", run?.markers.map((m) => m.label) || [], "No markers recorded.");
     if (run && groundRun !== run.id) {
       fields.forEach((key) => { $(key).value = run[key] || ""; });
@@ -311,10 +289,8 @@ async function refresh(force = false) {
       const names = await api("runs/" + run.id + "/artifacts");
       const quality = await api("runs/" + run.id + "/quality");
       const summary = names.includes("summary.json") ? await api("runs/" + run.id + "/summary.json") : null;
-      const resourceSummary = names.includes("resources_summary.json") ? await api("runs/" + run.id + "/resources_summary.json") : null;
       if (active === run.id) {
         if (summary) render(summary, run.id);
-        if (resourceSummary) renderResources(resourceSummary);
         renderExports(names, run.id);
         $("quality").textContent = quality.valid ? "Ground truth and available trace checks passed." : quality.issues.join(" · ");
         renderedRun = run.id;
@@ -420,29 +396,6 @@ function renderExports(names, id) {
     return button;
   }));
 }
-function renderResources(s) {
-  $("resource-results").hidden = false;
-  $("resource-window").textContent = `${s.mode} / ${s.observer}: ${s.elapsed_seconds.toFixed(1)} seconds; ${s.sample_count} samples; observer commands took ${s.observer_wall_seconds.toFixed(1)} seconds in total.`;
-  const labels = {system_cpu_reported_percent: "System CPU (%; see method below)", agent_cpu_one_core_percent: "Agent CPU (% of one core)",
-    controller_cpu_one_core_percent: "Controller CPU (% of one core)", agent_pss_kib: "Agent PSS (KiB)",
-    controller_pss_kib: "Controller PSS (KiB)", system_used_kib: "System used memory (KiB)"};
-  const rows = Object.entries(s.metrics).map(([k,v]) => [labels[k] || k, v.median, `${v.samples} samples${v.reason ? ': ' + v.reason : ''}`]);
-  rows.push(["Charge used (µAh)", s.battery.charge_used_uah, s.battery.reason || "Whole device"],
-    ["Estimated energy (mWh)", s.battery.estimated_energy_mwh, "Charge × voltage estimate"],
-    ["Estimated mean power (mW)", s.battery.estimated_mean_power_mw, "Whole device"]);
-  $("resource-metrics").replaceChildren(...rows.map((cells) => {
-    const tr = document.createElement("tr");
-    for (const value of cells) { const td = document.createElement("td"); td.textContent = value == null ? "Unavailable" : typeof value === "number" ? value.toFixed(2) : value; tr.append(td); }
-    return tr;
-  }));
-  const missing = Object.entries(s.metrics).filter(([,v]) => v.median == null).map(([k]) => labels[k] || k);
-  $("resource-issues").textContent = [...s.issues, ...s.cpu_rejection_reasons,
-    ...(missing.length ? ["Unavailable metrics: " + missing.join(", ")] : []),
-    ...(s.battery.reason ? [s.battery.reason] : [])].join(" · ");
-  $("resource-method").textContent = s.observer === "adb-proc-stat-v2"
-    ? "CPU: cumulative counter differences; system busy excludes idle and I/O wait. First snapshot is a baseline. Process CPU is relative to one core. Process changes/inaccessible counters remain unavailable."
-    : "Legacy CPU: accepted dumpsys windows; system TOTAL includes I/O wait. Do not pool with v2 counter measurements.";
-}
 $("evaluate").onclick = action(async () => {
   const r = await api("evaluation.json");
   const percent = (n) => n == null ? "unavailable" : (100 * n).toFixed(1) + "%";
@@ -455,18 +408,6 @@ $("evaluate").onclick = action(async () => {
     ...r.overhead.groups.map((g) => `${g.agent} / ${g.workload}: ${g.pair_count} pairs, median task time change ${g.median_delta_seconds.toFixed(2)}s (${g.median_relative_change_percent.toFixed(1)}%)`),
     "Overhead measures incremental tracing impact with the controller enabled; operator and network variation remain.",
     "Download evaluation JSON for per-run evidence, outcomes, uncertain predictions and exclusions."];
-  if (r.resource_overhead) {
-    lines.push(`Resource comparisons: ${r.resource_overhead.triplets.length} matched triplets (not a guarantee of valid CPU/energy); ${r.resource_overhead.excluded.length} exclusions.`);
-    for (const g of r.resource_overhead.groups) {
-      lines.push(`${g.device} / ${g.agent} / ${g.workload} / ${g.observer || "legacy"}: ${g.triplet_count} triplets (${g.three_repetitions_complete ? '3 repetitions reached' : 'more repetitions needed'})`);
-      for (const kind of ["controller", "tracing", "total"]) {
-        const m = g.metrics[kind];
-        const value = (k, unit) => m[k].median_delta == null ? "unavailable" : m[k].median_delta.toFixed(2) + unit + ` (n=${m[k].valid_triplets})`;
-        lines.push(`${kind}: system CPU Δ ${value('system_cpu_reported_percent', ' percentage points')}; system memory Δ ${value('system_used_kib', ' KiB')}; estimated power Δ ${value('estimated_mean_power_mw', ' mW')}`);
-      }
-    }
-    lines.push("All resource arms include the ADB observer. Negative differences are retained; unavailable readings are not zero.");
-  }
   $("evaluation").textContent = lines.join("\n");
 });
 $("evaluation-export").onclick = action(() => download("evaluation.json", "evaluation.json"));

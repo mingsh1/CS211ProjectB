@@ -15,15 +15,14 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from . import analyzer, collector, experiments, protocol, browser_detection, resources, simpleperf
+from . import analyzer, collector, experiments, protocol, browser_detection, simpleperf
 
 WEB = Path(__file__).with_name("web")
 PACKAGE = re.compile(r"[A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)+")
 RUN_ID = re.compile(r"[0-9a-f]{32}")
 TERMINAL = {"complete", "failed"}
 EXPORTS = {"metadata.json", "metadata.csv", "summary.json", "summary.csv", "transactions.json",
-           "transactions.csv", "edges.csv", "timeline.csv", "capture.pftrace",
-           "resources.json", "resources.csv", "resources_summary.json"} | simpleperf.EXPORTS
+           "transactions.csv", "edges.csv", "timeline.csv", "path_evidence.json", "capture.pftrace"} | simpleperf.EXPORTS
 
 
 def now():
@@ -79,23 +78,6 @@ class Runs:
 
     def quality(self, run_id):
         run = self.get(run_id)
-        if run.get("mode") in resources.MODES:
-            path = self.folder(run_id) / "resources_summary.json"
-            issues = []
-            if path.is_file():
-                result = json.loads(path.read_bytes())
-                issues.extend(result["issues"])
-                if any(v["median"] is None for v in result["metrics"].values()):
-                    issues.append("Some resource metrics are unavailable; inspect resource results")
-                if result["battery"]["reason"]:
-                    issues.append(result["battery"]["reason"])
-            else:
-                issues.append("No resource summary is available")
-            if run["status"] != "complete":
-                issues.append("Resource capture has not completed")
-            if run.get("outcome") != "success":
-                issues.append("Confirm the resource scenario outcome before comparison")
-            return {"valid": not issues, "issues": issues, "task_duration_seconds": None}
         path = self.folder(run_id) / "summary.json"
         summary = json.loads(path.read_bytes()) if path.is_file() else None
         result = protocol.validate(run, summary)
@@ -121,32 +103,16 @@ class Runs:
         mode = body.get("mode", "trace")
         context = {key: body.get(key, "") for key in ("device_label", "conditions")}
         requested = body.get("simpleperf_enabled", False)
-        if type(requested) is not bool or (requested and mode not in {"trace", "resource_trace"}):
+        if type(requested) is not bool or (requested and mode != "trace"):
             raise APIError(400, "Simpleperf requires a boolean option and a traced diagnostic run.")
-        resource_mode = mode in resources.MODES
-        if mode not in ("trace", "baseline", *resources.MODES) or any(
+        if mode not in ("trace", "baseline") or any(
                 not isinstance(v, str) or len(v) > 200 for v in context.values()):
             raise APIError(400, "Select a supported mode; context fields must be at most 200 characters.")
-        interval = body.get("sample_interval_seconds", 15)
-        settling = body.get("settle_seconds", 30)
-        if resource_mode:
-            if client != "desktop":
-                raise APIError(400, "Start all resource arms from the laptop browser; the Agent-only arm closes the APK.")
-            if package == resources.CONTROLLER:
-                raise APIError(400, "Select an Agent distinct from the Project B controller.")
-            if not all(v.strip() for v in context.values()):
-                raise APIError(400, "Resource comparisons need a stable phone label and documented conditions.")
-            if type(interval) is not int or not 10 <= interval <= 60 or type(settling) is not int or not 10 <= settling <= 120:
-                raise APIError(400, "Use a 10–60 second sample interval and 10–120 second settling delay.")
-            if mode == "resource_agent" and body.get("controller_stop_ack") is not True:
-                raise APIError(400, "Acknowledge that Agent-only stops the Project B controller on the selected phone.")
         if not isinstance(package, str) or not PACKAGE.fullmatch(package):
             raise APIError(400, "Enter an installed Android package name.")
-        low, high = (30, 540) if resource_mode else (5, 180)
+        low, high = 5, 180
         if workload not in ("W0", "W1", "W2") or type(duration) is not int or not low <= duration <= high:
             raise APIError(400, f"Select W0, W1 or W2 and a duration of {low}–{high} seconds.")
-        if resource_mode and duration < 2 * interval:
-            raise APIError(400, "Resource duration must be at least twice the sampling interval.")
         if type(repetition) is not int or not 1 <= repetition <= 100:
             raise APIError(400, "Enter a repetition number of 1–100.")
         if not isinstance(serial, str) or not serial:
@@ -163,9 +129,6 @@ class Runs:
                        created_at=now(), markers=[], outcome=None, notes="", browser_package="",
                        recognized_text="", actual_response="")
             run.update(mode=mode, simpleperf_requested=requested, **context)
-            if resource_mode:
-                run.update(sample_interval_seconds=interval, settle_seconds=settling,
-                           observer=resources.VERSION, controller_stop_ack=body.get("controller_stop_ack", False))
             analyzer.save_json(self.folder(run_id) / "metadata.json", run)
             self.runs[run_id] = run
             stop = self.stops[run_id] = threading.Event()
@@ -186,15 +149,6 @@ class Runs:
                         android_sdk=collector.adb("shell", "getprop", "ro.build.version.sdk", serial=serial))
             if run.get("simpleperf_requested"):
                 sidecar = simpleperf.Recording(run, folder, lambda **changes: self.update(run_id, **changes))
-            if run.get("mode") in resources.MODES:
-                stage = "resources"
-                trace = resources.capture(run, folder, stop, lambda **changes: self.update(run_id, **changes),
-                                          **({"sidecar": sidecar} if sidecar else {}))
-                if sidecar:
-                    sidecar.finish()
-                self.update(run_id, status="complete", finished_at=now(),
-                            trace_bytes=trace.stat().st_size if trace else None)
-                return
             recording = collector.Recording(run, folder)
             baseline = run.get("mode") == "baseline"
             if sidecar:
@@ -234,7 +188,7 @@ class Runs:
     def stop(self, run_id):
         with self.lock:
             run = self.get(run_id)
-            if run["status"] in {"preparing", "settling", "recording"}:
+            if run["status"] in {"preparing", "recording"}:
                 self.stops[run_id].set()
             return run
 
@@ -243,8 +197,6 @@ class Runs:
         if not isinstance(label, str) or not label.strip() or len(label) > 80:
             raise APIError(400, "Enter a marker label of 1–80 characters.")
         run = self.get(run_id)
-        if run.get("mode") in resources.MODES:
-            raise APIError(409, "Resource runs use a fixed window and laptop ground truth, not phone markers.")
         if run["status"] != "recording":
             raise APIError(409, "Markers require an active recording.")
         phone_time = body.get("boottime_ns")
@@ -349,8 +301,7 @@ class Handler(BaseHTTPRequestHandler):
         if method == "POST" and path == "/api/runs":
             return self.respond(202, runs.start(self.body(), self.headers.get("X-ProjectB-Client", "desktop")))
         parts = path.strip("/").split("/")
-        if parts in (["api", "devices", "resource-capabilities"],
-                     ["api", "devices", "simpleperf-capabilities"]) and method == "POST":
+        if parts == ["api", "devices", "simpleperf-capabilities"] and method == "POST":
             body = self.body()
             serial, package = body.get("serial"), body.get("package")
             if not isinstance(serial, str) or serial not in collector.devices():
@@ -360,8 +311,7 @@ class Handler(BaseHTTPRequestHandler):
             with runs.lock:
                 if any(r["status"] not in TERMINAL for r in runs.runs.values()):
                     raise APIError(409, "Run capability checks only when no experiment is active.")
-                module = simpleperf if parts[-1] == "simpleperf-capabilities" else resources
-                return self.respond(200, module.capabilities(serial, package))
+                return self.respond(200, simpleperf.capabilities(serial, package))
         if parts == ["api", "devices", "package-details"] and method == "POST":
             body = self.body()
             serial, package = body.get("serial"), body.get("package")

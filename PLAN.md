@@ -1,6 +1,6 @@
 # Project B requirements and acceptance plan
 
-Updated 2026-11-07. The authoritative checkout is `C:\CS211ProjectB`, as selected by the user. See [NEXT_WEEK_PLAN.md](NEXT_WEEK_PLAN.md) for the current CPU, memory, battery and controller-overhead milestones and detailed operating procedure. The original requirement mapping below remains the course acceptance checklist.
+Updated 2026-11-20 after the mentor meeting. Main checkout: `C:/CS211ProjectB`. Resource A/B/C experiments are retired at the user's request. This change does not establish acceptance of the original course overhead requirement. See PERFETTO_GRANULARITY.md.
 
 ## Sources and scope
 
@@ -25,7 +25,7 @@ The course document additionally requires profiling-overhead measurement. At lea
 | Graphs and metadata/transactions/summaries in JSON/CSV (slide 2) | Web graph/timeline and native document picker; failure exports | Save each export on phone, including raw trace after analysis failure |
 | Transparent exploratory inference and uncertainty (slide 2) | Leave-one-Agent-out centroid classifier, per-phone/conditions grouping and abstention | Real held-out results; report confusion, coverage, accuracy on classified examples, exclusions and ambiguity |
 | W0/W1/W2, same phone/prompt/voice mode, two Agents, three repetitions (slides 3, 12) | Run metadata, ground truth validation, matrix coverage, per-run comparisons | At least 18 recorded trials; retain failures and reruns, check valid repetitions in each cell |
-| Profiling overhead (course document Project B Evaluation; expanded metrics requested by user) | Three-arm CPU/PSS/battery observer, signed controller/tracing/total comparisons; original task-time baseline retained | Phone capability check; first 9-run A/B/C resource pilot; verify usable metrics and discharge resolution, then repeat representative scenarios. Observer and controller-profile limits must be reported |
+| Profiling overhead (course document) | Optional paired task-time baseline only; resource experiment retired after mentor feedback | Explain revised scope and limitations in the final report; do not claim CPU/memory/battery overhead acceptance |
 | Dataset, report, code, documentation, presentation (slides 12–13) | README, this plan, analysis and structured exports, REPORT_TEMPLATE.md | Actual dataset, evidence-based report, final presentation and live demo remain pending |
 | Weekly progress email, meeting every two weeks (slide 14) | Team responsibility | User/team sends updates and schedules meetings. No emails or messages are sent automatically |
 
@@ -36,8 +36,8 @@ The original four-stage plan is retained as an implementation sequence, not a su
 1. **Feasibility (course week 3):** prepare the phone, select Agents, capture one real trace and record the fields available without root. Stop and resolve collection limitations before calling the implementation accepted.
 2. **Collection and frontend (weeks 4–5):** validate the APK-to-backend flow, trace and baseline modes, markers, state restoration, device disconnection errors and exports. Use the APK on the same phone selected by ADB.
 3. **Analysis (weeks 5–6):** manually inspect representative transactions and confirm all structure/timing metrics. Keep observations separate from inference. Synthetic tests and the reference trace support regression checks, not Agent evaluation.
-4. **Integration/pilot (week 7):** verify graph/timeline and markers, investigate representative mediated paths, pilot all three workloads on both Agents, and finalize conditions and paired overhead procedure.
-5. **Data (week 8):** record the 18 formal Binder trials and the agreed resource A/B/C scenarios. The former 12-task-time-baseline plan remains available as a supplemental latency experiment, but does not substitute for resource overhead. Retain raw traces, actual outcomes and quality failures. If a trace is incomplete, preserve it and rerun rather than silently deleting it.
+4. **Integration/pilot (week 7):** verify graph/timeline and markers, investigate representative mediated paths, pilot all three workloads on both Agents, and finalize conditions.
+5. **Data (week 8):** record the 18 formal Binder trials across two Agents and W0/W1/W2. Retain raw traces, outcomes and quality failures. Preserve incomplete traces and rerun when needed.
 6. **Analysis and delivery (week 9):** review outcome counts separately from communication features; explain success-only classifier selection. Analyze uncertainty, compare peers/interfaces/candidate paths, report overhead limitations, complete report/presentation and demonstrate the full flow.
 
 ## Workload acceptance
@@ -51,16 +51,22 @@ The original four-stage plan is retained as an implementation sequence, not a su
 
 ## Overhead scope and limitations
 
-The current required extension is described in NEXT_WEEK_PLAN.md. Resources A stops only the controller, B keeps the controller in the background, and C adds Perfetto. All three use the same ADB observer and fixed-duration scenario. Compare B−A, C−B and C−A within matched triplets. CPU and PSS are sampled; charge and voltage produce a whole-device energy estimate when supported. These measurements do not give hardware-meter energy or observer-free attribution. Missing readings stay unavailable.
-
-The following task-time procedure is retained as a separate supplemental experiment:
+The mentor-directed scope removes the resource experiment. The following task-time procedure remains optional:
 
 Pair `baseline` and `trace` runs with identical phone label, conditions, Agent, workload and repetition. Baseline starts no Perfetto session. Both modes keep the same controller and notification-marker workflow. Only native phone markers are accepted for paired overhead timing; browser ADB uptime samples are retained for general experiments but excluded here.
 
 The measured quantity is the change in operator-marked task completion time when tracing is enabled. Negative changes remain visible. W0 is excluded because its duration is prescribed by the operator. Trace bytes measure storage cost; analysis wall time measures post-capture host processing cost. Neither is a CPU or energy measurement.
 
-Task-time comparisons alone do not isolate total controller overhead, CPU, memory or battery overhead; use the new resource experiment for those metrics. Operator latency, network and cloud response variation can dominate small differences. Alternate baseline/trace order and report individual pairs plus medians rather than claiming causality from one pair.
+Task-time comparisons alone do not isolate total controller overhead, CPU, memory or battery overhead. Operator latency, network and cloud response variation can dominate small differences. Alternate baseline/trace order and report individual pairs plus medians rather than claiming causality from one pair.
 
 ## Current status
 
-At the November 7 review, the original private experiment directory contained 10 W1 capture records (not bundled in this repository), including three marked successful, with nonzero Binder outputs in several runs. These do not establish the complete formal workload matrix. The new resource code has automated validation, but no connected phone was available for resource acceptance. CPU/memory/battery results, verified intermediary examples, the complete W0/W1/W2 matrix, final report and presentation remain pending.
+As of November 24, the selected Gemini–ChatGPT formal cohort has three valid repetitions of each W0/W1/W2 workload for both Agents: 18 runs on the same phone and conditions group. The user confirmed that neither app was updated during collection and that W2 used comparable voice input modes. The earlier extra ChatGPT W0 repetition 1 is retained as a pilot. Three Muse W0 runs are retained as historical data; the user decided not to use Muse in the comparison. See `reports/2026-11-24-formal-matrix.md` and `runs/evaluation-formal-gemini-chatgpt.json`. Resource A/B/C experiments remain retired at the user's request. Current priorities:
+
+1. The selected 18-run Metrics 1–3 comparison, per-run CSV tables and four SVG figures are complete in `reports/2026-11-24-metrics-1-3-gemini-chatgpt/`.
+2. Verify representative task-window intermediary candidates against raw traces and observed outcomes. A nested two-hop sequence is structural evidence, not proof of task causality or message content.
+3. Explain the low held-out classifier coverage and the duplicate-run sensitivity. Do not claim generalization from this small exploratory dataset.
+4. Complete the evidence-based final report, dataset/source/APK packaging, presentation and live demonstration. Document the mentor-directed removal of resource experiments and the remaining overhead limitation.
+5. Retain Muse W0 captures for provenance, but exclude Muse from formal figures, inference and delivery claims.
+
+The current trace configuration remains focused on Binder/AIDL and process metadata. CPU scheduling, stack sampling and heap allocation profiling are not enabled. Independent Simpleperf diagnostics remain optional.

@@ -8,7 +8,6 @@ from pathlib import Path
 
 from .analyzer import save_json
 from .protocol import validate
-from . import resources
 
 WORKLOADS = ("W0", "W1", "W2")
 FEATURES = ("incoming_per_second", "outgoing_per_second", "distinct_peers",
@@ -51,13 +50,20 @@ def evaluate(samples):
     return predictions
 
 
-def report(root):
+def report(root, agents=None, exclude_runs=None):
     samples, exclusions, records, comparisons = [], [], [], []
+    agents = set(agents) if agents is not None else None
+    exclude_runs = set(exclude_runs or ())
     diagnostics = []
     groups = defaultdict(list)
     observed = defaultdict(list)
     for path in sorted(root.glob("*/metadata.json")):
         run = json.loads(path.read_text(encoding="utf-8"))
+        if agents is not None and run.get("target_package") not in agents:
+            continue
+        if run.get("id") in exclude_runs:
+            exclusions.append({"id": run["id"], "reason": "Excluded from selected formal analysis; raw run retained"})
+            continue
         summary_path = path.with_name("summary.json")
         if "id" not in run or "workload" not in run:
             continue  # Offline trace analyses lack experiment ground truth.
@@ -67,8 +73,6 @@ def report(root):
                                 "simpleperf": run.get("simpleperf")})
             exclusions.append({"id": run["id"], "reason": "Simpleperf diagnostic; excluded from formal trials and overhead"})
             continue
-        if run.get("mode") in resources.MODES:
-            continue  # Resource scenarios do not count as formal Binder workloads.
         summary = json.loads(summary_path.read_text(encoding="utf-8")) if summary_path.is_file() else None
         records.append((run, summary))
         if run.get("mode", "trace") == "baseline":
@@ -128,13 +132,15 @@ def report(root):
                    for w in WORKLOADS) for a in agents) >= 2:
             complete_cohorts.append({"device": cohort[0], "conditions": cohort[1]})
     return {
+        "selected_agents": sorted(agents) if agents is not None else None,
+        "selected_run_exclusions": sorted(exclude_runs),
         "simpleperf_runs": diagnostics,
         "feature_names": FEATURES,
         "method": "Leave one agent out, nearest workload centroid, standardized on training data",
         "abstention_margin": .20, "coverage": coverage,
         "protocol_has_at_least_two_agents_with_three_repetitions": bool(complete_cohorts),
         "complete_cohorts": complete_cohorts,
-        "run_comparisons": comparisons, "overhead": overhead(records), "resource_overhead": resources.compare(root),
+        "run_comparisons": comparisons, "overhead": overhead(records),
         "excluded_runs": exclusions, "predictions": predictions,
         "confusion": [{"actual": a, "predicted": p, "count": n} for (a, p), n in sorted(confusion.items())],
         "classification_coverage": classified / len(predictions) if predictions else None,
@@ -200,7 +206,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runs", type=Path, default=Path("runs"))
     parser.add_argument("--output", type=Path, default=Path("runs/evaluation.json"))
+    parser.add_argument("--agent", action="append", dest="agents",
+                        help="Include only this package in the evaluation; repeat for multiple agents")
+    parser.add_argument("--exclude-run", action="append", dest="excluded_runs",
+                        help="Retain but exclude this run ID from the selected evaluation")
     args = parser.parse_args()
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    save_json(args.output, report(args.runs))
+    save_json(args.output, report(args.runs, args.agents, args.excluded_runs))
     print(args.output)

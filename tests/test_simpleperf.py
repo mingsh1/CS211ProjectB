@@ -8,7 +8,7 @@ from unittest.mock import Mock, patch
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
-from backend import simpleperf, server, resources, experiments
+from backend import simpleperf, server, experiments
 
 
 def run_fixture():
@@ -123,14 +123,11 @@ class SimpleperfTests(unittest.TestCase):
             self.assertEqual(len(report["simpleperf_runs"]), 1)
             self.assertEqual(report["coverage"], [])
             self.assertEqual(report["overhead"]["pairs"], [])
-            run["mode"] = "resource_trace"
-            (folder / "metadata.json").write_text(json.dumps(run))
-            self.assertIn("Simpleperf", resources.compare(root)["excluded"][0]["issues"][0])
 
     def test_invalid_modes_rejected_before_device_commands(self):
         with tempfile.TemporaryDirectory() as temp, patch.object(server.collector, "devices") as devices:
             manager = server.Runs(Path(temp))
-            for mode, enabled in (("baseline", True), ("resource_agent", True), ("resource_controller", True), ("trace", "true")):
+            for mode, enabled in (("baseline", True), ("resource_agent", False), ("resource_controller", False), ("resource_trace", False), ("trace", "true")):
                 with self.assertRaises(server.APIError): manager.start({**run_fixture(), "mode": mode, "simpleperf_enabled": enabled})
             devices.assert_not_called()
 

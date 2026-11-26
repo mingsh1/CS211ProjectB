@@ -24,10 +24,6 @@ Use evaluation.json for held-out Agent predictions, confusion, abstention/covera
 
 ## Overhead
 
-For resource overhead, report the A/B/C controller profile, fixed scenario, interval and duration, device capability evidence and counterbalanced trial order. Link each triplet to resource raw data and metadata. Report CPU normalization and accepted windows, app/controller PSS and system memory, battery charge decrease and estimated whole-device energy/power. Include B−A (controller), C−B (tracing) and C−A (total tested profile), valid counts and median signed deltas. Explain unavailable metrics, observer costs, screen/network/thermal effects and charge-counter resolution. Do not claim direct hardware energy measurement or universal controller overhead. State whether each metric actually passed phone acceptance.
-
-For the separate supplemental task-time comparison:
-
 List paired baseline/traced run IDs and order. Report native-marker task times, per-pair changes and medians for each Agent/workload; include negative changes and missing pairs. Report trace sizes and host analysis times separately. State that the controller is active in both modes, and that this protocol does not measure CPU/memory/battery or total controller overhead. Discuss operator delay and network variability.
 
 ## Limitations and reproducibility

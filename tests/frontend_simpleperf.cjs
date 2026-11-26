@@ -23,14 +23,14 @@ const sandbox = {
 vm.createContext(sandbox);
 vm.runInContext(fs.readFileSync(path.join(__dirname, '../backend/web/app.js'), 'utf8'), sandbox);
 (async () => {
-  for (const mode of ['baseline', 'resource_agent', 'resource_controller']) {
+  for (const mode of ['baseline']) {
     element('simpleperf_enabled').checked = true;
     element('mode').value = mode;
     element('mode').onchange();
     assert.equal(element('simpleperf_enabled').disabled, true);
     assert.equal(element('simpleperf_enabled').checked, false);
   }
-  for (const mode of ['trace', 'resource_trace']) {
+  for (const mode of ['trace']) {
     element('mode').value = mode; element('mode').onchange();
     assert.equal(element('simpleperf_enabled').disabled, false);
   }
@@ -39,5 +39,9 @@ vm.runInContext(fs.readFileSync(path.join(__dirname, '../backend/web/app.js'), '
   assert.equal(calls.at(-1).url, '/api/devices/simpleperf-capabilities');
   assert.deepEqual(JSON.parse(calls.at(-1).options.body), {serial:'phone', package:'org.agent'});
   assert.equal(element('simpleperf-capabilities').textContent, 'Unavailable: not profileable');
+  await element('select-chatgpt').onclick();
+  assert.equal(element('package').value, 'com.openai.chatgpt');
+  assert.equal(calls.at(-1).url, '/api/devices/package-details');
+  assert.deepEqual(JSON.parse(calls.at(-1).options.body), {serial:'phone', package:'com.openai.chatgpt'});
   console.log('Simpleperf UI wiring passed.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

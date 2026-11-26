@@ -4,7 +4,7 @@
 
 ## 本次交付与边界
 
-APK 1.5、后端和页面支持在 Binder trace 或 Resources C 模式中勾选 **Also collect Simpleperf CPU samples (diagnostic run)**。默认关闭。采样与该次实验一起启动、停止和保存；失败原因也保存在同一个 run 目录。
+APK 1.5、后端和页面支持在 Binder trace 模式中勾选 **Also collect Simpleperf CPU samples (diagnostic run)**。默认关闭。采样与该次实验一起启动、停止和保存；失败原因也保存在同一个 run 目录。
 
 Android 允许 shell profiling 的应用才可能成功；Android 16 本身不能保证 Gemini 可采样。预检检查普通 ADB shell、主用户、预装 Simpleperf、app runner 的 debuggable/profileable 判定、所需选项、timeout 和运行进程。实际 perf-event 权限还要录制才能确认。预检不通过或录制被拒会标为 unavailable，Binder 实验继续。不会通过修改目标 APK 来绕过限制。
 
@@ -28,11 +28,9 @@ Android 允许 shell profiling 的应用才可能成功；Android 16 本身不�
 
 4. **检查采样结果。** 从 Available files 下载 `simpleperf.json`；如果成功采到，还会有 `simpleperf.data` 和 `simpleperf_report.txt`。查看状态、样本数、日志、PID/线程及符号，而不只看整个 run 是否 complete。run complete 表示主实验完成，不能替代 Simpleperf 成功判定。
 
-5. **与资源数据同轮采集。** 在笔记本页面选 Resources C，按原资源计划设置相同场景、准备延时、300 秒窗口、15 秒间隔，并勾选 Simpleperf。按原计划打开并连接控制器，再在准备期间回到 Agent。会同时保存资源快照、Binder trace 和可获取的 CPU 样本。原 A/B/C 正式开销对照仍全部不勾选；额外的 C+Simpleperf 是诊断运行，不能替代正式 C。A/B 不允许勾选。
+5. **继续 W1/W2。** 只有短诊断确认支持后，再按相同输入与条件做所需 W1/W2 诊断。无需为每个正式 trial 强行增加一次诊断；先各做一轮确认数据有用。正式 18 次矩阵及任务时间比较均保持关闭该选项。后端会自动把所有请求了 Simpleperf 的运行（包括权限失败的尝试）放进 `evaluation.json` 的 `simpleperf_runs`，排除出原正式统计。
 
-6. **继续 W1/W2。** 只有短诊断确认支持后，再按相同输入与条件做所需 W1/W2 诊断。无需为每个正式 trial 强行增加一次诊断；先各做一轮确认数据有用。正式 18 次矩阵及开销比较均保持关闭该选项。后端会自动把所有请求了 Simpleperf 的运行（包括权限失败的尝试）放进 `evaluation.json` 的 `simpleperf_runs`，排除出原正式统计。
-
-若 Gemini 不允许 profiling，保留一次 unavailable 证据，继续 Binder 和已有资源采集；重复同一受限配置不会凭空得到 CPU 热点。向导师说明设备/目标包限制后再决定是否换可 profile 的目标。本次不接入未提供确切版本链接的 DroidPerf 或 binderdump。
+若 Gemini 不允许 profiling，保留一次 unavailable 证据，继续 Binder 采集；重复同一受限配置不会凭空得到 CPU 热点。向导师说明设备/目标包限制后再决定是否换可 profile 的目标。本次不接入未提供确切版本链接的 DroidPerf 或 binderdump。
 
 ## 文件和读数
 
@@ -49,9 +47,9 @@ Android 允许 shell profiling 的应用才可能成功；Android 16 本身不�
 
 状态 complete 表示取得可解析且非零的样本报告；empty 是零样本；partial 表示提前退出或非零退出码，需要检查覆盖范围；recorded 表示原始文件已保存但报告或样本数未确认；unavailable/failed 附带原因。任何状态都不代表覆盖所有目标进程或全部工作负载。
 
-Simpleperf 会在主测量开始前就绪，主测量结束时请求停止，包含启动/切换的边缘时间；与资源测量窗口并不精确相等。对齐分析要使用各自时间证据，不直接把整个热点报告当成 W1/W2 单个任务区间。新建的 zygote 子进程、其他包承接的任务、内核工作和云端计算可能不在采样内。缺失符号保持未知。
+Simpleperf 会在主测量开始前就绪，主测量结束时请求停止，包含启动/切换的边缘时间；与任务标记界定的窗口并不精确相等。对齐分析要使用各自时间证据，不直接把整个热点报告当成 W1/W2 单个任务区间。新建的 zygote 子进程、其他包承接的任务、内核工作和云端计算可能不在采样内。缺失符号保持未知。
 
-报告里的 Overhead 百分比是所采样事件的相对热点占比，**不是整机 CPU 使用率或工具开销百分比**。Simpleperf 不直接测内存、电池能耗或 Binder 事务；这些仍分别来自现有 resources 和 Perfetto。电池估算仍受原计划的计数器、充电状态和分辨率限制。
+报告里的 Overhead 百分比是所采样事件的相对热点占比，**不是整机 CPU 使用率或工具开销百分比**。Simpleperf 不直接测内存、电池能耗或 Binder 事务；Binder 事务来自 Perfetto；当前实现不提供 CPU/内存/电池三组对照实验。
 
 ## 验证记录与资料
 

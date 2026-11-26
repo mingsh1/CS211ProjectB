@@ -3,3 +3,7 @@ android/gradlew text eol=lf
 *.bat text eol=crlf
 *.jar binary
 *.apk binary
+runs/*/capture.pftrace filter=lfs diff=lfs merge=lfs -text
+runs/*/transactions.json filter=lfs diff=lfs merge=lfs -text
+runs/*/transactions.csv filter=lfs diff=lfs merge=lfs -text
+reports/**/*.zip filter=lfs diff=lfs merge=lfs -text

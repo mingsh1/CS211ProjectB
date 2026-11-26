@@ -23,30 +23,19 @@
 <label>ADB device <select id="device" required></select></label>
 <button id="packages" type="button">Load / refresh installed apps</button>
 <p id="package-help">Load apps, then search by app name or package name.</p>
-<label>Search installed apps <input id="package-search" type="search" placeholder="Gemini, google, or a package name" autocomplete="off"></label>
+<label>Search installed apps <input id="package-search" type="search" placeholder="Gemini, ChatGPT, or a package name" autocomplete="off"></label>
 <label class="inline-check"><input id="all-packages" type="checkbox"> Include packages without a launcher app name</label>
 <p id="package-status" role="status" aria-live="polite"></p>
 <div id="package-results" aria-label="Installed apps"></div>
+<button id="select-chatgpt" type="button">Select ChatGPT (Codex)</button>
 <label>Selected package / manual entry <input id="package" placeholder="com.example.agent" required autocomplete="off"></label>
 <button id="package-check" type="button">Check selected package</button>
 <p id="package-selection" role="status" aria-live="polite">No app selected.</p>
-<label>Mode <select id="mode"><option value="trace">Binder trace</option><option value="baseline">Task-time baseline (no Perfetto)</option>
-<option value="resource_agent">Resources A · Agent only (stop controller)</option>
-<option value="resource_controller">Resources B · Agent + controller</option>
-<option value="resource_trace">Resources C · Agent + controller + Perfetto</option></select></label>
+<label>Mode <select id="mode"><option value="trace">Binder trace</option><option value="baseline">Task-time baseline (no Perfetto)</option></select></label>
 <label class="inline-check"><input id="simpleperf_enabled" type="checkbox"> Also collect Simpleperf CPU samples (diagnostic run)</label>
 <p>Optional, without root. Open the selected Agent once before starting. These runs are excluded from formal workload and overhead comparisons. Permission failures are saved alongside Binder results.</p>
 <button id="simpleperf-probe" type="button">Check Simpleperf support</button>
 <p id="simpleperf-capabilities" role="status"></p>
-<div id="resource-setup" hidden>
-<p>Start all three resource arms from the laptop browser. Use the same fixed scenario, screen brightness, network and unplugged phone. Before B/C, open the updated controller, connect it and return to the Agent. The controller stays in the background with task-marker overlays disabled for this profile.</p>
-<p>W0 means sustained foreground idle for this window. For W1/W2, document an identical repeated-task schedule in Conditions. These runs are separate from the 18 formal Binder trials.</p>
-<label>Sample interval seconds <input id="sample_interval_seconds" type="number" value="15" min="10" max="60"></label>
-<label>Preparation delay seconds <input id="settle_seconds" type="number" value="30" min="10" max="120"></label>
-<label class="inline-check"><input id="controller_stop_ack" type="checkbox"> For arm A, allow stopping only the Project B controller on the selected phone. I will not reopen it until the run ends.</label>
-<button id="resource-probe" type="button">Check resource measurement support</button>
-<p id="resource-capabilities" role="status"></p>
-</div>
 <label>Stable phone label <input id="device_label" maxlength="200" placeholder="My Pixel (same label after ADB reconnects)"></label>
 <label>Experiment conditions <input id="conditions" maxlength="200" placeholder="Same prompt, voice mode, app version and network"></label>
 <p>Use identical labels and repetition numbers to pair baseline and traced trials. Alternate their order. Both use the controller and task markers.</p>
@@ -91,14 +80,6 @@
 </form>
 <p id="quality" role="status"></p>
 <h3>Available files</h3><div id="exports"></div>
-</section>
-<section id="resource-results" hidden>
-<h2>Resource measurements</h2>
-<p id="resource-window"></p>
-<div class="graphic"><table><thead><tr><th>Metric</th><th>Median / value</th><th>Available samples / note</th></tr></thead><tbody id="resource-metrics"></tbody></table></div>
-<p id="resource-issues"></p>
-<p id="resource-method"></p>
-<p>CPU interpretation depends on the observer version shown above. Memory is sampled PSS in KiB. Battery energy is estimated from whole-device charge and voltage changes, not attributed to an individual app. The ADB observer is present in all arms.</p>
 </section>
 <section id="results" hidden>
 <h2>Results</h2>
